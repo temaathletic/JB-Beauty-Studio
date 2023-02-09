@@ -13,11 +13,36 @@ import TextFieldEffects
 
 class RegisterViewController: UIViewController {
     
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.bounces = true
+        return scroll
+    }()
+    
+    private lazy var content: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        
+        stack.addArrangedSubview(nameText)
+        stack.addArrangedSubview(nameTextField)
+        stack.addArrangedSubview(numberText)
+        stack.addArrangedSubview(numberTextField)
+        stack.addArrangedSubview(loginText)
+        stack.addArrangedSubview(loginTextField)
+        stack.addArrangedSubview(passwordText)
+        stack.addArrangedSubview(passwordTextField)
+        stack.addArrangedSubview(sendButton)
+        stack.addArrangedSubview(backToLoginView)
+        return stack
+    }()
+    
     private let borderForPhoto: UIView = {
         let border = UIView()
         border.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         border.layer.borderWidth = 1
-        border.layer.cornerRadius = 75
+        border.layer.cornerRadius = 65
         return border
     }()
     
@@ -25,7 +50,7 @@ class RegisterViewController: UIViewController {
         let photo = UIImageView()
         photo.image = UIImage(named: "smile")
         photo.clipsToBounds = true
-        photo.layer.cornerRadius = 73
+        photo.layer.cornerRadius = 63
         photo.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         photo.layer.borderWidth = 1
         photo.contentMode = .scaleAspectFill
@@ -38,7 +63,7 @@ class RegisterViewController: UIViewController {
         let sticker = UIImageView()
         sticker.image = UIImage(systemName: "plus.circle.fill")
         sticker.contentMode = .scaleAspectFill
-        sticker.tintColor = .red
+        sticker.tintColor = Color.mainRedColor
         return sticker
     }()
     
@@ -53,17 +78,17 @@ class RegisterViewController: UIViewController {
         let text = UILabel()
         text.text = "Имя"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
     private let nameTextField: UITextField = {
         let textField = IsaoTextField()
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
         textField.activeColor = .systemRed
         textField.inactiveColor = .systemGray5
+        textField.textColor = Color.mainTextColor
+        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.layer.cornerRadius = 15
         textField.leftViewMode = .always
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
@@ -74,7 +99,7 @@ class RegisterViewController: UIViewController {
         let text = UILabel()
         text.text = "Телефон"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -82,7 +107,7 @@ class RegisterViewController: UIViewController {
         let textField = IsaoTextField()
         textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
+        textField.textColor = Color.mainTextColor
         textField.activeColor = .systemRed
         textField.inactiveColor = .systemGray5
         textField.textContentType = .telephoneNumber
@@ -96,7 +121,7 @@ class RegisterViewController: UIViewController {
         let text = UILabel()
         text.text = "Электронная почта"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -104,7 +129,7 @@ class RegisterViewController: UIViewController {
         let textField = IsaoTextField()
         textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
+        textField.textColor = Color.mainTextColor
         textField.activeColor = .systemRed
         textField.inactiveColor = .systemGray5
         textField.leftViewMode = .always
@@ -118,7 +143,7 @@ class RegisterViewController: UIViewController {
         let text = UILabel()
         text.text = "Пароль"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -126,7 +151,7 @@ class RegisterViewController: UIViewController {
         let textField = IsaoTextField()
         textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
+        textField.textColor = Color.mainTextColor
         textField.activeColor = .systemRed
         textField.inactiveColor = .systemGray5
         textField.leftViewMode = .always
@@ -142,7 +167,7 @@ class RegisterViewController: UIViewController {
         text.text = "Логин"
         text.textAlignment = .center
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureForText)
         text.isUserInteractionEnabled = true
         return text
@@ -158,7 +183,7 @@ class RegisterViewController: UIViewController {
     private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setTitle("Зарегистрироваться", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(Register), for: .touchUpInside)
@@ -170,7 +195,6 @@ class RegisterViewController: UIViewController {
         
         hideKeyboardWhenTappedAround()
         setupView()
-        
     }
     
     private func setupView() {
@@ -178,100 +202,46 @@ class RegisterViewController: UIViewController {
         loginTextField.delegate = self
         passwordTextField.delegate = self
         
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.isNavigationBarHidden = true
         
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         
         view.addSubview(borderForPhoto)
         borderForPhoto.addSubview(photoImageView)
         view.addSubview(plusSticker)
-        view.addSubview(nameText)
-        view.addSubview(nameTextField)
-        view.addSubview(numberText)
-        view.addSubview(numberTextField)
-        view.addSubview(loginText)
-        view.addSubview(loginTextField)
-        view.addSubview(passwordText)
-        view.addSubview(passwordTextField)
-        view.addSubview(backToLoginView)
-        view.addSubview(sendButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(content)
         
         borderForPhoto.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.centerX.equalToSuperview()
-            make.size.equalTo(150)
+            make.size.equalTo(130)
         }
         
         photoImageView.snp.makeConstraints { make in
             make.center.equalTo(borderForPhoto)
-            make.size.equalTo(146)
+            make.size.equalTo(126)
         }
         
         plusSticker.snp.makeConstraints { make in
-            make.top.right.equalTo(photoImageView).inset(10)
+            make.top.right.equalTo(photoImageView)
             make.height.equalTo(45)
         }
         
-        nameText.snp.makeConstraints { make in
-            make.top.equalTo(photoImageView.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(borderForPhoto.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
         }
         
-        nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
+        content.snp.makeConstraints { make in
+            make.centerX.equalTo(scrollView)
+            make.top.equalTo(scrollView).inset(50)
+            make.bottom.equalTo(scrollView).inset(15)
+            make.left.right.equalTo(scrollView).inset(20)
         }
-        
-        numberText.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        numberTextField.snp.makeConstraints { make in
-            make.top.equalTo(numberText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        loginText.snp.makeConstraints { make in
-            make.top.equalTo(numberTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        loginTextField.snp.makeConstraints { make in
-            make.top.equalTo(loginText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        passwordText.snp.makeConstraints { make in
-            make.top.equalTo(loginTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        backToLoginView.snp.makeConstraints { make in
-            make.left.right.equalTo(sendButton)
-            make.height.equalTo(20)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(25)
-        }
-        
+                
         sendButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(60)
-            make.bottom.equalToSuperview().inset(40)
         }
     }
 }
@@ -365,3 +335,14 @@ extension RegisterViewController {
     }
 }
 
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct RegisterVC: PreviewProvider {
+    
+    static var previews: some View {
+        RegisterViewController().toPreview()
+    }
+}
+#endif

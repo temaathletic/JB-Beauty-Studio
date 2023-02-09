@@ -18,6 +18,7 @@ extension MyOrders {
 
     @NSManaged public var name: String?
     @NSManaged public var price: Int64
+    @NSManaged public var quantity: Int64
 
 }
 

@@ -1,5 +1,5 @@
 //
-//  AdminUserSettingPanel.swift
+//  UserChangeBonus.swift
 //  JB Beauty Studio
 //
 //  Created by temaathletic on 06.01.2023.
@@ -11,7 +11,6 @@ import SnapKit
 class UserChangeBonus: UIViewController {
     
     public var stringValue3 = ""
-    public var stringValue4 = ""
     
     private let label: UILabel = {
         let label = UILabel()
@@ -78,14 +77,6 @@ class UserChangeBonus: UIViewController {
 }
 
 extension UserChangeBonus {
-    
-    @objc func decrimentBonus(bonusEdit: Int) {
-        Service.getBonusPoint { bonusPoint in
-            guard let bonusCell = bonusPoint else { return }
-            let newValue = bonusCell - bonusEdit
-            Service.editBonusPoint(newValue, UID: self.stringValue4)
-        }
-    }
     
     @objc func saveBonus() {
         animateView(saveBtn)

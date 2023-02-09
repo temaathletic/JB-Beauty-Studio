@@ -21,10 +21,9 @@ class QRCodeViewController: UIViewController {
         let text = UILabel()
         text.text = "Покажите экран телефона \nвашему косметологу"
         text.numberOfLines = 0
-        text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 25)
         text.textAlignment = .center
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -48,9 +47,9 @@ class QRCodeViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Готово", for: .normal)
         button.titleLabel?.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.layer.cornerRadius = 15
-        button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        button.backgroundColor = Color.mainRedColor
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
         return button
@@ -63,9 +62,15 @@ class QRCodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = Color.mainTextColor
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Color.mainTextColor!]
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        backButton.tintColor = Color.mainTextColor
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         
         view.addSubview(logo)
         view.addSubview(phForQRCode)
@@ -84,21 +89,24 @@ class QRCodeViewController: UIViewController {
         
         phForQRCode.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(15)
-            make.top.equalTo(logo.snp.bottom)
+            make.top.equalTo(logo.snp.bottom).inset(40)
             make.bottom.equalTo(button.snp.top).offset(-30)
         }
         
         qrCode.snp.makeConstraints { make in
             make.centerX.equalTo(phForQRCode)
-            make.top.equalTo(phForQRCode).offset(15)
-            make.height.equalTo(view.frame.height / 3)
-            make.width.equalTo(view.frame.width / 1.4)
+            make.top.equalTo(phForQRCode).inset(view.frame.height / 15)
+            make.left.right.equalTo(phForQRCode).inset(50)
+//            make.height.equalTo(view.frame.height / 3)
+//            make.width.equalTo(view.frame.width / 1.4)
+            make.bottom.equalTo(phForQRCode).inset(view.frame.height / 5.5)
         }
         
         textForQRCode.snp.makeConstraints { make in
-            make.top.equalTo(qrCode.snp.bottom).offset(20)
+//            make.top.equalTo(qrCode.snp.bottom)
             make.left.right.equalTo(phForQRCode)
-            make.bottom.equalTo(phForQRCode).inset(10)
+            make.height.equalTo(70)
+            make.bottom.equalTo(phForQRCode).inset(25)
         }
         
         button.snp.makeConstraints { make in

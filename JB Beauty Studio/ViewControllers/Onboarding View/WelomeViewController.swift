@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WelomeViewController: UIPageViewController {
+class WelcomeViewController: UIPageViewController {
     
     var pages = [UIViewController]()
     let pageControl = UIPageControl()
@@ -18,16 +18,16 @@ class WelomeViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setup()
         style()
         layout()
     }
 }
 
-extension WelomeViewController {
+extension WelcomeViewController {
     
     func setup() {
+        
         dataSource = self
         delegate = self
         
@@ -45,33 +45,30 @@ extension WelomeViewController {
         
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
     }
+    
     func style() {
-        
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.currentPageIndicatorTintColor = #colorLiteral(red: 0.8823328614, green: 0.1244626418, blue: 0, alpha: 1)
         pageControl.pageIndicatorTintColor = .systemGray2
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = initialPage
-        
     }
+    
     func layout() {
-        
         view.addSubview(pageControl)
         
         NSLayoutConstraint.activate([
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 20),
         ])
-        
-        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 40)
-        
+        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 20)
         pageControlBottomAnchor?.isActive = true
     }
 }
 
 // MARK: - Actions
 
-extension WelomeViewController {
+extension WelcomeViewController {
     
     @objc func pageControlTapped(_ sender: UIPageControl) {
         setViewControllers([pages[sender.currentPage]], direction: .forward, animated: true, completion: nil)
@@ -80,7 +77,7 @@ extension WelomeViewController {
 
 //MARK: - DataSource
 
-extension WelomeViewController: UIPageViewControllerDataSource {
+extension WelcomeViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -107,7 +104,7 @@ extension WelomeViewController: UIPageViewControllerDataSource {
 
 //MARK: - Delegate
 
-extension WelomeViewController: UIPageViewControllerDelegate {
+extension WelcomeViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
@@ -128,7 +125,7 @@ extension WelomeViewController: UIPageViewControllerDelegate {
             showControls()
         }
         
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0, options: [.curveEaseOut], animations: {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.2, delay: 0.1, options: [.curveEaseIn], animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -138,7 +135,7 @@ extension WelomeViewController: UIPageViewControllerDelegate {
     }
     
     private func showControls() {
-        pageControlBottomAnchor?.constant = -40
+        pageControlBottomAnchor?.constant = -20
     }
     
     

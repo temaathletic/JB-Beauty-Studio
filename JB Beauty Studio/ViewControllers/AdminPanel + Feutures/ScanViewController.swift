@@ -25,10 +25,10 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     private lazy var cancelBtn: UIButton = {
         let btn = UIButton()
-        btn.layer.cornerRadius = 7
+        btn.layer.cornerRadius = 15
         btn.setTitle("Назад", for: .normal)
-        btn.tintColor = .black
-        btn.backgroundColor = .systemRed
+        btn.setTitleColor(Color.mainTextColor, for: .normal)
+        btn.backgroundColor = Color.mainRedColor
         btn.addTarget(self, action: #selector(goBackAgain), for: .touchUpInside)
         return btn
     }()
@@ -168,10 +168,10 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     func found(_ code: String) {
         
        AudioServicesPlaySystemSound(systemSoundID)
-        print("CODE => \(code)")
+        print("CODE -> \(code)")
         
-        Service.afterBlock(seconds: 0, queue: .main, complition: { [ weak self] in
-            let scene = AdminUserSettingPanel()
+        Service.afterBlock(seconds: 0, queue: .main, complition: { [ weak self ] in
+            let scene = UserChangeBonus()
             scene.stringValue3 = self!.stringValue2
             self!.present(scene, animated: true)
         })
@@ -184,7 +184,4 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-    
-    var code: String!
-    
 }

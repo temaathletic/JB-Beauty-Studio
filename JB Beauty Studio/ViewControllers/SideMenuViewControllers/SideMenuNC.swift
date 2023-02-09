@@ -9,8 +9,11 @@ import UIKit
 import SnapKit
 import PhotosUI
 import SkeletonView
+import Kingfisher
 
 class SideMenuNC: UIViewController {
+    
+    let userDefData = UserDefaults.standard
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -23,7 +26,7 @@ class SideMenuNC: UIViewController {
         let text = UILabel()
         text.text = "О СТУДИИ"
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureForText1)
         text.isUserInteractionEnabled = true
         return text
@@ -40,7 +43,7 @@ class SideMenuNC: UIViewController {
         let text = UILabel()
         text.text = "ПРИГЛАСИТЬ ДРУЗЕЙ"
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureForText2)
         text.isUserInteractionEnabled = true
         return text
@@ -57,9 +60,9 @@ class SideMenuNC: UIViewController {
         let text = UILabel()
         text.text = "НАСТРОЙКИ"
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureSetting)
         text.isUserInteractionEnabled = true
-        text.textColor = .black
         return text
     }()
     
@@ -74,7 +77,7 @@ class SideMenuNC: UIViewController {
         let text = UILabel()
         text.text = "ТЕХНИЧЕСКАЯ ПОДДЕРЖКА"
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureForText4)
         text.isUserInteractionEnabled = true
         return text
@@ -90,7 +93,7 @@ class SideMenuNC: UIViewController {
     private lazy var nameLabel: UILabel = {
         let text = UILabel()
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.numberOfLines = 0
         text.textAlignment = .left
         
@@ -124,7 +127,7 @@ class SideMenuNC: UIViewController {
         return imageView
     }()
     
-    private let userPhoto: UIImageView = {
+    public var userPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.isSkeletonable = true
         imageView.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: .systemGray2, secondaryColor: .systemGray4))
@@ -134,7 +137,7 @@ class SideMenuNC: UIViewController {
         imageView.layer.cornerRadius = 48
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        Service.afterBlock(seconds: 3, queue: .main) {
+        Service.afterBlock(seconds: 1, queue: .main) {
             imageView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0))
             imageView.layer.cornerRadius = 48
             imageView.contentMode = .scaleAspectFill
@@ -142,12 +145,27 @@ class SideMenuNC: UIViewController {
             imageView.layer.cornerRadius = 48
             imageView.layer.borderWidth = 1
             imageView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        }
-        Service.afterBlock(seconds: 2, queue: .global()) {
             Service.downloadImages(photo: imageView)
         }
         return imageView
     }()
+    
+    private let profileLink: UILabel = {
+        let text = UILabel()
+        text.text = "Профиль"
+        text.textColor = Color.mainTextColorWithOppacity
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 20)
+        return text
+    }()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Service.downloadImages(photo: userPhoto)
+        Service.getName { name in
+            self.nameLabel.text = name
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,11 +175,12 @@ class SideMenuNC: UIViewController {
     
     private func setupView() {
     
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         
         view.addSubview(phForAvatar)
         phForAvatar.addSubview(userPhoto)
         view.addSubview(phForNameLabel)
+        phForNameLabel.addSubview(profileLink)
         phForNameLabel.addSubview(nameLabel)
         
         view.addSubview(stackView)
@@ -182,14 +201,19 @@ class SideMenuNC: UIViewController {
         }
             
         phForNameLabel.snp.makeConstraints { make in
-            make.left.equalTo(phForAvatar.snp.right)
+            make.left.equalTo(phForAvatar.snp.right).inset(-40)
             make.right.equalToSuperview().inset(20)
             make.centerY.equalTo(phForAvatar)
-            make.height.equalTo(50)
+            make.height.equalTo(60)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.center.equalTo(phForNameLabel)
+            make.left.top.equalTo(phForNameLabel)
+        }
+        
+        profileLink.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).inset(-2)
+            make.left.equalTo(phForNameLabel)
         }
         
         stackView.snp.makeConstraints { make in
@@ -230,7 +254,6 @@ extension SideMenuNC {
         navigationController?.pushViewController(scene, animated: true)
     }
 }
-
 
 
 

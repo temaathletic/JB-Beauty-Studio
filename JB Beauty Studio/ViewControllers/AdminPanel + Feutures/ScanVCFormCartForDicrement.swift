@@ -1,5 +1,5 @@
 //
-//  ScanViewControllerDecrimentBonus.swift
+//  ScanVCFormCartForDicrement.swift
 //  JB Beauty Studio
 //
 //  Created by temaathletic on 09.02.2023.
@@ -171,7 +171,7 @@ class ScanVCFormCartForDicrement: UIViewController, AVCaptureMetadataOutputObjec
         print("CODE -> \(code)")
         
         Service.afterBlock(seconds: 0, queue: .main, complition: { [ weak self ] in
-            let scene = AdminUserSettingPanel()
+            let scene = UserDicrementBonus()
             scene.stringValue4 = self!.stringValue2
             self!.present(scene, animated: true)
         })

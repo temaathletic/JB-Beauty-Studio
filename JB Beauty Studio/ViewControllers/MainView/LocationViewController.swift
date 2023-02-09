@@ -14,14 +14,14 @@ class LocationViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Позвонить", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        button.backgroundColor = Color.mainRedColor
         button.addTarget(self, action: #selector(tapCall), for: .touchUpInside)
         button.layer.cornerRadius = 15
         return button
     }()
     
     @objc private func tapWrite() {
-        openUrl(urlString: "https://wa.me/+79180142070")
+        openUrl(urlString: "https://wa.me/+79180235043")
     }
     
     private lazy var whtasAppBut: UIButton = {
@@ -35,7 +35,7 @@ class LocationViewController: UIViewController {
     }()
     
     @objc private func tapCall() {
-        callPhone(string: "tel://89180142070")
+        callPhone(string: "tel://+79180235043")
     }
     
     private let phForCity1: UIView = {

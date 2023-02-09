@@ -23,7 +23,7 @@ class PopUpViewController2_5: BottomPopupViewController {
     
     private let label: UILabel = {
         let text = UILabel()
-        text.text = "Скулы - Комплекс процедур, позволяющих моделировать размер и форму, создавать контур лица."
+        text.text = "Гипергидроз - Лечение повышенного потоотделение в области подмышек, стоп и ладоней."
         text.numberOfLines = 0
         text.textAlignment = .left
         text.textColor = .black

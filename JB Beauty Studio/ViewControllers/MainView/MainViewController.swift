@@ -14,9 +14,11 @@ import FirebaseFirestore
 import FirebaseAuth
 import Lottie
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, DataDelegate {
     
     public var points = 0
+    var deleagte: DataDelegate!
+    var badgeCountDelegate: Int?
     
     var menu: SideMenuNavigationController?
     
@@ -38,57 +40,11 @@ class MainViewController: UIViewController {
     
     public lazy var bonusPoint: UILabel = {
         let point = UILabel()
-        Service.getBonusPoint { bonusPoint in
-            point.text = "\(bonusPoint ?? 0) баллов"
-        }
         point.textAlignment = .center
         point.textColor = .white
         point.font = UIFont(name: "GlacialIndifference-Bold", size: 35)
         return point
     }()
-    
-    func getRealTimeBonus() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let db = Firestore.firestore()
-        
-        db.collection("usersBonus").document(uid)
-            .addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else { return }
-                
-                guard let data = document.data()!["Bonus"] else { return }
-                self.points = data as! Int
-//                let animation = AnimationType.from(direction: .bottom, offset: 25)
-                
-                //                    UIView.animate(views: self.placeholderForBonuses.subviews,
-                //                                   animations: [animation], delay: 1, duration: 0.2)
-                //                    self.bonusPoint.text = "\(data) баллов"
-                //                    self.lottie()
-                let scene = SheetBonus()
-                scene.modalPresentationStyle = .popover
-                self.present(scene, animated: true)
-            }
-    }
-    
-    func lottie() {
-        var lottie = LottieAnimationView()
-        lottie = .init(name: "Confetti")
-        placeholderForBonuses.addSubview(lottie)
-        lottie.snp.makeConstraints { make in
-            make.left.right.top.bottom.equalTo(headerView)
-        }
-        lottie.contentMode = .scaleAspectFit
-        lottie.loopMode = .playOnce
-        lottie.animationSpeed = 1.0
-        lottie.play()
-    }
-    
-    @objc private func refresh() {        
-        Service.getBonusPoint { bonusPoint in
-            self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
-        }
-        lottie()
-        animateView(placeholderForBonuses)
-    }
     
     private lazy var placeholderForWrittenButton: UIView = {
         let view = UIView()
@@ -131,15 +87,12 @@ class MainViewController: UIViewController {
     }()
     
     //MARK: - QRcode Button
+    //MARK: - QrCode для списания
     
     private lazy var qrCodeButton: UIView = {
         let button = UIView()
         button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         button.layer.cornerRadius = 25
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowOffset = .zero
-        button.layer.shadowRadius = 10
         button.addGestureRecognizer(gestureForQR)
         button.isUserInteractionEnabled = true
         return button
@@ -154,7 +107,7 @@ class MainViewController: UIViewController {
     
     private lazy var contentForQRCode: UIView = {
         let button = UIView()
-        button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        button.backgroundColor = Color.mainRedColor
         button.layer.cornerRadius = 20
         
         return button
@@ -165,7 +118,7 @@ class MainViewController: UIViewController {
         text.text = "ПРЕДЪЯВИТЕ КАРТУ"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 20)
         text.textAlignment = .left
-        text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8048841464)
+        text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         text.numberOfLines = 0
         
         return text
@@ -202,7 +155,7 @@ class MainViewController: UIViewController {
     
     private  var mainScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.bounces = false
+        scrollView.bounces = true
         scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
@@ -236,10 +189,6 @@ class MainViewController: UIViewController {
         let box = UIView()
         box.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         box.layer.cornerRadius = 15
-        box.layer.shadowColor = UIColor.gray.cgColor
-        box.layer.shadowOpacity = 1
-        box.layer.shadowOffset = .zero
-        box.layer.shadowRadius = 5
         box.addGestureRecognizer(gestureForBoxNew1)
         box.isUserInteractionEnabled = true
         return box
@@ -256,7 +205,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Прайс"
         text.textAlignment = .center
-        text.textColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        text.textColor = Color.mainRedColor
         text.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return text
     }()
@@ -275,10 +224,6 @@ class MainViewController: UIViewController {
         let box = UIView()
         box.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         box.layer.cornerRadius = 15
-        box.layer.shadowColor = UIColor.gray.cgColor
-        box.layer.shadowOpacity = 1
-        box.layer.shadowOffset = .zero
-        box.layer.shadowRadius = 5
         box.addGestureRecognizer(gestureForBoxNew2)
         box.isUserInteractionEnabled = true
         return box
@@ -295,7 +240,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Условия"
         text.textAlignment = .center
-        text.textColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        text.textColor = Color.mainRedColor
         text.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return text
     }()
@@ -314,10 +259,6 @@ class MainViewController: UIViewController {
         let box = UIView()
         box.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         box.layer.cornerRadius = 15
-        box.layer.shadowColor = UIColor.gray.cgColor
-        box.layer.shadowOpacity = 1
-        box.layer.shadowOffset = .zero
-        box.layer.shadowRadius = 5
         box.addGestureRecognizer(gestureForBoxNew3)
         box.isUserInteractionEnabled = true
         return box
@@ -334,7 +275,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Отзыв"
         text.textAlignment = .center
-        text.textColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        text.textColor = Color.mainRedColor
         text.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return text
     }()
@@ -353,10 +294,6 @@ class MainViewController: UIViewController {
         let box = UIView()
         box.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         box.layer.cornerRadius = 15
-        box.layer.shadowColor = UIColor.gray.cgColor
-        box.layer.shadowOpacity = 1
-        box.layer.shadowOffset = .zero
-        box.layer.shadowRadius = 5
         box.addGestureRecognizer(gestureForBoxNew4)
         box.isUserInteractionEnabled = true
         return box
@@ -373,7 +310,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Обучение"
         text.textAlignment = .center
-        text.textColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        text.textColor = Color.mainRedColor
         text.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return text
     }()
@@ -407,9 +344,8 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Акции"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.textAlignment = .center
-        
         return text
     }()
     
@@ -419,15 +355,20 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
+        view.layer.cornerRadius = 20
+        view.addGestureRecognizer(gestureForPHBonus1)
+        view.isUserInteractionEnabled = false
         return view
     }()
     
-    private lazy var picForPH1: UIImageView = {
+    private lazy var gestureForPHBonus1: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(tapPHBonus1))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
+    public lazy var picForPH1: UIImageView = {
         let image = UIImageView(image: UIImage(named: "pic1")!)
         image.contentMode = .scaleAspectFill
         return image
@@ -437,15 +378,20 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
+        view.layer.cornerRadius = 20
+        view.addGestureRecognizer(gestureForPHBonus2)
+        view.isUserInteractionEnabled = false
         return view
     }()
     
-    private lazy var picForPH2: UIImageView = {
+    private lazy var gestureForPHBonus2: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(tapPHBonus2))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
+    public lazy var picForPH2: UIImageView = {
         let image = UIImageView(image: UIImage(named: "pic2")!)
         image.contentMode = .scaleAspectFit
         return image
@@ -455,21 +401,57 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.masksToBounds = true
-        view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
+        view.layer.cornerRadius = 20
+        view.addGestureRecognizer(gestureForPHBonus3)
+        view.isUserInteractionEnabled = false
         return view
     }()
     
-    private lazy var picForPH3: UIImageView = {
+    private lazy var gestureForPHBonus3: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(tapPHBonus3))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
+    public lazy var picForPH3: UIImageView = {
         let image = UIImageView(image: UIImage(named: "pic3")!)
         image.contentMode = .scaleAspectFit
         return image
     }()
     
     //MARK: - Bonuses
+    
+    private let placeholderForButtonPrice: UIView = {
+        let view = UIView()
+        view.backgroundColor = .none
+        view.layer.cornerRadius = 15
+        return view
+    }()
+    
+    private lazy var buttonPHForPrice: UIView = {
+        let view = UIView()
+        view.backgroundColor = Color.mainRedColor
+        view.layer.cornerRadius = 15
+        view.addGestureRecognizer(gestureForButtonPrice)
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
+    private lazy var gestureForButtonPrice: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(tapPOF))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
+    private let textPHPricePart1: UILabel = {
+        let text = UILabel()
+        text.text = "ВЫБРАТЬ ПРОЦЕДУРУ"
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 20)
+        text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return text
+    }()
     
     private lazy var placeholderForBonusOfPoint: UIView = {
         let view = UIView()
@@ -481,7 +463,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Подарки за баллы"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.textAlignment = .left
         return text
     }()
@@ -490,7 +472,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Контурная пластика"
         text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 16)
         text.textAlignment = .center
         return text
     }()
@@ -499,10 +481,6 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
         view.addGestureRecognizer(gestureForText1)
         view.isUserInteractionEnabled = true
         return view
@@ -525,7 +503,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Ботулинотерапия"
         text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 16)
         text.textAlignment = .center
         return text
     }()
@@ -534,10 +512,6 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
         view.addGestureRecognizer(gestureForText2)
         view.isUserInteractionEnabled = true
         return view
@@ -561,7 +535,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Процедуры восстановления"
         text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 16)
         text.textAlignment = .center
         return text
     }()
@@ -570,10 +544,6 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
         view.addGestureRecognizer(gestureForText3)
         view.isUserInteractionEnabled = true
         return view
@@ -596,7 +566,7 @@ class MainViewController: UIViewController {
         let text = UILabel()
         text.text = "Мерч"
         text.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 16)
         text.textAlignment = .center
         return text
     }()
@@ -605,10 +575,6 @@ class MainViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        view.layer.shadowRadius = 5
         return view
     }()
     
@@ -627,7 +593,7 @@ class MainViewController: UIViewController {
     
     private lazy var textForCall: UILabel = {
         let text = UILabel()
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.text = "Позвонить"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
         return text
@@ -652,7 +618,7 @@ class MainViewController: UIViewController {
     
     private lazy var textForInstagram: UILabel = {
         let text = UILabel()
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.text = "Instagram"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
         return text
@@ -676,7 +642,7 @@ class MainViewController: UIViewController {
     
     private lazy var textForLocation: UILabel = {
         let text = UILabel()
-        text.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        text.textColor = Color.mainTextColor
         text.text = "Местонахождение"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
         return text
@@ -700,7 +666,7 @@ class MainViewController: UIViewController {
     
     private let background: UIImageView = {
         let background = UIImageView()
-        background.image = UIImage(named: "LaunchBG")
+        background.image = UIImage(named: "MainBG")
         background.contentMode = .scaleAspectFill
         return background
     }()
@@ -710,28 +676,34 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getRealTimeBonus()
         setupView()
         setupSideMenu()
-        
     }
     
     //MARK: - SetupView Swtting's
     
     private func setupView() {
         
+        Service.getBonusPoint { bonusPoint in
+            self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
+        }
+        
+//        view.backgroundColor = .white
         view.addSubview(background)
         
         view.addSubview(mainScrollView)
-        
+        mainScrollView.delegate = self
         mainScrollView.contentInsetAdjustmentBehavior = .never
         mainScrollView.addSubview(mainContentView)
         
         mainContentView.addArrangedSubview(headerView)
         mainContentView.addArrangedSubview(qrCodeButton)
-        mainContentView.addArrangedSubview(scrollView1)
         mainContentView.addArrangedSubview(salesText)
         mainContentView.addArrangedSubview(scrollView2)
+        mainContentView.addArrangedSubview(scrollView1)
+        mainContentView.addArrangedSubview(placeholderForButtonPrice)
+        placeholderForButtonPrice.addSubview(buttonPHForPrice)
+        placeholderForButtonPrice.addSubview(textPHPricePart1)
         mainContentView.addArrangedSubview(placeholderForBonusOfPoint)
         mainContentView.addArrangedSubview(phForContactButton)
         
@@ -808,7 +780,7 @@ class MainViewController: UIViewController {
         boxesNew1.snp.makeConstraints { make in
             make.centerY.equalTo(scrollView1)
             make.height.equalTo(130)
-            make.width.equalTo(160)
+            make.width.equalTo(180)
         }
         
         textNews1.snp.makeConstraints { make in
@@ -825,7 +797,7 @@ class MainViewController: UIViewController {
             make.left.equalTo(boxesNew1.snp.right).offset(15)
             make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
-            make.width.equalTo(160)
+            make.width.equalTo(180)
         }
         
         textNews2.snp.makeConstraints { make in
@@ -842,7 +814,7 @@ class MainViewController: UIViewController {
             make.left.equalTo(boxesNew2.snp.right).offset(15)
             make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
-            make.width.equalTo(160)
+            make.width.equalTo(180)
         }
         
         textNews3.snp.makeConstraints { make in
@@ -859,7 +831,7 @@ class MainViewController: UIViewController {
             make.left.equalTo(boxesNew3.snp.right).offset(15)
             make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
-            make.width.equalTo(160)
+            make.width.equalTo(180)
         }
         
         textNews4.snp.makeConstraints { make in
@@ -872,23 +844,37 @@ class MainViewController: UIViewController {
             make.left.right.equalTo(boxesNew4).inset(5)
         }
         
+        placeholderForButtonPrice.snp.makeConstraints { make in
+            make.height.equalTo(60)
+            make.left.right.equalTo(mainContentView)
+        }
+        
+        textPHPricePart1.snp.makeConstraints { make in
+            make.center.equalTo(buttonPHForPrice)
+        }
+        
+        buttonPHForPrice.snp.makeConstraints { make in
+            make.height.equalTo(55)
+            make.left.right.equalTo(placeholderForButtonPrice).inset(20)
+        }
+        
         placeholderForBonusOfPoint.snp.makeConstraints { make in
             make.height.equalTo(400)
         }
         
         bonusText.snp.makeConstraints { make in
-            make.left.top.equalTo(placeholderForBonusOfPoint).inset(30)
+            make.left.equalTo(placeholderForBonusOfPoint).inset(30)
         }
         
         placeholderForText1.snp.makeConstraints { make in
             make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
             make.top.equalTo(bonusText.snp.bottom).offset(20)
-            make.height.equalTo(50)
+            make.height.equalTo(55)
         }
         
         text1.snp.makeConstraints { make in
             make.centerY.equalTo(placeholderForText1)
-            make.left.equalTo(placeholderForText1).inset(25)
+            make.left.equalTo(placeholderForText1).inset(20)
         }
         
         imageForText1.snp.makeConstraints { make in
@@ -900,46 +886,46 @@ class MainViewController: UIViewController {
         placeholderForText2.snp.makeConstraints { make in
             make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
             make.top.equalTo(placeholderForText1.snp.bottom).offset(20)
-            make.height.equalTo(50)
+            make.height.equalTo(55)
         }
         
         text2.snp.makeConstraints { make in
             make.centerY.equalTo(placeholderForText2)
-            make.left.equalTo(placeholderForText2).inset(25)
+            make.left.equalTo(placeholderForText2).inset(20)
         }
         
         imageForText2.snp.makeConstraints { make in
             make.right.equalTo(placeholderForText2).inset(15)
-            make.bottom.equalTo(placeholderForText2).inset(-4)
+            make.bottom.equalTo(placeholderForText2).inset(-10)
             make.size.equalTo(70)
         }
         
         placeholderForText3.snp.makeConstraints { make in
             make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
             make.top.equalTo(placeholderForText2.snp.bottom).offset(20)
-            make.height.equalTo(50)
+            make.height.equalTo(55)
         }
         
         imageForText3.snp.makeConstraints { make in
-            make.right.equalTo(placeholderForText3).inset(20)
-            make.bottom.equalTo(placeholderForText3)
-            make.size.equalTo(60)
+            make.right.equalTo(placeholderForText3).inset(15)
+            make.bottom.equalTo(placeholderForText3).inset(-10)
+            make.size.equalTo(70)
         }
         
         text3.snp.makeConstraints { make in
             make.centerY.equalTo(placeholderForText3)
-            make.left.equalTo(placeholderForText3).inset(25)
+            make.left.equalTo(placeholderForText3).inset(20)
         }
         
         placeholderForText4.snp.makeConstraints { make in
             make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
             make.top.equalTo(placeholderForText3.snp.bottom).offset(20)
-            make.height.equalTo(50)
+            make.height.equalTo(55)
         }
         
         text4.snp.makeConstraints { make in
             make.centerY.equalTo(placeholderForText4)
-            make.left.equalTo(placeholderForText4).inset(25)
+            make.left.equalTo(placeholderForText4).inset(20)
         }
         
         imageForText4.snp.makeConstraints { make in
@@ -989,7 +975,6 @@ class MainViewController: UIViewController {
         //MARK: - ScrollView 1 Constraints
         
         scrollView1.snp.makeConstraints { make in
-            make.top.equalTo(qrCodeButton.snp.bottom).offset(25)
             make.left.right.equalTo(mainContentView)
             make.height.equalTo(150)
         }
@@ -1002,7 +987,6 @@ class MainViewController: UIViewController {
         //MARK: - ScrollView 2 Constraints
         
         scrollView2.snp.makeConstraints { make in
-            make.top.equalTo(salesText.snp.bottom).offset(25)
             make.left.right.equalTo(mainContentView)
             make.height.equalTo(200)
         }
@@ -1017,7 +1001,7 @@ class MainViewController: UIViewController {
         }
         
         placeholderForBonusText1.snp.makeConstraints { make in
-            make.height.equalTo(150)
+            make.height.equalTo(180)
             make.width.equalTo(view.frame.width / 1.1)
         }
         
@@ -1026,7 +1010,7 @@ class MainViewController: UIViewController {
         }
         
         placeholderForBonusText2.snp.makeConstraints { make in
-            make.height.equalTo(150)
+            make.height.equalTo(180)
             make.width.equalTo(view.frame.width / 1.1)
         }
         
@@ -1035,7 +1019,7 @@ class MainViewController: UIViewController {
         }
         
         placeholderForBonusText3.snp.makeConstraints { make in
-            make.height.equalTo(150)
+            make.height.equalTo(180)
             make.width.equalTo(view.frame.width / 1.1)
         }
         
@@ -1045,19 +1029,19 @@ class MainViewController: UIViewController {
         
         qrCodeButton.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom).offset(25)
-            make.height.equalTo(150)
+            make.height.equalTo(125)
         }
         
         contentForQRCode.snp.makeConstraints { make in
             make.left.right.equalTo(qrCodeButton).inset(20)
             make.centerY.equalTo(qrCodeButton)
-            make.height.equalTo(120)
+            make.height.equalTo(125)
         }
         
         stickerView.snp.makeConstraints { make in
-            make.right.equalTo(contentForQRCode).inset(-24)
+            make.right.equalTo(contentForQRCode)
             make.bottom.equalTo(contentForQRCode)
-            make.size.equalTo(150)
+            make.size.equalTo(140)
         }
         
         textForQRCodePart1.snp.makeConstraints { make in
@@ -1126,24 +1110,118 @@ class MainViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        Service.getBonusPoint { bonusPoint in
+            self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
+        }
+        lottie()
+        animateView(placeholderForBonuses)
+        getRealTimeBonus2()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let vc = ShopCartViewController()
+        
+        let shopButton = createCustomButton(imageName: "cart.fill", selector: #selector(shopBtn))
+        vc.getAllItem()
+        shopButton.addBadge(vc.myOrder.count, withOffset: CGPoint(x: -35, y: -3), andColor: .systemRed, andFilled: true)
+        navigationItem.rightBarButtonItem = shopButton
+    }
+    
     private func setupSideMenu() {
         
         let funcButton = createCustomButton(imageName: "line.3.horizontal", selector: #selector(sideMenuBtn))
-        let shopButton = createCustomButton(imageName: "cart.fill", selector: #selector(shopBtn))
-        
         navigationItem.leftBarButtonItem = funcButton
-        navigationItem.rightBarButtonItem = shopButton
-        
+
         menu = SideMenuNavigationController(rootViewController: SideMenuNC())
         menu?.leftSide = true
-        menu?.presentationStyle = .menuSlideIn
-        menu?.blurEffectStyle = .extraLight
+        menu?.presentationStyle = .viewSlideOutMenuIn
+//        menu?.blurEffectStyle = .extraLight
         menu?.menuWidth = 300
         menu?.presentationStyle.onTopShadowOpacity = 1
+    }
+    
+    private func lottie() {
+        var lottie = LottieAnimationView()
+        lottie = .init(name: "GoldenLottie2")
+        placeholderForBonuses.addSubview(lottie)
+        lottie.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalTo(headerView)
+        }
+        lottie.contentMode = .scaleAspectFit
+        lottie.loopMode = .playOnce
+        lottie.animationSpeed = 3.0
+        lottie.play()
+    }
+    
+    private func getRealTimeBonus2() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        
+        db.collection("usersBonus").document(uid).addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else { return }
+                
+                guard let data = document.data()!["Bonus"] else { return }
+                self.points = data as! Int
+                self.bonusPoint.text = "\(self.points) баллов"
+                let scene = SheetBonus()
+                scene.modalPresentationStyle = .fullScreen
+                self.present(scene, animated: true)
+        }
+    }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.contentOffset.y = max(1, scrollView.contentOffset.y)
     }
 }
 
 extension MainViewController {
+
+    @objc private func tapPHBonus1(_ gesture: UITapGestureRecognizer) {
+        let scene = SalesViewController1()
+        if let sheet = scene.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.preferredCornerRadius = 28
+            sheet.prefersGrabberVisible = true
+        }
+        present(scene, animated: true)
+    }
+    
+    @objc private func tapPHBonus2(_ gesture: UITapGestureRecognizer) {
+        let scene = SalesViewController2()
+        if let sheet = scene.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.preferredCornerRadius = 28
+            sheet.prefersGrabberVisible = true
+        }
+        present(scene, animated: true)
+    }
+    
+    @objc private func tapPHBonus3(_ gesture: UITapGestureRecognizer) {
+        let scene = SalesViewController3()
+        if let sheet = scene.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.preferredCornerRadius = 28
+            sheet.prefersGrabberVisible = true
+        }
+        present(scene, animated: true)
+    }
+    
+    @objc private func refresh() {
+//        Service.getBonusPoint { bonusPoint in
+//            self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
+//        }
+//        lottie()
+//        animateView(placeholderForBonuses)
+//        getRealTimeBonus2()
+    }
     
     @objc private func animateView(_ viewAnimate: UIView) {
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.5, options: .curveEaseIn, animations:  {
@@ -1155,26 +1233,32 @@ extension MainViewController {
         }
     }
     
+    @objc private func tapPOF(_ gesture: UITapGestureRecognizer) {
+        let scene = ProcedureOfMoneyViewController()
+        scene.modalPresentationStyle = .fullScreen
+        present(scene, animated: true)
+    }
+    
     @objc private func tapPHForText1(_ gesture: UITapGestureRecognizer) {
         let scene = BonusViewController1()
-        scene.modalPresentationStyle = .popover
+        scene.modalPresentationStyle = .fullScreen
         present(scene, animated: true)
     }
     
     @objc private func tapPHForText2(_ gesture: UITapGestureRecognizer) {
         let scene = BonusViewController2()
-        scene.modalPresentationStyle = .popover
+        scene.modalPresentationStyle = .fullScreen
         present(scene, animated: true)
     }
     
     @objc private func tapPHForText3(_ gesture: UITapGestureRecognizer) {
         let scene = BonusViewController3()
-        scene.modalPresentationStyle = .popover
+        scene.modalPresentationStyle = .fullScreen
         present(scene, animated: true)
     }
     
     @objc private func callTapped(_ gesture: UITapGestureRecognizer) {
-        callPhone(string: "tel://89180142070")
+        callPhone(string: "tel://+79180235043")
     }
     
     @objc private func callPhone(string: String) {
@@ -1182,7 +1266,7 @@ extension MainViewController {
     }
     
     @objc private func InstaTapped(_ gesture: UITapGestureRecognizer) {
-        openUrl(urlString: "https://instagram.com/svyatobog")
+        openUrl(urlString: "https://instagram.com/juliana.berezhnaya_?igshid=MDM4ZDc5MmU=")
     }
     
     @objc private func LocationTapped(_ gesture: UITapGestureRecognizer) {
@@ -1191,15 +1275,15 @@ extension MainViewController {
     }
     
     @objc private func tapTelegram() {
-        openUrl(urlString: "https://t.me/Svytobog")
+        openUrl(urlString: "https://t.me/juliana_cosm")
     }
     
     @objc private func tapWA() {
-        openUrl(urlString: "https://wa.me/+79180142070")
+        openUrl(urlString: "https://wa.me/+79180235043")
     }
     
     @objc private func tapInsta() {
-        openUrl(urlString: "https://instagram.com/svyatobog")
+        openUrl(urlString: "https://instagram.com/juliana.berezhnaya_?igshid=MDM4ZDc5MmU=")
     }
     
     @objc private func tapQR(_ gesture: UITapGestureRecognizer) {
@@ -1214,21 +1298,20 @@ extension MainViewController {
     }
     
     @objc private func tapBoxNew2(_ gesture: UITapGestureRecognizer) {
-        let scene = PriceViewController()
+        let scene = ConditionsViewController()
         scene.modalPresentationStyle = .popover
         present(scene, animated: true)
     }
     
     @objc private func tapBoxNew3(_ gesture: UITapGestureRecognizer) {
-        let scene = PriceViewController()
+        let scene = FeedBackViewController()
         scene.modalPresentationStyle = .popover
         present(scene, animated: true)
     }
     
     @objc private func tapBoxNew4(_ gesture: UITapGestureRecognizer) {
-        let scene = PriceViewController()
-        scene.modalPresentationStyle = .popover
-        present(scene, animated: true)
+        let urlWhats = "https://wa.me/+79180235043"
+        openUrl(urlString: urlWhats)
     }
     
     @objc private func openUrl(urlString:String!) {
@@ -1251,6 +1334,68 @@ extension MainViewController {
         present(menu!, animated: true)
     }
     
+    func passString(sumString: String) {
+        print(sumString)
+    }
+    
 }
 
+extension CAShapeLayer {
+    func drawCircleAtLocation(location: CGPoint, withRadius radius: CGFloat, andColor color: UIColor, filled: Bool) {
+        fillColor = filled ? color.cgColor : UIColor.white.cgColor
+        strokeColor = color.cgColor
+        let origin = CGPoint(x: location.x - radius, y: location.y - radius)
+        path = UIBezierPath(ovalIn: CGRect(origin: origin, size: CGSize(width: radius * 2, height: radius * 2))).cgPath
+    }
+}
+
+private var handle: UInt8 = 0;
+
+extension UIBarButtonItem {
+    
+    private var badgeLayer: CAShapeLayer? {
+        if let b: AnyObject = objc_getAssociatedObject(self, &handle) as? AnyObject {
+            return b as? CAShapeLayer
+        } else {
+            return nil
+        }
+    }
+    
+    func addBadge(_ number: Int, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true) {
+        guard let view = self.value(forKey: "view") as? UIView else { return }
+        
+        badgeLayer?.removeFromSuperlayer()
+        
+        // Initialize Badge
+        let badge = CAShapeLayer()
+        let radius = CGFloat(7)
+        let location = CGPoint(x: view.frame.width - (radius + offset.x), y: (radius + offset.y))
+        badge.drawCircleAtLocation(location: location, withRadius: radius, andColor: color, filled: filled)
+        view.layer.addSublayer(badge)
+        
+        // Initialiaze Badge's label
+        let label = CATextLayer()
+        label.string = "\(number)"
+        label.alignmentMode = CATextLayerAlignmentMode.center
+        label.fontSize = 11
+        label.frame = CGRect(origin: CGPoint(x: location.x - 4, y: offset.y), size: CGSize(width: 8, height: 16))
+        label.foregroundColor = filled ? UIColor.white.cgColor : color.cgColor
+        label.backgroundColor = UIColor.clear.cgColor
+        label.contentsScale = UIScreen.main.scale
+        badge.addSublayer(label)
+        
+        // Save Badge as UIBarButtonItem property
+        objc_setAssociatedObject(self, &handle, badge, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    func updateBadge(_ number: Int) {
+        if let text = badgeLayer?.sublayers?.filter({ $0 is CATextLayer }).first as? CATextLayer {
+            text.string = "\(number)"
+        }
+    }
+    
+    func removeBadge() {
+        badgeLayer?.removeFromSuperlayer()
+    }
+}
 

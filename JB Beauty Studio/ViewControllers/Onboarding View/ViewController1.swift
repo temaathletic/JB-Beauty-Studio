@@ -12,7 +12,7 @@ class ViewController1: UIViewController {
     private let image: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "welcomePic1")
-        image.contentMode = .scaleToFill
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -24,7 +24,9 @@ class ViewController1: UIViewController {
 
         image.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(70)
         }
     }
 }
+
+

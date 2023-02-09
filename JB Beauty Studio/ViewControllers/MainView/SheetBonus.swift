@@ -26,15 +26,7 @@ class SheetBonus: UIViewController {
     private lazy var placeholderForBonuses: UIView = {
         let view = UIView()
         view.backgroundColor = .none
-        view.addGestureRecognizer(gestureForBonusPointPH)
         return view
-    }()
-    
-    private lazy var gestureForBonusPointPH: UITapGestureRecognizer = {
-        let tapped = UITapGestureRecognizer(target: self, action: #selector(refresh))
-        tapped.numberOfTapsRequired = 1
-        tapped.numberOfTouchesRequired = 1
-        return tapped
     }()
     
     private lazy var bonusPoint: UILabel = {
@@ -46,33 +38,67 @@ class SheetBonus: UIViewController {
         point.textAlignment = .center
         point.textColor = .white
         point.font = UIFont(name: "GlacialIndifference-Bold", size: 55)
-        func getRealTimeBonus() {
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            let db = Firestore.firestore()
-            
-            db.collection("usersBonus").document(uid)
-                .addSnapshotListener { documentSnapshot, error in
-                    guard let document = documentSnapshot else { return }
-                    
-                    guard let data = document.data()!["Bonus"] else { return }
-                    self.points = data as! Int
-                    let animation = AnimationType.from(direction: .bottom, offset: 25)
-                    UIView.animate(withDuration: 0, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: .curveEaseIn, animations:  {
-                        self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 30, y: 30)
-                    }) { (_) in
-                        UIView.animate(withDuration: 0.2, delay: 0.2, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.4, options: .curveEaseIn) {
-                            self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 1, y: 1)
-                        }
-                    }
-                    self.bonusPoint.text = "\(data) баллов"
-                    self.lottie1()
-                    self.lottie2()
-                    self.lottie3()
-                }
-        }
-        getRealTimeBonus()
         return point
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupView()
+    }
+    
+    private func setupView() {
+        
+        getRealTimeBonus()
+        
+        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .up))
+        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .down))
+        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .left))
+        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .right))
+        
+        view.backgroundColor = .black
+        
+        view.addSubview(placeholderForBonuses)
+        placeholderForBonuses.addSubview(bonusPoint)
+        
+        placeholderForBonuses.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalToSuperview()
+        }
+        
+        bonusPoint.snp.makeConstraints { make in
+            make.center.equalTo(placeholderForBonuses)
+            make.height.equalTo(150)
+            make.width.equalTo(400)
+        }
+    }
+}
+
+extension SheetBonus {
+    
+    private func getRealTimeBonus() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        
+        db.collection("usersBonus").document(uid)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else { return }
+                
+                guard let data = document.data()!["Bonus"] else { return }
+                self.points = data as! Int
+                _ = AnimationType.from(direction: .bottom, offset: 25)
+                UIView.animate(withDuration: 0, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: .curveEaseIn, animations:  {
+                    self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 30, y: 30)
+                }) { (_) in
+                    UIView.animate(withDuration: 0.2, delay: 0.2, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.4, options: .curveEaseIn) {
+                        self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                }
+                self.bonusPoint.text = "\(data) баллов"
+                self.lottie1()
+                self.lottie2()
+                self.lottie3()
+            }
+    }
     
     func lottie1() {
         var lottie = LottieAnimationView()
@@ -116,30 +142,16 @@ class SheetBonus: UIViewController {
         lottie.play()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupView()
+    @objc private func didSwipe(_ sender: UISwipeGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
     }
     
-    private func setupView() {
-        view.backgroundColor = .black
-        view.addSubview(placeholderForBonuses)
-        placeholderForBonuses.addSubview(bonusPoint)
-        
-        placeholderForBonuses.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalToSuperview()
-        }
-        
-        bonusPoint.snp.makeConstraints { make in
-            make.center.equalTo(placeholderForBonuses)
-            make.height.equalTo(150)
-            make.width.equalTo(400)
-        }
-    }
-}
+     func createSwipeGestureRecognizer(for direction: UISwipeGestureRecognizer.Direction) -> UISwipeGestureRecognizer {
+        let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(didSwipe(_:)))
+        swipeGestureRecognizer.direction = direction
 
-extension SheetBonus {
+        return swipeGestureRecognizer
+    }
     
     @objc private func refresh() {
         Service.getBonusPoint { bonusPoint in

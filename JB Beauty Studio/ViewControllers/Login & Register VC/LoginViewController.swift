@@ -12,20 +12,43 @@ import TextFieldEffects
 
 class LoginViewController: UIViewController {
     
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.showsVerticalScrollIndicator = false
+        scroll.bounces = true
+        return scroll
+    }()
+    
+    private lazy var content: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        
+        stack.addArrangedSubview(largeText)
+        stack.addArrangedSubview(loginText)
+        stack.addArrangedSubview(loginTextField)
+        stack.addArrangedSubview(passwordText)
+        stack.addArrangedSubview(passwordTextField)
+        stack.addArrangedSubview(sendButton)
+        stack.addArrangedSubview(goToRegisterView)
+        return stack
+    }()
+    
     private let largeText: UILabel = {
         let text = UILabel()
         text.text = "Войдите, чтобы \nкопить баллы и \nполучать \nподарки!"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 35)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 30)
         text.textAlignment = .center
         text.numberOfLines = 0
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
     private let logo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
-        logo.contentMode = .scaleToFill
+        logo.clipsToBounds = true
+        logo.contentMode = .scaleAspectFit
         return logo
     }()
     
@@ -33,7 +56,7 @@ class LoginViewController: UIViewController {
         let text = UILabel()
         text.text = "Логин"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -41,9 +64,9 @@ class LoginViewController: UIViewController {
         let textField = IsaoTextField()
         textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
         textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray2
+        textField.inactiveColor = .systemGray5
+        textField.textColor = Color.mainTextColor
         textField.leftViewMode = .always
         textField.autocapitalizationType = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
@@ -55,7 +78,7 @@ class LoginViewController: UIViewController {
         let text = UILabel()
         text.text = "Пароль"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -63,10 +86,11 @@ class LoginViewController: UIViewController {
         let textField = IsaoTextField()
         textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         textField.placeholderFontScale = CGFloat(0.8)
-        textField.tintColor = .black
         textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray2
+        textField.inactiveColor = .systemGray5
+        textField.textColor = Color.mainTextColor
         textField.leftViewMode = .always
+        textField.autocapitalizationType = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
         textField.isSecureTextEntry = true
         textField.returnKeyType = .done
@@ -78,7 +102,7 @@ class LoginViewController: UIViewController {
         text.text = "Регистрация"
         text.textAlignment = .center
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.addGestureRecognizer(gestureForText)
         text.isUserInteractionEnabled = true
         return text
@@ -94,7 +118,7 @@ class LoginViewController: UIViewController {
     private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setTitle("Логин", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
         button.layer.cornerRadius = 15
         button.addTarget(self, action: #selector(Login), for: .touchUpInside)
@@ -103,10 +127,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        hideKeyboardWhenTappedAround()
+
         setupView()
-        
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupView() {
@@ -114,66 +138,33 @@ class LoginViewController: UIViewController {
         loginTextField.delegate = self
         passwordTextField.delegate = self
         
-        navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.isNavigationBarHidden = true
         
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         view.addSubview(logo)
-        view.addSubview(largeText)
-        view.addSubview(loginText)
-        view.addSubview(loginTextField)
-        view.addSubview(passwordText)
-        view.addSubview(passwordTextField)
-        view.addSubview(goToRegisterView)
-        view.addSubview(sendButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(content)
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(logo.snp.bottom).inset(-30)
+            make.left.right.bottom.equalToSuperview()
+        }
         
         logo.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.centerX.equalToSuperview()
             make.size.equalTo(150)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
         }
         
-        largeText.snp.makeConstraints { make in
-            make.top.equalTo(logo.snp.bottom).offset(20)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(170)
+        content.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(scrollView)
+            make.bottom.equalTo(scrollView)
+            make.left.right.equalTo(scrollView).inset(20)
         }
-        
-        loginText.snp.makeConstraints { make in
-            make.top.equalTo(largeText.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        loginTextField.snp.makeConstraints { make in
-            make.top.equalTo(loginText.snp.bottom).offset(15)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        passwordText.snp.makeConstraints { make in
-            make.top.equalTo(loginTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        passwordTextField.snp.makeConstraints { make in
-            make.top.equalTo(passwordText.snp.bottom).offset(15)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        goToRegisterView.snp.makeConstraints { make in
-            make.left.right.equalTo(sendButton)
-            make.height.equalTo(20)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(25)
-        }
-        
+
         sendButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(60)
-            make.bottom.equalToSuperview().inset(40)
         }
     }
 }
@@ -181,7 +172,6 @@ class LoginViewController: UIViewController {
 //MARK: - UITextFieldDelegate
 
 extension LoginViewController: UITextFieldDelegate {
-    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -192,6 +182,20 @@ extension LoginViewController: UITextFieldDelegate {
 //MARK: - Function's
 
 extension LoginViewController {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
     
     private func showAlert2() {
         let alert = UIAlertController(title: "Ошибка", message: "Пожалуйста проверьте правильность вводимых данныых", preferredStyle: .alert)
@@ -223,20 +227,6 @@ extension LoginViewController {
         navigationController?.pushViewController(scene, animated: false)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-    }
-    
     @objc func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -247,3 +237,15 @@ extension LoginViewController {
         view.endEditing(true)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct LoginVC: PreviewProvider {
+    
+    static var previews: some View {
+        LoginViewController().toPreview()
+    }
+}
+#endif
