@@ -92,36 +92,18 @@ extension UIViewController {
         let menuBarItem = UIBarButtonItem(customView: button)
         return menuBarItem
     }
+    
+    func createLeftButtonForCart(imageName: String, selector: Selector) -> UIBarButtonItem {
+        
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = Color.mainTextColor
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        
+        let menuBarItem = UIBarButtonItem(customView: button)
+        return menuBarItem
+    }
 }
-
-
-//view.addSubview(mainScrollView)
-//mainScrollView.addSubview(headerView)
-//headerView.addSubview(placeholderForWrittenButton)
-//placeholderForWrittenButton.addSubview(textForPHWritten)
-//placeholderForWrittenButton.addSubview(telegramButton)
-//placeholderForWrittenButton.addSubview(whatsAppButton)
-//placeholderForWrittenButton.addSubview(instagramButton)
-//mainScrollView.addSubview(scrollView1)
-//mainScrollView.addSubview(scrollView2)
-//mainScrollView.addSubview(qrCodeButton)
-//scrollView1.addSubview(scrollViewContainer1)
-//scrollView2.addSubview(scrollViewContainer2)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText1)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText2)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText3)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText4)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText5)
-//scrollViewContainer1.addArrangedSubview(placeholderForBonusText6)
-//scrollViewContainer2.addArrangedSubview(boxesNew1)
-//scrollViewContainer2.addArrangedSubview(boxesNew2)
-//scrollViewContainer2.addArrangedSubview(boxesNew3)
-//scrollViewContainer2.addArrangedSubview(boxesNew4)
-//boxesNew1.addSubview(textNews1)
-//boxesNew2.addSubview(textNews2)
-//boxesNew3.addSubview(textNews3)
-//boxesNew4.addSubview(textNews4)
-//boxesNew1.addSubview(textNewsDesciption1)
-//boxesNew2.addSubview(textNewsDesciption2)
-//boxesNew3.addSubview(textNewsDesciption3)
-//boxesNew4.addSubview(textNewsDesciption4)

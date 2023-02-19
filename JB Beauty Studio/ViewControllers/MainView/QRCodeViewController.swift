@@ -21,7 +21,7 @@ class QRCodeViewController: UIViewController {
         let text = UILabel()
         text.text = "Покажите экран телефона \nвашему косметологу"
         text.numberOfLines = 0
-        text.font = UIFont(name: "GlacialIndifference-Regular", size: 25)
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
         text.textAlignment = .center
         text.textColor = Color.mainTextColor
         return text
@@ -30,6 +30,8 @@ class QRCodeViewController: UIViewController {
     private let qrCode: UIImageView = {
         let view = UIImageView()
         view.image = Service.generateQRCode()
+        let logo = UIImage(named: "logoForQR")
+        logo?.addToCenter(of: view)
         view.contentMode = .scaleToFill
         return view
     }()
@@ -94,23 +96,20 @@ class QRCodeViewController: UIViewController {
         }
         
         qrCode.snp.makeConstraints { make in
-            make.centerX.equalTo(phForQRCode)
             make.top.equalTo(phForQRCode).inset(view.frame.height / 15)
-            make.left.right.equalTo(phForQRCode).inset(50)
-//            make.height.equalTo(view.frame.height / 3)
-//            make.width.equalTo(view.frame.width / 1.4)
-            make.bottom.equalTo(phForQRCode).inset(view.frame.height / 5.5)
+            make.centerX.equalTo(phForQRCode)
+            make.height.equalTo(view.frame.height / 3)
+            make.width.equalTo(view.frame.height / 3)
         }
         
         textForQRCode.snp.makeConstraints { make in
-//            make.top.equalTo(qrCode.snp.bottom)
             make.left.right.equalTo(phForQRCode)
-            make.height.equalTo(70)
-            make.bottom.equalTo(phForQRCode).inset(25)
+            make.height.equalTo(50)
+            make.bottom.equalTo(phForQRCode).inset(view.frame.height / 120)
         }
         
         button.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(60)
             make.left.right.equalToSuperview().inset(15)
         }

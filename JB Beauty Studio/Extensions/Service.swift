@@ -30,7 +30,7 @@ class Service {
         }
     }
     
-    static func Register(login: String, phone: String, password: String, name: String, image: UIImageView, onSeccess: @escaping () -> Void, onError: @escaping (_ error: Error?) -> Void) {
+    static func Register(login: String, secondName: String, phone: String, password: String, name: String, image: UIImageView, onSeccess: @escaping () -> Void, onError: @escaping (_ error: Error?) -> Void) {
         
         let auth = Auth.auth()
         
@@ -39,7 +39,7 @@ class Service {
                 onError(error!)
                 return
             } else if result == result {
-                uploadUserDataToFS(name: name, phone: phone, login: login, password: password)
+                uploadUserDataToFS(name: name, secondName: secondName, phone: phone, login: login, password: password)
                 uploadIamges(image: image)
             }
         }
@@ -65,13 +65,14 @@ class Service {
         }
     }
     
-    static func uploadUserDataToFS(name: String, phone: String, login: String, password: String) {
+    static func uploadUserDataToFS(name: String,secondName: String ,phone: String, login: String, password: String) {
         
         let db = Firestore.firestore()
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let randomInviteCode = Int.random(in: 10000..<99999)
         let sale = "3%"
         let purchaseTotal = "0"
+        let createdDate = Date()
         
         if name == "" && login == "" && password == "" {
             print("Пyсто")
@@ -82,7 +83,7 @@ class Service {
         } else if password == "" {
             print("Пyсто")
         } else {
-            db.collection("users").document(uid).setData(["Name" : name, "Phone" : phone, "Login" : login, "Password" : password, "UID" : uid, "InviteCode" : randomInviteCode, "Sale" : sale, "PurchaseTotal" : purchaseTotal], merge: true)
+            db.collection("users").document(uid).setData(["Name" : name,"Secondname" : secondName ,"Phone" : phone, "Login" : login, "Password" : password, "UID" : uid, "InviteCode" : randomInviteCode, "Sale" : sale, "PurchaseTotal" : purchaseTotal, "CreatedDate" : createdDate], merge: true)
             db.collection("usersBonus").document(uid).setData(["Bonus" : 100])
         }
     }
@@ -251,18 +252,6 @@ class Service {
         }
     }
     
-    static func editBonusPoint(_ bonusPoint: Int, UID: String) {
-        let uid = UID
-        let ref = Firestore.firestore().collection("usersBonus").document(uid)
-        ref.updateData(["Bonus" : bonusPoint]) { error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                print("Seccess")
-            }
-        }
-    }
-    
     static func getEmail(completion: @escaping (_ email: String?) -> Void) {
         
         guard let uid = Auth.auth().currentUser?.uid else { completion(nil); return }
@@ -288,6 +277,27 @@ class Service {
     static func getBonusPoint(completion: @escaping (_ bonusPoint: Int?) -> Void) {
         
         guard let uid = Auth.auth().currentUser?.uid else { completion(nil); return }
+        let db = Firestore.firestore()
+        
+        db.collection("usersBonus").document(uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let bonusPoint = doc.get("Bonus") as? Int {
+                    completion(bonusPoint)
+                } else {
+                    print("Error getting bonus")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func getBonusPointForDecriment(_ uid: String, completion: @escaping (_ bonusPoint: Int?) -> Void) {
+        
         let db = Firestore.firestore()
         
         db.collection("usersBonus").document(uid).getDocument { (docSnapshot, error) in
@@ -360,28 +370,6 @@ class Service {
         return nil
     }
     
-    static func searchUserName(entryNumber: String, completion: @escaping (_ name: String?) -> Void) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { completion(nil); return }
-        let db = Firestore.firestore()
-        
-        db.collection("users").document(uid).getDocument { (docSnapshot, error) in
-            if let doc = docSnapshot {
-                if let name = doc.get("Name") as? String {
-                    completion(name)
-                } else {
-                    print("Error getting field")
-                    completion(nil)
-                }
-            } else {
-                if let error = error {
-                    print(error)
-                }
-                completion(nil)
-            }
-        }
-    }
-    
     static func searchUserLocation(entryNumber: String, completion: @escaping (_ name: String?) -> Void) {
         
         guard let uid = Auth.auth().currentUser?.uid else { completion(nil); return }
@@ -391,28 +379,6 @@ class Service {
             if let doc = docSnapshot {
                 if let location = doc.get("Location") as? String {
                     completion(location)
-                } else {
-                    print("Error getting field")
-                    completion(nil)
-                }
-            } else {
-                if let error = error {
-                    print(error)
-                }
-                completion(nil)
-            }
-        }
-    }
-    
-    static func searchUserNumber(entryNumber: String, completion: @escaping (_ name: String?) -> Void) {
-        
-        guard let uid = Auth.auth().currentUser?.uid else { completion(nil); return }
-        let db = Firestore.firestore()
-        
-        db.collection("users").document(uid).getDocument { (docSnapshot, error) in
-            if let doc = docSnapshot {
-                if let phone = doc.get("Phone") as? String {
-                    completion(phone)
                 } else {
                     print("Error getting field")
                     completion(nil)
@@ -455,10 +421,32 @@ class Service {
         }
     }
     
+    
     static func getPurchaseTotal(completion: @escaping (_ purchaseTotal: String?) -> Void) {
         
         let db = Firestore.firestore()
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        db.collection("users").document(uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let purchaseTotal = doc.get("PurchaseTotal") as? String {
+                    completion(purchaseTotal)
+                } else {
+                    print("Error getting field")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func getPurchaseTotalForDecriment(uid: String, completion: @escaping (_ purchaseTotal: String?) -> Void) {
+        
+        let db = Firestore.firestore()
         
         db.collection("users").document(uid).getDocument { (docSnapshot, error) in
             if let doc = docSnapshot {
@@ -489,6 +477,177 @@ class Service {
                 print("Document successfully removed!")
             }
         }
+    }
+    
+    static func uploadSale(sale: String) {
+        
+        let db = Firestore.firestore()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        db.collection("users").document(uid).setData(["Sale" : sale], merge: true)
+    }
+    
+    static func uploadPuarchesTotal(total: String, uid: String) {
+        
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).setData(["PurchaseTotal" : total], merge: true)
+    }
+    
+    //MARK: Service For Session log
+    
+    static func getUserFirstName(uid: String, completion: @escaping (_ firstName: String?) -> Void) {
+
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let firstName = doc.get("Name") as? String {
+                    completion(firstName)
+                } else {
+                    print("3")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func getUserSecondName(uid: String, completion: @escaping (_ secondName: String?) -> Void) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let name = doc.get("Secondname") as? String {
+                    completion(name)
+                } else {
+                    print("2")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func getShopList(uid: String, completion: @escaping (_ shopList: String?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("usersVariableTotal").document(uid).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let shopList = doc.get("ShopList") as? String {
+                    completion(shopList)
+                } else {
+                    print("1")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func uploadBonusPoint(newBonus: Int, uid: String) {
+        
+        let db = Firestore.firestore()
+        db.collection("usersBonus").document(uid).setData(["Bonus" : newBonus], merge: true)
+    }
+    
+    static func uploadUserEntryInfo(_ entryDate: String, _ shopList: String) {
+        
+        let db = Firestore.firestore()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        db.collection("usersVariableTotal").document(uid).setData(["EntryData" : entryDate, "ShopList" : shopList], merge: true)
+    }
+    
+    static func uploadINSessionLog(_ uid: String,_ entryDate: String, _ shopList: String,_ firstName: String,_ secondName: String) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("SessionLog").document(uid).setData(["EntryData" : entryDate, "ShopList" : shopList, "Name" : firstName, "Secondname" : secondName])
+    }
+    
+    static func uploadSaleBoxStatus(_ value: Bool) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("userSaleBox").document("SaleBox").setData(["Value" : value])
+    }
+    
+    static func getSaleBoxSwitch(completion: @escaping (_ value: Bool?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("userSaleBox").document("SaleBox").getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let value = doc.get("Value") as? Bool {
+                    completion(value)
+                } else {
+                    print("123")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func uploadImageForSaleBox(_ image: UIImageView, name: String) {
+
+        let ref = Storage.storage().reference(withPath: "SaveImage/" + name)
+        guard let imageData = image.image?.jpegData(compressionQuality: 0.3) else { return }
+        
+        ref.putData(imageData, metadata: nil) { metadata, error in
+            if let error = error {
+                print("\(error)")
+                return
+            }
+        }
+    }
+    
+    static func downloadImagesForSaleBox(photo: UIImageView, name: String) {
+        
+        let ref = Storage.storage().reference(withPath: "SaveImage/" + name)
+        
+        DispatchQueue.global().async {
+            ref.getData(maxSize: .max) { data, error in
+                if let data = data {
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: data)
+                        photo.image = image
+                    }
+                } else {
+                    print("Error getting image")
+                }
+            }
+        }
+    }
+    
+    static func uploadTechnicalProblem(_ text: String) {
+        
+        let db = Firestore.firestore()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        db.collection("usersProblem").document(uid).setData(["Problem" : text], merge: true)
+    }
+    
+    static func uploadTechnicalProblemEmail(_ email: String) {
+        
+        let db = Firestore.firestore()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        db.collection("usersProblem").document(uid).setData(["Email" : email], merge: true)
     }
     
 }

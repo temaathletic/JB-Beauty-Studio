@@ -13,7 +13,7 @@ class PopUpPriceViewController6: BottomPopupViewController {
     
     private let labelTitle: UILabel = {
         let text = UILabel()
-        text.text = ""
+        text.text = "Мононити"
         text.numberOfLines = 0
         text.textAlignment = .center
         text.textColor = .black

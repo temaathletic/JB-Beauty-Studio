@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import Firebase
+import FirebaseDynamicLinks
+import FirebaseAuth
 
 class InviteFriendsViewController: UIViewController {
     
@@ -49,7 +52,6 @@ class InviteFriendsViewController: UIViewController {
         code.textColor = Color.mainTextColor
         code.textAlignment = .center
         code.font = UIFont(name: "GlacialIndifference-Bold", size: 45)
-        
         return code
     }()
     
@@ -71,6 +73,12 @@ class InviteFriendsViewController: UIViewController {
         return view
     }()
     
+     private lazy var shareController: UIActivityViewController = {
+      let activities: [Any] = ["Learn how to share content via Firebase", URL(string: "https://jbbeautystudio.page.link")!]
+      let controller = UIActivityViewController(activityItems: activities, applicationActivities: nil)
+      return controller
+    }()
+    
     private lazy var shareButton: UIButton = {
         let button = UIButton()
         button.setTitle("Поделиться промокодом", for: .normal)
@@ -81,8 +89,21 @@ class InviteFriendsViewController: UIViewController {
         return button
     }()
     
+    func generateContentLink() -> URL {
+        let baseURL = URL(string: "https://jbbeautystudio.page.link")!
+        let domain = "https://jbbeautystudio.page.link"
+        let linkBuilder = DynamicLinkComponents(link: baseURL, domainURIPrefix: domain)
+        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "temaathletic.org.JB-Beauty-Studio")
+        
+        return linkBuilder?.link ?? baseURL
+      }
+    
     @objc private func tapShareButton() {
-        print("Share")
+        
+        guard let image = UIImage(named: "AppIcon") else { return }
+        
+        let shareSheetVC = UIActivityViewController(activityItems: [image, generateContentLink()], applicationActivities: nil)
+        present(shareSheetVC, animated: true)
     }
     
     override func viewDidLoad() {

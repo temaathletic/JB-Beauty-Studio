@@ -19,6 +19,7 @@ class MainViewController: UIViewController, DataDelegate {
     public var points = 0
     var deleagte: DataDelegate!
     var badgeCountDelegate: Int?
+    var lastContentOffset: CGFloat = 0
     
     var menu: SideMenuNavigationController?
     
@@ -357,7 +358,10 @@ class MainViewController: UIViewController, DataDelegate {
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         view.addGestureRecognizer(gestureForPHBonus1)
-        view.isUserInteractionEnabled = false
+        Service.getSaleBoxSwitch { value in
+            let answer = value ?? true
+            view.isUserInteractionEnabled = answer
+        }
         return view
     }()
     
@@ -369,7 +373,8 @@ class MainViewController: UIViewController, DataDelegate {
     }()
     
     public lazy var picForPH1: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "pic1")!)
+        let image = UIImageView()
+        Service.downloadImagesForSaleBox(photo: image, name: "SaleBox1")
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -378,9 +383,9 @@ class MainViewController: UIViewController, DataDelegate {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.masksToBounds = true
+        view.isUserInteractionEnabled = false
         view.layer.cornerRadius = 20
         view.addGestureRecognizer(gestureForPHBonus2)
-        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -392,18 +397,19 @@ class MainViewController: UIViewController, DataDelegate {
     }()
     
     public lazy var picForPH2: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "pic2")!)
-        image.contentMode = .scaleAspectFit
+        let image = UIImageView()
+        Service.downloadImagesForSaleBox(photo: image, name: "SaleBox2")
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
     private lazy var placeholderForBonusText3: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        view.isUserInteractionEnabled = true
         view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         view.addGestureRecognizer(gestureForPHBonus3)
-        view.isUserInteractionEnabled = false
         return view
     }()
     
@@ -415,8 +421,9 @@ class MainViewController: UIViewController, DataDelegate {
     }()
     
     public lazy var picForPH3: UIImageView = {
-        let image = UIImageView(image: UIImage(named: "pic3")!)
-        image.contentMode = .scaleAspectFit
+        let image = UIImageView()
+        Service.downloadImagesForSaleBox(photo: image, name: "SaleBox3")
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -674,6 +681,10 @@ class MainViewController: UIViewController, DataDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        Service.getBonusPoint { bonusPoint in
+            self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
+        }
+        
         let vc = ShopCartViewController()
         
         let shopButton = createCustomButton(imageName: "cart.fill", selector: #selector(shopBtn))
@@ -689,6 +700,7 @@ class MainViewController: UIViewController, DataDelegate {
         
         setupView()
         setupSideMenu()
+    
     }
     
     //MARK: - SetupView Swtting's
@@ -699,7 +711,8 @@ class MainViewController: UIViewController, DataDelegate {
             self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
         }
         
-//        view.backgroundColor = .white
+        getRealTimeBonus2()
+
         view.addSubview(background)
         
         view.addSubview(mainScrollView)
@@ -1153,7 +1166,7 @@ class MainViewController: UIViewController, DataDelegate {
         db.collection("usersBonus").document(uid).addSnapshotListener { documentSnapshot, error in
                 guard let document = documentSnapshot else { return }
                 
-                guard let data = document.data()!["Bonus"] else { return }
+                guard let data = document.data()?["Bonus"] else { return }
                 self.points = data as! Int
                 self.bonusPoint.text = "\(self.points) баллов"
                 let scene = SheetBonus()
@@ -1175,7 +1188,7 @@ extension MainViewController {
     @objc private func tapPHBonus1(_ gesture: UITapGestureRecognizer) {
         let scene = SalesViewController1()
         if let sheet = scene.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
+            sheet.detents = [.large()]
             sheet.preferredCornerRadius = 28
             sheet.prefersGrabberVisible = true
         }
@@ -1193,22 +1206,15 @@ extension MainViewController {
     }
     
     @objc private func tapPHBonus3(_ gesture: UITapGestureRecognizer) {
-        let scene = SalesViewController3()
-        if let sheet = scene.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.preferredCornerRadius = 28
-            sheet.prefersGrabberVisible = true
-        }
-        present(scene, animated: true)
+        let url = "https://wa.me/+79180235043"
+        openUrl(urlString: url)
     }
     
     @objc private func refresh() {
         Service.getBonusPoint { bonusPoint in
             self.bonusPoint.text = "\(bonusPoint ?? 0) баллов"
         }
-        lottie()
         animateView(placeholderForBonuses)
-        getRealTimeBonus2()
     }
     
     @objc private func animateView(_ viewAnimate: UIView) {

@@ -47,7 +47,7 @@ class ProcedureOfMoneyViewController: UIViewController, UITableViewDelegate, UIT
         text.text = "ЦЕНА ₽"
         text.textColor = .black
         text.textAlignment = .right
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 20)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 18)
         return text
     }()
     
@@ -56,7 +56,7 @@ class ProcedureOfMoneyViewController: UIViewController, UITableViewDelegate, UIT
         text.text = "ВЫБЕИТЕ ПРОЦЕДУРУ"
         text.textColor = .black
         text.textAlignment = .left
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 20)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 18)
         return text
     }()
     
@@ -101,8 +101,8 @@ class ProcedureOfMoneyViewController: UIViewController, UITableViewDelegate, UIT
         let p5 = ProcedureArray.procedureModel(name: "ПЛАЗМОЛИФТИНГ", price: 3500)
         let p6 = ProcedureArray.procedureModel(name: "МОНОНИТИ", price: 12000)
         let p7 = ProcedureArray.procedureModel(name: "ЛИПОЛИТИКИ", price: 2500)
-        let p8 = ProcedureArray.procedureModel(name: "1 ВАРИАНТ", price: 30000)
-        let p9 = ProcedureArray.procedureModel(name: "2 ВАРИАНТ", price: 42000)
+        let p8 = ProcedureArray.procedureModel(name: "ЛИЦО ПОД КЛЮЧ 1", price: 30000)
+        let p9 = ProcedureArray.procedureModel(name: "ЛИЦО ПОД КЛЮЧ 2", price: 42000)
         let p10 = ProcedureArray.procedureModel(name: "ИСПРАВЛЕНИЕ ГУБ", price: 12000)
         let p11 = ProcedureArray.procedureModel(name: "КОРРЕКЦИЯ НОСОГУБНЫХ СКЛАДОК", price: 8000)
         let p12 = ProcedureArray.procedureModel(name: "КОРРЕКЦИЯ ПОДБОРОДКА", price: 8000)

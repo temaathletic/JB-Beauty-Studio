@@ -93,7 +93,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
                 make.top.equalToSuperview().inset(view.frame.height / 3.6)
             } else if view.frame.height == 736 {
             // iPhone 6,7,8 Plus
-                
+                make.top.equalToSuperview().inset(view.frame.height / 3.3)
             } else if view.frame.height == 568 {
             // iPhone 5,6
             }

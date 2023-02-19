@@ -14,10 +14,38 @@ import TextFieldEffects
 
 class ProfileSettingViewController: UIViewController {
     
+    private let scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.isUserInteractionEnabled = true
+        scroll.showsVerticalScrollIndicator = false
+        return scroll
+    }()
+    
+    private lazy var contentView: UIStackView = {
+        let content = UIStackView()
+        content.axis = .vertical
+        content.isUserInteractionEnabled = true
+        content.spacing = 30
+        content.addArrangedSubview(borderForPhoto)
+        borderForPhoto.addSubview(photoImageView)
+        content.addArrangedSubview(nameText)
+        content.addArrangedSubview(nameTextField)
+        content.addArrangedSubview(numberText)
+        content.addArrangedSubview(numberTextField)
+        content.addArrangedSubview(loginText)
+        content.addArrangedSubview(loginTextField)
+        content.addArrangedSubview(birthdayText)
+        content.addArrangedSubview(birthdayTextField)
+        content.addArrangedSubview(saveButton)
+        return content
+    }()
+    
     private let borderForPhoto: UIView = {
         let border = UIView()
-        border.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        border.backgroundColor = Color.mainBackgroundColor
+        border.clipsToBounds = true
         border.layer.borderWidth = 1
+        border.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         border.layer.cornerRadius = 75
         return border
     }()
@@ -190,81 +218,32 @@ class ProfileSettingViewController: UIViewController {
         
         view.backgroundColor = Color.mainBackgroundColor
         
-        view.addSubview(borderForPhoto)
-        borderForPhoto.addSubview(photoImageView)
-        view.addSubview(nameText)
-        view.addSubview(nameTextField)
-        view.addSubview(numberText)
-        view.addSubview(numberTextField)
-        view.addSubview(loginText)
-        view.addSubview(loginTextField)
-        view.addSubview(birthdayText)
-        view.addSubview(birthdayTextField)
-        view.addSubview(saveButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.top.left.right.equalTo(scrollView).inset(15)
+            make.centerX.equalTo(scrollView)
+            make.bottom.equalTo(scrollView).inset(40)
+        }
         
         borderForPhoto.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.centerX.equalToSuperview()
-            make.size.equalTo(150)
+            make.centerX.equalTo(contentView)
+            make.height.equalTo(150)
         }
         
         photoImageView.snp.makeConstraints { make in
             make.center.equalTo(borderForPhoto)
+            make.height.equalTo(146)
             make.size.equalTo(146)
         }
-        
-        nameText.snp.makeConstraints { make in
-            make.top.equalTo(photoImageView.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        numberText.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        numberTextField.snp.makeConstraints { make in
-            make.top.equalTo(numberText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        loginText.snp.makeConstraints { make in
-            make.top.equalTo(numberTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        loginTextField.snp.makeConstraints { make in
-            make.top.equalTo(loginText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
-        birthdayText.snp.makeConstraints { make in
-            make.top.equalTo(loginTextField.snp.bottom).offset(20)
-            make.left.equalToSuperview().inset(20)
-            make.height.equalTo(40)
-        }
-        
-        birthdayTextField.snp.makeConstraints { make in
-            make.top.equalTo(birthdayText.snp.bottom).offset(5)
-            make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(50)
-        }
-        
+
         saveButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(50)
             make.height.equalTo(60)
-            make.bottom.equalToSuperview().inset(40)
         }
     }
 }

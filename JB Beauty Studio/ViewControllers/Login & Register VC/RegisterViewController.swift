@@ -27,6 +27,8 @@ class RegisterViewController: UIViewController {
         
         stack.addArrangedSubview(nameText)
         stack.addArrangedSubview(nameTextField)
+        stack.addArrangedSubview(secondNameText)
+        stack.addArrangedSubview(secondNameTextField)
         stack.addArrangedSubview(numberText)
         stack.addArrangedSubview(numberTextField)
         stack.addArrangedSubview(loginText)
@@ -85,6 +87,29 @@ class RegisterViewController: UIViewController {
     private let nameTextField: UITextField = {
         let textField = IsaoTextField()
         textField.placeholderFontScale = CGFloat(0.8)
+        textField.placeholder = "Введите имя на русском языке"
+        textField.activeColor = .systemRed
+        textField.inactiveColor = .systemGray5
+        textField.textColor = Color.mainTextColor
+        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
+        textField.layer.cornerRadius = 15
+        textField.leftViewMode = .always
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
+        return textField
+    }()
+    
+    private let secondNameText: UILabel = {
+        let text = UILabel()
+        text.text = "Фамилия"
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
+        text.textColor = Color.mainTextColor
+        return text
+    }()
+    
+    private let secondNameTextField: UITextField = {
+        let textField = IsaoTextField()
+        textField.placeholderFontScale = CGFloat(0.8)
+        textField.placeholder = "Введите фамилию на русском языке"
         textField.activeColor = .systemRed
         textField.inactiveColor = .systemGray5
         textField.textColor = Color.mainTextColor
@@ -135,6 +160,7 @@ class RegisterViewController: UIViewController {
         textField.leftViewMode = .always
         textField.autocapitalizationType = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
+        textField.textContentType = .emailAddress
         textField.returnKeyType = .done
         return textField
     }()
@@ -199,8 +225,8 @@ class RegisterViewController: UIViewController {
     
     private func setupView() {
         
-        loginTextField.delegate = self
-        passwordTextField.delegate = self
+//        nameTextField.delegate = self
+//        secondNameTextField.delegate = self
         
         navigationController?.isNavigationBarHidden = true
         
@@ -271,6 +297,20 @@ extension RegisterViewController: UINavigationControllerDelegate, UIImagePickerC
 
 extension RegisterViewController {
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == nameTextField && textField == secondNameTextField {
+                    let allowedCharacters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+                    let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+                    let typedCharacterSet = CharacterSet(charactersIn: string)
+                    let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+                    return alphabet
+
+
+          } else {
+            return false
+        }
+      }
+    
     @objc private func tapPhoto(_ gesture: UITapGestureRecognizer) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -316,8 +356,8 @@ extension RegisterViewController {
     
     @objc private func Register(_ sender: UIButton) {
         
-        Service.uploadUserDataToFS(name: nameTextField.text!, phone: numberTextField.text!, login: loginTextField.text!, password: passwordTextField.text!)
-        Service.Register(login: loginTextField.text!, phone: numberTextField.text!, password: passwordTextField.text!, name: nameTextField.text!, image: photoImageView) {
+        Service.uploadUserDataToFS(name: nameTextField.text!, secondName: secondNameTextField.text!, phone: numberTextField.text!, login: loginTextField.text!, password: passwordTextField.text!)
+        Service.Register(login: loginTextField.text!, secondName: secondNameTextField.text!, phone: numberTextField.text!, password: passwordTextField.text!, name: nameTextField.text!, image: photoImageView) {
         } onError: { error in
             self.showAlert2()
         }
@@ -346,3 +386,4 @@ struct RegisterVC: PreviewProvider {
     }
 }
 #endif
+

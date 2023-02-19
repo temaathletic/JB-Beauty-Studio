@@ -41,6 +41,19 @@ class SheetBonus: UIViewController {
         return point
     }()
     
+    private lazy var exitButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Закрыть", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .black
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        button.isUserInteractionEnabled = true
+        button.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,11 +63,11 @@ class SheetBonus: UIViewController {
     private func setupView() {
         
         getRealTimeBonus()
-        
+        self.lottie1()
+        self.lottie2()
+        self.lottie3()
         view.addGestureRecognizer(createSwipeGestureRecognizer(for: .up))
         view.addGestureRecognizer(createSwipeGestureRecognizer(for: .down))
-        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .left))
-        view.addGestureRecognizer(createSwipeGestureRecognizer(for: .right))
         
         view.backgroundColor = .black
         
@@ -75,6 +88,11 @@ class SheetBonus: UIViewController {
 
 extension SheetBonus {
     
+    @objc func closeAction() {
+        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
+    }
+    
     private func getRealTimeBonus() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
@@ -93,10 +111,14 @@ extension SheetBonus {
                         self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 1, y: 1)
                     }
                 }
+                self.view.addSubview(self.exitButton)
+                
+                self.exitButton.snp.makeConstraints { make in
+                    make.left.right.equalToSuperview().inset(20)
+                    make.height.equalTo(60)
+                    make.bottom.equalToSuperview().inset(30)
+                }
                 self.bonusPoint.text = "\(data) баллов"
-                self.lottie1()
-                self.lottie2()
-                self.lottie3()
             }
     }
     

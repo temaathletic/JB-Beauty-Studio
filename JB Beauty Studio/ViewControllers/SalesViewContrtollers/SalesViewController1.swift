@@ -10,86 +10,38 @@ import SnapKit
 
 class SalesViewController1: UIViewController {
     
-    private var image: UIImageView = {
-        let vc = MainViewController()
-        let image = vc.picForPH1
+    private let phForImage1: UIImageView = {
+        let view = UIImageView()
+        view.clipsToBounds = true
+        view.contentMode = .scaleToFill
+        Service.downloadImagesForSaleBox(photo: view, name: "SaleBox1MainBack")
+        return view
+    }()
+    
+    private let image1: UIImageView = {
+        let image = UIImageView()
+        Service.downloadImagesForSaleBox(photo: image, name: "SaleBox1MainPic")
+        image.layer.cornerRadius = 0
+        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
-    private let titleText: UILabel = {
-        let text = UILabel()
-        text.text = "Расскажи друзьям - получи баллы!"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 28)
-//        text.textColor = .black
-        text.textColor = .white
-        text.textAlignment = .center
-        text.numberOfLines = 0
-        return text
-    }()
-                           
-    private let descriptionText: UILabel = {
-        let text = UILabel()
-        text.text = "GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference"
-        text.font = UIFont(name: "GlacialIndifference-Regular", size: 20)
-//        text.textColor = .black
-        text.textColor = .white
-        text.textAlignment = .left
-        text.numberOfLines = 0
-        return text
-    }()
-    
-    private let placeholderBG: UIImageView = {
-        let view = UIImageView()
-        view.image = UIImage(named: "MainBG")
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        return view
-    }()
-    
-    private let placeholder: UIView = {
-        let view = UIView()
-        view.backgroundColor = .black
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        return view
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "bgForPriceVC")!)
-//        view.backgroundColor = UIColor(patternImage: UIImage(named: "MainBG")!)
-        view.addSubview(image)
-        view.addSubview(placeholderBG)
-        placeholderBG.addSubview(placeholder)
-        placeholder.addSubview(titleText)
-        placeholder.addSubview(descriptionText)
+        view.addSubview(phForImage1)
+        phForImage1.addSubview(image1)
         
-        image.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.height.equalTo(320)
+        phForImage1.snp.makeConstraints { make in
+            make.left.right.top.bottom.equalToSuperview()
         }
         
-        placeholderBG.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(image.snp.bottom).inset(40)
-            make.bottom.equalToSuperview()
-        }
-        
-        placeholder.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderBG).inset(15)
-            make.top.equalTo(placeholderBG).inset(35)
-            make.bottom.equalTo(placeholderBG)
-        }
-        
-        titleText.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholder).inset(15)
-            make.top.equalTo(image.snp.bottom).inset(-20)
-        }
-        
-        descriptionText.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholder).inset(15)
-            make.top.equalTo(titleText.snp.bottom).inset(-20)
+        image1.snp.makeConstraints { make in
+            make.center.equalTo(view)
+            make.height.equalTo(view.frame.height / 1.25)
+            make.width.equalTo(view.frame.width / 1)
         }
     }
 }

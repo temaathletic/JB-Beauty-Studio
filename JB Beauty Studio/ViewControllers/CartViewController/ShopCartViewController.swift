@@ -202,11 +202,9 @@ class ShopCartViewController: UIViewController, UITableViewDelegate, UITableView
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.tintColor = Color.mainTextColor
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : Color.mainTextColor!]
-        let backButton = UIBarButtonItem()
-        backButton.title = ""
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        
+        let backBut = createLeftButtonForCart(imageName: "chevron.backward", selector: #selector(backAlert))
         let resetBut = createRightButtonForCart(imageName: "trash", selector: #selector(deleteAll))
+        navigationItem.leftBarButtonItem = backBut
         navigationItem.rightBarButtonItem = resetBut
         
         view.addSubview(callButt)
@@ -230,7 +228,7 @@ class ShopCartViewController: UIViewController, UITableViewDelegate, UITableView
         line1.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.height.equalTo(1)
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(5)
         }
         
         line2.snp.makeConstraints { make in
@@ -409,9 +407,20 @@ extension ShopCartViewController {
         }
     }
     
+    @objc func backAlert() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc private func showQR() {
+        
         let total = totalWithSaleForFB.text
         Service.uploadCartSum(VariableSum: total ?? "0")
+        getAllItem()
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "HH:mm:ss dd-MM-yyyy"
+        let dateString = df.string(from: date)
+        Service.uploadUserEntryInfo("\(dateString)", "\(myOrder.compactMap({$0.name}))")
         perform(#selector(passSumToVC), with: nil)
     }
     

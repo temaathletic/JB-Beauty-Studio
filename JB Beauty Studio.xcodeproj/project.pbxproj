@@ -7,18 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0602B8E929A171A2003C9FAE /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0602B8E829A171A1003C9FAE /* ReportViewController.swift */; };
+		0602B8EB29A1724D003C9FAE /* CustomTableViewCellForReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0602B8EA29A1724D003C9FAE /* CustomTableViewCellForReport.swift */; };
 		060443932993DBF00013919D /* SearchPeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060443922993DBF00013919D /* SearchPeopleViewController.swift */; };
 		06044395299429E30013919D /* CustomTableViewCellForSearchPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */; };
 		06044397299465A60013919D /* ScanVCFormCartForDicrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */; };
 		06044399299467C10013919D /* UserDicrementBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044398299467C10013919D /* UserDicrementBonus.swift */; };
 		063B8879299037880046A878 /* QRCodeFromTotalPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */; };
+		0664304C299D0B9700C29995 /* CustomTableViewCellForSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */; };
+		0664304E299D2C4600C29995 /* ScanVCForCustomSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */; };
 		06A44257298FB2DD00ED57EE /* MyOrders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06A44255298FB2DD00ED57EE /* MyOrders.xcdatamodeld */; };
 		06A44262298FBCD700ED57EE /* MyOrders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A44260298FBCD700ED57EE /* MyOrders+CoreDataClass.swift */; };
 		06A44263298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A44261298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift */; };
 		06A5522E298FCBE4000663B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5522D298FCBE4000663B5 /* AppDelegate.swift */; };
 		06A5635B29968815009032D4 /* CopyAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 06A5635A29968815009032D4 /* CopyAnimation.json */; };
 		06A5635D2996B7B5009032D4 /* PersonalSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5635C2996B7B5009032D4 /* PersonalSaleViewController.swift */; };
+		06A9C02629982B0300912411 /* UIAlert + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C02529982B0300912411 /* UIAlert + Extensions.swift */; };
+		06A9C02829983BC600912411 /* UserIncrementBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C02729983BC600912411 /* UserIncrementBonus.swift */; };
+		06A9C02A29983F5100912411 /* ScanVCFormCartForIncrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C02929983F5100912411 /* ScanVCFormCartForIncrement.swift */; };
+		06A9C02C29984E2D00912411 /* QRCode + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */; };
+		06A9C0322999295900912411 /* SearchSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C0312999295900912411 /* SearchSessionLogViewController.swift */; };
+		06B95F9A29996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B95F9929996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift */; };
 		06C3AC51298AF76A0094F37B /* PopUpForCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */; };
+		06CB6BF8299AA76700342869 /* SettingSaleBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */; };
+		06CB6BFA299AC37300342869 /* ScanSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */; };
 		7700E54B293410E64B831799 /* Pods_JB_Beauty_Studio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91DF58D4A821D183900DE639 /* Pods_JB_Beauty_Studio.framework */; };
 		84010A522969E3F300B90EAC /* BonusViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84010A512969E3F300B90EAC /* BonusViewController1.swift */; };
 		84010A552969E41400B90EAC /* BonusViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84010A542969E41400B90EAC /* BonusViewController2.swift */; };
@@ -75,7 +87,6 @@
 		842B6B2E29686E4D00016DC3 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B6B2D29686E4D00016DC3 /* ScanViewController.swift */; };
 		842B6B3B296884A000016DC3 /* UserChangeBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842B6B3A296884A000016DC3 /* UserChangeBonus.swift */; };
 		8432428D2969D7C10073A8B9 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432428C2969D7C10073A8B9 /* Resource.swift */; };
-		8452B687297303A200E86EBA /* Gradient + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452B686297303A200E86EBA /* Gradient + Extensions.swift */; };
 		845796B3297A60B100146A3C /* GoldenLottie2.json in Resources */ = {isa = PBXBuildFile; fileRef = 845796B2297A60B100146A3C /* GoldenLottie2.json */; };
 		845796B6297AD5DB00146A3C /* FeedBackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845796B5297AD5DB00146A3C /* FeedBackViewController.swift */; };
 		84715602296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84715601296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift */; };
@@ -141,18 +152,31 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0602B8E829A171A1003C9FAE /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		0602B8EA29A1724D003C9FAE /* CustomTableViewCellForReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForReport.swift; sourceTree = "<group>"; };
 		060443922993DBF00013919D /* SearchPeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPeopleViewController.swift; sourceTree = "<group>"; };
 		06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSearchPeople.swift; sourceTree = "<group>"; };
 		06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCFormCartForDicrement.swift; sourceTree = "<group>"; };
 		06044398299467C10013919D /* UserDicrementBonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDicrementBonus.swift; sourceTree = "<group>"; };
 		063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeFromTotalPriceViewController.swift; sourceTree = "<group>"; };
+		0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSale.swift; sourceTree = "<group>"; };
+		0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCForCustomSale.swift; sourceTree = "<group>"; };
 		06A44256298FB2DD00ED57EE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		06A44260298FBCD700ED57EE /* MyOrders+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyOrders+CoreDataClass.swift"; path = "JB Beauty Studio/MyOrders+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		06A44261298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyOrders+CoreDataProperties.swift"; path = "JB Beauty Studio/MyOrders+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		06A5522D298FCBE4000663B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06A5635A29968815009032D4 /* CopyAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CopyAnimation.json; sourceTree = "<group>"; };
 		06A5635C2996B7B5009032D4 /* PersonalSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalSaleViewController.swift; sourceTree = "<group>"; };
+		06A9C02529982B0300912411 /* UIAlert + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlert + Extensions.swift"; sourceTree = "<group>"; };
+		06A9C02729983BC600912411 /* UserIncrementBonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIncrementBonus.swift; sourceTree = "<group>"; };
+		06A9C02929983F5100912411 /* ScanVCFormCartForIncrement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCFormCartForIncrement.swift; sourceTree = "<group>"; };
+		06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QRCode + Extensions.swift"; sourceTree = "<group>"; };
+		06A9C0312999295900912411 /* SearchSessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSessionLogViewController.swift; sourceTree = "<group>"; };
+		06AB7404299A826700BC87D7 /* JB Beauty Studio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JB Beauty Studio.entitlements"; sourceTree = "<group>"; };
+		06B95F9929996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSessionLog.swift; sourceTree = "<group>"; };
 		06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpForCartViewController.swift; sourceTree = "<group>"; };
+		06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSaleBoxViewController.swift; sourceTree = "<group>"; };
+		06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSaleViewController.swift; sourceTree = "<group>"; };
 		5A84212D3932320341562010 /* Pods-JB Beauty Studio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JB Beauty Studio.release.xcconfig"; path = "Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio.release.xcconfig"; sourceTree = "<group>"; };
 		84010A512969E3F300B90EAC /* BonusViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController1.swift; sourceTree = "<group>"; };
 		84010A542969E41400B90EAC /* BonusViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController2.swift; sourceTree = "<group>"; };
@@ -211,7 +235,6 @@
 		842B6B2D29686E4D00016DC3 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		842B6B3A296884A000016DC3 /* UserChangeBonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChangeBonus.swift; sourceTree = "<group>"; };
 		8432428C2969D7C10073A8B9 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		8452B686297303A200E86EBA /* Gradient + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gradient + Extensions.swift"; sourceTree = "<group>"; };
 		845796B2297A60B100146A3C /* GoldenLottie2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GoldenLottie2.json; sourceTree = "<group>"; };
 		845796B5297AD5DB00146A3C /* FeedBackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackViewController.swift; sourceTree = "<group>"; };
 		84715601296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForGiftOfPoint.swift; sourceTree = "<group>"; };
@@ -290,6 +313,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0602B8EC29A17320003C9FAE /* ReportViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0602B8E829A171A1003C9FAE /* ReportViewController.swift */,
+				0602B8EA29A1724D003C9FAE /* CustomTableViewCellForReport.swift */,
+			);
+			path = ReportViewController;
+			sourceTree = "<group>";
+		};
 		0697BDE9298DB90D00A78CAA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +330,69 @@
 				06A44255298FB2DD00ED57EE /* MyOrders.xcdatamodeld */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		06B95F9B29996CEC00AC4E86 /* IncrementBonus */ = {
+			isa = PBXGroup;
+			children = (
+				06A9C02729983BC600912411 /* UserIncrementBonus.swift */,
+				06A9C02929983F5100912411 /* ScanVCFormCartForIncrement.swift */,
+			);
+			path = IncrementBonus;
+			sourceTree = "<group>";
+		};
+		06B95F9C29996D1300AC4E86 /* DicrementBonus */ = {
+			isa = PBXGroup;
+			children = (
+				06044398299467C10013919D /* UserDicrementBonus.swift */,
+				06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */,
+			);
+			path = DicrementBonus;
+			sourceTree = "<group>";
+		};
+		06B95F9D29996D3F00AC4E86 /* ChangeBonus */ = {
+			isa = PBXGroup;
+			children = (
+				842B6B2D29686E4D00016DC3 /* ScanViewController.swift */,
+				842B6B3A296884A000016DC3 /* UserChangeBonus.swift */,
+			);
+			path = ChangeBonus;
+			sourceTree = "<group>";
+		};
+		06B95F9E29996D5A00AC4E86 /* SessionLog */ = {
+			isa = PBXGroup;
+			children = (
+				06A9C0312999295900912411 /* SearchSessionLogViewController.swift */,
+				06B95F9929996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift */,
+			);
+			path = SessionLog;
+			sourceTree = "<group>";
+		};
+		06B95F9F29996D6500AC4E86 /* SearchPeople */ = {
+			isa = PBXGroup;
+			children = (
+				060443922993DBF00013919D /* SearchPeopleViewController.swift */,
+				06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */,
+			);
+			path = SearchPeople;
+			sourceTree = "<group>";
+		};
+		06E3A505299CD39000409464 /* SettingSaleBox */ = {
+			isa = PBXGroup;
+			children = (
+				06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */,
+			);
+			path = SettingSaleBox;
+			sourceTree = "<group>";
+		};
+		06E3A510299CD4CB00409464 /* SettingCustomSale */ = {
+			isa = PBXGroup;
+			children = (
+				06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */,
+				0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */,
+				0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */,
+			);
+			path = SettingCustomSale;
 			sourceTree = "<group>";
 		};
 		548B78EBB2936B9DC210D3DB /* Frameworks */ = {
@@ -378,6 +473,7 @@
 		840792BE296326D3001C53A1 /* JB Beauty Studio */ = {
 			isa = PBXGroup;
 			children = (
+				06AB7404299A826700BC87D7 /* JB Beauty Studio.entitlements */,
 				840792D429632713001C53A1 /* Application */,
 				840792D829632790001C53A1 /* ViewControllers */,
 				840792FA296328EC001C53A1 /* Fonts */,
@@ -416,11 +512,12 @@
 			children = (
 				842B6B182964BF6800016DC3 /* Service.swift */,
 				8406D964297343F600F9DB95 /* CGPoint + Extensions.swift */,
+				06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */,
 				84CCD38F296F4B18004893BC /* ViewController + Preview.swift */,
 				840792D62963273C001C53A1 /* ViewController + Extensions.swift */,
-				8452B686297303A200E86EBA /* Gradient + Extensions.swift */,
 				840CDE4729746E58001645AF /* Snapshot + Extensions.swift */,
 				840CDE492974706E001645AF /* MyUserData.swift */,
+				06A9C02529982B0300912411 /* UIAlert + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,12 +609,14 @@
 			isa = PBXGroup;
 			children = (
 				842B6B0B2963734F00016DC3 /* AdminViewController.swift */,
-				842B6B2D29686E4D00016DC3 /* ScanViewController.swift */,
-				06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */,
-				060443922993DBF00013919D /* SearchPeopleViewController.swift */,
-				842B6B3A296884A000016DC3 /* UserChangeBonus.swift */,
-				06044398299467C10013919D /* UserDicrementBonus.swift */,
-				06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */,
+				0602B8EC29A17320003C9FAE /* ReportViewController */,
+				06E3A510299CD4CB00409464 /* SettingCustomSale */,
+				06E3A505299CD39000409464 /* SettingSaleBox */,
+				06B95F9D29996D3F00AC4E86 /* ChangeBonus */,
+				06B95F9C29996D1300AC4E86 /* DicrementBonus */,
+				06B95F9B29996CEC00AC4E86 /* IncrementBonus */,
+				06B95F9E29996D5A00AC4E86 /* SessionLog */,
+				06B95F9F29996D6500AC4E86 /* SearchPeople */,
 			);
 			path = "AdminPanel + Feutures";
 			sourceTree = "<group>";
@@ -816,31 +915,37 @@
 				84010A552969E41400B90EAC /* BonusViewController2.swift in Sources */,
 				84010A522969E3F300B90EAC /* BonusViewController1.swift in Sources */,
 				840792F42963288D001C53A1 /* ProfileSettingViewController.swift in Sources */,
+				06CB6BF8299AA76700342869 /* SettingSaleBoxViewController.swift in Sources */,
 				8406D9872973454800F9DB95 /* ClassicSparkTrajectoryFactoryProtocol.swift in Sources */,
 				84CDBFD4297EF14C00494CB8 /* SalesViewController1.swift in Sources */,
 				06044397299465A60013919D /* ScanVCFormCartForDicrement.swift in Sources */,
+				0602B8EB29A1724D003C9FAE /* CustomTableViewCellForReport.swift in Sources */,
 				06A44257298FB2DD00ED57EE /* MyOrders.xcdatamodeld in Sources */,
 				84AE957F2986701A00DADCB0 /* PopUpPriceViewController8.swift in Sources */,
-				8452B687297303A200E86EBA /* Gradient + Extensions.swift in Sources */,
 				842B6B0E2963F82500016DC3 /* RegisterViewController.swift in Sources */,
 				8406D9762973449E00F9DB95 /* SparkTrajectoryFactory.swift in Sources */,
 				84AE956D29857AC800DADCB0 /* ProcedureOfMoneyViewController.swift in Sources */,
 				84AE957B2986700C00DADCB0 /* PopUpPriceViewController6.swift in Sources */,
 				063B8879299037880046A878 /* QRCodeFromTotalPriceViewController.swift in Sources */,
 				84CCD386296CB62D004893BC /* PopUpViewController3-4.swift in Sources */,
+				06A9C02C29984E2D00912411 /* QRCode + Extensions.swift in Sources */,
 				84AE957729866FEA00DADCB0 /* PopUpPriceViewController4.swift in Sources */,
 				840792F9296328CA001C53A1 /* PriceViewController.swift in Sources */,
 				840792E529632811001C53A1 /* AboutStudioViewController.swift in Sources */,
 				8406D9712973449E00F9DB95 /* SparkViewFactory.swift in Sources */,
 				84AE95972986706A00DADCB0 /* PopUpPriceViewController20.swift in Sources */,
 				84CCD364296CB176004893BC /* PopUpViewController5.swift in Sources */,
+				06A9C02A29983F5100912411 /* ScanVCFormCartForIncrement.swift in Sources */,
 				060443932993DBF00013919D /* SearchPeopleViewController.swift in Sources */,
+				06A9C02829983BC600912411 /* UserIncrementBonus.swift in Sources */,
 				842B6B192964BF6800016DC3 /* Service.swift in Sources */,
 				840792E0296327D1001C53A1 /* ShopCartViewController.swift in Sources */,
+				0664304C299D0B9700C29995 /* CustomTableViewCellForSale.swift in Sources */,
 				840792F02963287A001C53A1 /* LocationSettingViewController.swift in Sources */,
 				8406D9752973449E00F9DB95 /* FireworkSpark.swift in Sources */,
 				06A44262298FBCD700ED57EE /* MyOrders+CoreDataClass.swift in Sources */,
 				84CDBFD8297EF16300494CB8 /* SalesViewController3.swift in Sources */,
+				0664304E299D2C4600C29995 /* ScanVCForCustomSale.swift in Sources */,
 				84CCD374296CB5E9004893BC /* PopUpViewController2-3.swift in Sources */,
 				848DE43629734DBF0091372A /* ClassicSparkTrajectoryFactory.swift in Sources */,
 				840792E72963281A001C53A1 /* InviteFriendsViewController.swift in Sources */,
@@ -858,7 +963,9 @@
 				842B6B3B296884A000016DC3 /* UserChangeBonus.swift in Sources */,
 				842B6B132964954100016DC3 /* ViewController1.swift in Sources */,
 				84AE95932986705900DADCB0 /* PopUpPriceViewController18.swift in Sources */,
+				06A9C02629982B0300912411 /* UIAlert + Extensions.swift in Sources */,
 				84AE959D2986708400DADCB0 /* PopUpPriceViewController23.swift in Sources */,
+				06B95F9A29996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift in Sources */,
 				84AE958B2986704400DADCB0 /* PopUpPriceViewController14.swift in Sources */,
 				84AE958D2986704900DADCB0 /* PopUpPriceViewController15.swift in Sources */,
 				84AE957929866FF500DADCB0 /* PopUpPriceViewController5.swift in Sources */,
@@ -876,7 +983,9 @@
 				06C3AC51298AF76A0094F37B /* PopUpForCartViewController.swift in Sources */,
 				84AE956F2985918F00DADCB0 /* CustomTableViewCellForProcedureOfMoney.swift in Sources */,
 				84CCD360296CB16A004893BC /* PopUpViewController3.swift in Sources */,
+				0602B8E929A171A2003C9FAE /* ReportViewController.swift in Sources */,
 				8406D992297345BB00F9DB95 /* CircleColorSparkViewFactory.swift in Sources */,
+				06CB6BFA299AC37300342869 /* ScanSaleViewController.swift in Sources */,
 				84AE95872986703700DADCB0 /* PopUpPriceViewController12.swift in Sources */,
 				84CCD36A296CB190004893BC /* PopUpViewController8.swift in Sources */,
 				84CCD382296CB61D004893BC /* PopUpViewController3-2.swift in Sources */,
@@ -906,6 +1015,7 @@
 				84715602296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift in Sources */,
 				840792DE296327C6001C53A1 /* QRCodeViewController.swift in Sources */,
 				84CE78FE2986AD2A00D03F11 /* CustomTableViewCellForCart.swift in Sources */,
+				06A9C0322999295900912411 /* SearchSessionLogViewController.swift in Sources */,
 				842B6B152964954A00016DC3 /* ViewController2.swift in Sources */,
 				840792C2296326D3001C53A1 /* SceneDelegate.swift in Sources */,
 				84CCD35B296CA912004893BC /* PopUpViewController1.swift in Sources */,
@@ -1054,8 +1164,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "JB Beauty Studio/JB Beauty Studio.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.3;
+				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = BXR876RKK2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1071,11 +1182,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "temaathletic.org.JB-Beauty-Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1090,8 +1202,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "JB Beauty Studio/JB Beauty Studio.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.3;
+				CURRENT_PROJECT_VERSION = 1.0.5;
 				DEVELOPMENT_TEAM = BXR876RKK2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1107,11 +1220,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "temaathletic.org.JB-Beauty-Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

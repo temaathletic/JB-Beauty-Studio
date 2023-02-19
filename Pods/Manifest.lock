@@ -611,6 +611,12 @@ PODS:
     - FirebaseAnalytics (~> 10.4.0)
   - Firebase/CoreOnly (10.4.0):
     - FirebaseCore (= 10.4.0)
+  - Firebase/DynamicLinks (10.4.0):
+    - Firebase/CoreOnly
+    - FirebaseDynamicLinks (~> 10.4.0)
+  - Firebase/Messaging (10.4.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 10.4.0)
   - FirebaseAnalytics (10.4.0):
     - FirebaseAnalytics/AdIdSupport (= 10.4.0)
     - FirebaseCore (~> 10.0)
@@ -644,6 +650,8 @@ PODS:
     - FirebaseCore (~> 10.0)
   - FirebaseCoreInternal (10.4.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseDynamicLinks (10.4.0):
+    - FirebaseCore (~> 10.0)
   - FirebaseFirestore (10.4.0):
     - abseil/algorithm (~> 1.20211102.0)
     - abseil/base (~> 1.20211102.0)
@@ -662,6 +670,15 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
+  - FirebaseMessaging (10.4.0):
+    - FirebaseCore (~> 10.0)
+    - FirebaseInstallations (~> 10.0)
+    - GoogleDataTransport (~> 9.2)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Reachability (~> 7.8)
+    - GoogleUtilities/UserDefaults (~> 7.8)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseStorage (10.4.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseAuthInterop (~> 10.0)
@@ -688,6 +705,10 @@ PODS:
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - GoogleDataTransport (9.2.1):
+    - GoogleUtilities/Environment (~> 7.7)
+    - nanopb (< 2.30910.0, >= 2.30908.0)
+    - PromisesObjC (< 3.0, >= 1.2)
   - GoogleUtilities/AppDelegateSwizzler (7.11.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -759,6 +780,23 @@ PODS:
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
   - GTMSessionFetcher/Core (3.1.0)
+  - InputViews (1.0.9):
+    - InputViews/AccessoryView (= 1.0.9)
+    - InputViews/CollectionInputView (= 1.0.9)
+    - InputViews/ColorPickerView (= 1.0.9)
+    - InputViews/DatePickerInputView (= 1.0.9)
+    - InputViews/NoCutPasteField (= 1.0.9)
+    - InputViews/PickerInputView (= 1.0.9)
+    - InputViews/TableInputView (= 1.0.9)
+  - InputViews/AccessoryView (1.0.9)
+  - InputViews/CollectionInputView (1.0.9):
+    - InputViews/CollectionInputView/PickFontAwesomeIconView (= 1.0.9)
+  - InputViews/CollectionInputView/PickFontAwesomeIconView (1.0.9)
+  - InputViews/ColorPickerView (1.0.9)
+  - InputViews/DatePickerInputView (1.0.9)
+  - InputViews/NoCutPasteField (1.0.9)
+  - InputViews/PickerInputView (1.0.9)
+  - InputViews/TableInputView (1.0.9)
   - IQKeyboardManager (6.5.11)
   - Kingfisher (7.5.0)
   - leveldb-library (1.22.1)
@@ -789,9 +827,12 @@ DEPENDENCIES:
   - BottomPopup
   - CodeScanner
   - Firebase
+  - Firebase/DynamicLinks
+  - Firebase/Messaging
   - FirebaseAuth
   - FirebaseFirestore
   - FirebaseStorage
+  - InputViews
   - IQKeyboardManager
   - Kingfisher
   - lottie-ios
@@ -817,14 +858,18 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
+    - FirebaseDynamicLinks
     - FirebaseFirestore
     - FirebaseInstallations
+    - FirebaseMessaging
     - FirebaseStorage
     - GoogleAppMeasurement
+    - GoogleDataTransport
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - InputViews
     - IQKeyboardManager
     - Kingfisher
     - leveldb-library
@@ -853,14 +898,18 @@ SPEC CHECKSUMS:
   FirebaseCore: b8697a177690b69b0dbce9d612b69b893be70469
   FirebaseCoreExtension: d209ada6f48bac53d149e996cf1b2dafa632a615
   FirebaseCoreInternal: e301297f4c15a17489e48ed722d733b1578e0c02
+  FirebaseDynamicLinks: 497bdb5433a4a117d21d73c0349e6ebc1d56b4d9
   FirebaseFirestore: 07d6c8950584d3c15f2fa1a58f8783a246ca95f7
   FirebaseInstallations: 36b38c733fd37e50857e5e8d74138648f466f18c
+  FirebaseMessaging: e7304d6ce5f83d9139f0a61383a2302beb99b111
   FirebaseStorage: 2fa8f1799f6ebff74c0311d9fa7e316404936080
   GoogleAppMeasurement: 173fa22ce7d62c29332568e853b39b2525a0e584
+  GoogleDataTransport: ea169759df570f4e37bdee1623ec32a7e64e67c4
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
   GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
+  InputViews: 7adbec5838ec74dbea53efde559cb1f98afcb4d1
   IQKeyboardManager: ef43ce1ba1e5aaf4adf222c0a46f39761f246879
   Kingfisher: b9c2a4a4af2990a768445c277359b27bde287d71
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
@@ -876,6 +925,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 64f82bd1c76a85b8d173b5263c8ab863a84e98f0
+PODFILE CHECKSUM: 02e41efea07dd66a05e46aff721ca564ef79e3ea
 
 COCOAPODS: 1.11.3

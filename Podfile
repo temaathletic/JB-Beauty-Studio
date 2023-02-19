@@ -23,5 +23,8 @@ pod 'ViewAnimator'
 pod 'lottie-ios'
 pod 'SDWebImage'
 pod 'SwipeCellKit'
+pod 'Firebase/DynamicLinks'
+pod 'Firebase/Messaging'
+pod 'InputViews'
 
 end

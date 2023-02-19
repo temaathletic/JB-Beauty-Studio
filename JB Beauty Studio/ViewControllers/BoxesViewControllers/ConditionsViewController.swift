@@ -10,11 +10,27 @@ import SnapKit
 
 class ConditionsViewController: UIViewController {
     
+    private let scrollView: UIScrollView = {
+        let sView = UIScrollView()
+        sView.bounces = false
+        sView.showsVerticalScrollIndicator = false
+        return sView
+    }()
+    
+    private let contentView: UIStackView = {
+        let cView = UIStackView()
+        cView.spacing = 10
+        cView.backgroundColor = .white
+        cView.layer.cornerRadius = 25
+        cView.axis = .vertical
+        return cView
+    }()
+    
     private let text2: UILabel = {
         let text = UILabel()
         text.text = """
         
-        1) Нажмите на купон "предъявить карту и получить баллы", на экране вашего телефона появится QR-код. Покажите его после процедуры
+        1) Нажмите на купон "предъявить карту и получить баллы", на экране вашего телефона появится QR-код. Покажите его после процедуры.
 
         2) Косметолог считает код с экрана телефона и вы получите баллы.
 
@@ -26,6 +42,7 @@ class ConditionsViewController: UIViewController {
         От 45 001 и более - 10%
         """
         text.numberOfLines = 0
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 20)
         text.textColor = .black
         return text
     }()
@@ -33,7 +50,7 @@ class ConditionsViewController: UIViewController {
     private let text1: UILabel = {
         let text = UILabel()
         text.text = "КАК ПОЛУЧИТЬ БАЛЛЫ И ПОТРАТИТЬ ИХ НА ПОДАРКИ?"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 18)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
         text.numberOfLines = 0
         text.textColor = .black
         return text
@@ -51,24 +68,36 @@ class ConditionsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(patternImage: UIImage(named: "bgForPriceVC")!)
-        view.addSubview(placeholder)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addArrangedSubview(placeholder)
         placeholder.addSubview(text1)
         placeholder.addSubview(text2)
         
+        scrollView.snp.makeConstraints { make in
+            make.width.centerX.height.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.centerX.equalTo(scrollView)
+            make.left.right.equalTo(scrollView).inset(15)
+            make.bottom.equalTo(scrollView)
+            make.top.equalTo(scrollView).inset(60)
+        }
+        
         placeholder.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(60)
-            make.left.right.equalToSuperview().inset(15)
-            make.bottom.equalToSuperview().inset(20)
+            make.left.right.equalTo(contentView)
+            make.height.equalTo(580)
         }
         
         text1.snp.makeConstraints { make in
             make.left.right.equalTo(placeholder).inset(15)
-            make.top.equalTo(placeholder).inset(40)
+            make.top.equalTo(placeholder).inset(10)
         }
-        
+
         text2.snp.makeConstraints { make in
             make.left.right.equalTo(placeholder).inset(15)
-            make.top.equalTo(text1.snp.bottom).inset(-20)
+            make.top.equalTo(text1.snp.bottom).inset(-10)
         }
     }
 }

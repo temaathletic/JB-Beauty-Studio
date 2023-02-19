@@ -16,6 +16,7 @@ class TechnichalSupportViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = Color.mainRedColor
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(sendProblem), for: .touchUpInside)
         return button
     }()
     
@@ -37,7 +38,7 @@ class TechnichalSupportViewController: UIViewController {
     
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 0.8043929346)
+        textField.backgroundColor = Color.mainBackgroundColor
         textField.attributedPlaceholder = NSAttributedString(string: "Email")
         textField.tintColor = Color.mainTextColor
         textField.layer.cornerRadius = 15
@@ -59,12 +60,13 @@ class TechnichalSupportViewController: UIViewController {
     
     private let reportTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 0.8043929346)
+        textField.backgroundColor = Color.mainBackgroundColor
         textField.attributedPlaceholder = NSAttributedString(string: "Опишите проблему")
         textField.tintColor = Color.mainTextColor
         textField.layer.cornerRadius = 15
         textField.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 0.6971066709)
         textField.layer.borderWidth = 1
+        textField.textAlignment = .left
         textField.leftViewMode = .always
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
         return textField
@@ -125,5 +127,52 @@ class TechnichalSupportViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.size.equalTo(150)
         }
+    }
+    
+    @objc private func sendProblem() {
+        if emailTextField.text != "" && emailTextField.text != nil {
+            Service.uploadTechnicalProblemEmail(emailTextField.text!)
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Вы не ввели Email", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                @unknown default:
+                    return
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if reportTextField.text != "" && reportTextField.text != nil {
+            Service.uploadTechnicalProblem(reportTextField.text!)
+        } else {
+            let alert = UIAlertController(title: "Ошибка", message: "Вы не ввели обращение текст", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                switch action.style{
+                    case .default:
+                    print("default")
+                    
+                    case .cancel:
+                    print("cancel")
+                    
+                    case .destructive:
+                    print("destructive")
+                    
+                @unknown default:
+                    return
+                }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        navigationController?.popViewController(animated: true)
     }
 }

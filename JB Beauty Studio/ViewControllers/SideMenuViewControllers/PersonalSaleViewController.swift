@@ -17,30 +17,28 @@ class PersonalSaleViewController: UIViewController {
         Service.getPurchaseTotal { purchaseTotal in
             
             let total = purchaseTotal ?? ""
-            let myInt = Float(total) ?? 0
+            let myFloat = Float(total) ?? 0
+            let myInt = Int(total) ?? 0
+            
+            Service.getPurchaseTotal { purchaseTotal in
+                
+                if myInt >= 0 {
+                    Service.uploadSale(sale: "3%")
+                } else if myInt >= 15001 {
+                    Service.uploadSale(sale: "5%")
+                } else if myInt >= 35001 {
+                    Service.uploadSale(sale: "7%")
+                } else if myInt >= 45001 {
+                    Service.uploadSale(sale: "10%")
+                }
+            }
             
             print("Total -> \(total)")
             print("myInt -> \(myInt)")
             
-            let action1 = myInt / 45001
-            let action2 = myInt / 45001
-            let action3 = myInt / 45001
-            let action4 = myInt / 45001
-            
-            print("action1 -> \(action1)")
-            print("action2 -> \(action2)")
-            print("action3 -> \(action3)")
-            print("action4 -> \(action4)")
-            
-            if total == "0" {
-                bar.setProgress(action1, animated: true)
-            } else if total == "15001" {
-                bar.setProgress(action2, animated: true)
-            }  else if total == "35001" {
-                bar.setProgress(action3, animated: true)
-            }  else if total == "45001" {
-                bar.setProgress(action4, animated: true)
-            }
+            let action = myFloat / 45000
+        
+            bar.setProgress(action, animated: true)
         }
         bar.tintColor = Color.mainRedColor
         return bar
@@ -63,11 +61,8 @@ class PersonalSaleViewController: UIViewController {
         return label
     }()
     
-    private let sale: UILabel = {
+    private let saleLetter: UILabel = {
         let label = UILabel()
-        Service.getSale { sale in
-            label.text = sale
-        }
         label.font = UIFont(name: "GlacialIndifference-Bold", size: 35)
         label.textColor = Color.mainTextColor
         return label
@@ -117,6 +112,14 @@ class PersonalSaleViewController: UIViewController {
         return card
     }()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Service.getSale { sale in
+            self.saleLetter.text = sale
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -124,6 +127,28 @@ class PersonalSaleViewController: UIViewController {
     }
     
     private func setupView() {
+        
+        Service.getPurchaseTotal { purchaseTotal in
+            
+            let total = purchaseTotal ?? ""
+            let myInt = Int(total) ?? 0
+            
+            Service.getPurchaseTotal { purchaseTotal in
+                print("Print my int -> \(myInt)")
+                if myInt != 0 && myInt < 15001 {
+                    Service.uploadSale(sale: "3%")
+                } else if myInt >= 15001 && myInt < 35001 {
+                    Service.uploadSale(sale: "5%")
+                } else if myInt >= 35001 && myInt < 45001 {
+                    Service.uploadSale(sale: "7%")
+                } else if myInt >= 45001 && myInt < 1000000 {
+                    Service.uploadSale(sale: "10%")
+                }
+            }
+            
+            print("Total -> \(total)")
+            print("myInt -> \(myInt)")
+        }
         
         title = "Моя скидка"
         navigationController?.navigationBar.prefersLargeTitles = false
@@ -145,7 +170,7 @@ class PersonalSaleViewController: UIViewController {
         view.addSubview(progressLabel)
         view.addSubview(progressBar)
         showCard.addSubview(saleLabel)
-        showCard.addSubview(sale)
+        showCard.addSubview(saleLetter)
         showCard.addSubview(infoIcon)
         showCard.addSubview(bonusLabel)
         showCard.addSubview(bonusPoint)
@@ -160,7 +185,7 @@ class PersonalSaleViewController: UIViewController {
             make.left.top.equalTo(showCard).inset(15)
         }
         
-        sale.snp.makeConstraints { make in
+        saleLetter.snp.makeConstraints { make in
             make.top.equalTo(saleLabel.snp.bottom).inset(-10)
             make.left.equalTo(showCard).inset(15)
         }
