@@ -203,7 +203,7 @@ class SideMenuNC: UIViewController {
         view.addSubview(stackView)
         stackView.addArrangedSubview(aboutStudio)
         stackView.addArrangedSubview(personalSale)
-        stackView.addArrangedSubview(inviteFriends)
+//        stackView.addArrangedSubview(inviteFriends)
         stackView.addArrangedSubview(setting)
         stackView.addArrangedSubview(techncalSuppourt)
         
