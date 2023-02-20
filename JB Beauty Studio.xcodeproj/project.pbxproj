@@ -28,6 +28,7 @@
 		06A9C02C29984E2D00912411 /* QRCode + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */; };
 		06A9C0322999295900912411 /* SearchSessionLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A9C0312999295900912411 /* SearchSessionLogViewController.swift */; };
 		06B95F9A29996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B95F9929996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift */; };
+		06C2E13329A3D621000C92FD /* BonusViewController4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2E13229A3D621000C92FD /* BonusViewController4.swift */; };
 		06C3AC51298AF76A0094F37B /* PopUpForCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */; };
 		06CB6BF8299AA76700342869 /* SettingSaleBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */; };
 		06CB6BFA299AC37300342869 /* ScanSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */; };
@@ -174,6 +175,7 @@
 		06A9C0312999295900912411 /* SearchSessionLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSessionLogViewController.swift; sourceTree = "<group>"; };
 		06AB7404299A826700BC87D7 /* JB Beauty Studio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JB Beauty Studio.entitlements"; sourceTree = "<group>"; };
 		06B95F9929996C7100AC4E86 /* CustomTableViewCellForSessionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSessionLog.swift; sourceTree = "<group>"; };
+		06C2E13229A3D621000C92FD /* BonusViewController4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController4.swift; sourceTree = "<group>"; };
 		06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpForCartViewController.swift; sourceTree = "<group>"; };
 		06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSaleBoxViewController.swift; sourceTree = "<group>"; };
 		06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSaleViewController.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				84CCD35C296CB150004893BC /* BonusViewConttroller1 */,
 				84CCD36B296CB546004893BC /* BonusViewController2 */,
 				84CCD36C296CB557004893BC /* BonusViewController3 */,
+				06C2E13229A3D621000C92FD /* BonusViewController4.swift */,
 				84715601296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift */,
 			);
 			path = GiftOfPointViewController;
@@ -1020,6 +1023,7 @@
 				840792C2296326D3001C53A1 /* SceneDelegate.swift in Sources */,
 				84CCD35B296CA912004893BC /* PopUpViewController1.swift in Sources */,
 				84AE95912986705300DADCB0 /* PopUpPriceViewController17.swift in Sources */,
+				06C2E13329A3D621000C92FD /* BonusViewController4.swift in Sources */,
 				842B6B0C2963734F00016DC3 /* AdminViewController.swift in Sources */,
 				840792EA2963283D001C53A1 /* SettingViewController.swift in Sources */,
 				842B6B2E29686E4D00016DC3 /* ScanViewController.swift in Sources */,

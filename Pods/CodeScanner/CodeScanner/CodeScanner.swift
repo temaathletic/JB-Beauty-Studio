@@ -47,7 +47,7 @@ public class CodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 }
             })
         @unknown default:
-            fatalError()
+            return
         }
     }
     
@@ -165,7 +165,7 @@ public class CodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
         case .unknown:
             return .portrait
         @unknown default:
-            fatalError()
+            return .portrait
         }
     }
     

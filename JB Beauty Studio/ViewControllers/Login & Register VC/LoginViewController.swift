@@ -31,6 +31,7 @@ class LoginViewController: UIViewController {
         stack.addArrangedSubview(passwordTextField)
         stack.addArrangedSubview(sendButton)
         stack.addArrangedSubview(goToRegisterView)
+        stack.addArrangedSubview(skipRegister)
         return stack
     }()
     
@@ -125,20 +126,34 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    private lazy var skipRegister: UILabel = {
+        let text = UILabel()
+        text.text = "Пропустить регистрацию"
+        text.textAlignment = .center
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
+        text.textColor = Color.mainTextColor
+        text.addGestureRecognizer(skipReegisterAction)
+        text.isUserInteractionEnabled = true
+        return text
+    }()
+    
+    private lazy var skipReegisterAction: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(skipAction))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setupView() {
         
         loginTextField.delegate = self
         passwordTextField.delegate = self
-        
-        navigationController?.isNavigationBarHidden = true
         
         view.backgroundColor = Color.mainBackgroundColor
         view.addSubview(logo)
@@ -182,6 +197,10 @@ extension LoginViewController: UITextFieldDelegate {
 //MARK: - Function's
 
 extension LoginViewController {
+    
+    @objc func skipAction() {
+        navigationController?.pushViewController(MainViewController(), animated: true)
+    }
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

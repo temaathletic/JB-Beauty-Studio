@@ -14,11 +14,8 @@ public extension String {
     
     func searchAamazon() {
         
-        guard let url = URL(string: String(format: "https://amazon.co.jp/dp/%@", self)) else { return }
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url)
-        } else {
-            // Fallback on earlier versions
+        if let url = URL(string: String(format: "https://amazon.co.jp/dp/%@", self)) {
+            UIApplication.shared.open(URL(string: "\(url)")!)
         }
     }
     

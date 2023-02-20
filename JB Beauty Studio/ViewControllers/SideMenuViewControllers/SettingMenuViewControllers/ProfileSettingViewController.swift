@@ -37,6 +37,7 @@ class ProfileSettingViewController: UIViewController {
         content.addArrangedSubview(birthdayText)
         content.addArrangedSubview(birthdayTextField)
         content.addArrangedSubview(saveButton)
+        content.addArrangedSubview(deleteAccountButton)
         return content
     }()
     
@@ -185,6 +186,18 @@ class ProfileSettingViewController: UIViewController {
         return tapped
     }()
     
+    private lazy var deleteAccountButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Удалить Аккаунт", for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
+        button.backgroundColor = Color.mainBackgroundColor
+        button.layer.borderWidth = 1
+        button.layer.borderColor = Color.mainTextColor?.cgColor
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(deleteAccount), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Сохранить", for: .normal)
@@ -240,6 +253,10 @@ class ProfileSettingViewController: UIViewController {
             make.center.equalTo(borderForPhoto)
             make.height.equalTo(146)
             make.size.equalTo(146)
+        }
+        
+        deleteAccountButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
         }
 
         saveButton.snp.makeConstraints { make in
@@ -316,10 +333,22 @@ extension ProfileSettingViewController {
         present(alert, animated: true)
     }
     
+    private func deleteAlert() {
+        let alert = UIAlertController(title: "Вы уверены?", message: "Вы желаете удалить аккаунт?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .destructive))
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel))
+        present(alert, animated: true)
+    }
+    
     @objc private func Save(_ sender: UIButton) {
         animateView(sender)
         Service.updateUserDataToFSFromUP(name: nameTextField.text!, phone: numberTextField.text!, login: loginTextField.text!, image: photoImageView, birthday: birthdayTextField.text ?? "")
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func deleteAccount(_ sender: UIButton) {
+        animateView(sender)
+        presentSimpleAlert(title: "Удалить аккаунт", message: "Вы уверены, что хотите удалить акканут?")
     }
     
     private func animateView(_ viewAnimate: UIView) {
@@ -330,6 +359,32 @@ extension ProfileSettingViewController {
                 viewAnimate.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
         }
+    }
+}
+
+import FirebaseAuth
+
+extension ProfileSettingViewController {
+    
+    func presentSimpleAlert(title: String, message: String?) {
+        
+        let alertController = UIAlertController(title: title,
+                                                message: message,
+                                                preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Нет", style: .cancel)
+        let okAction = UIAlertAction(title: "Да", style: .destructive) { _ in
+            
+            do {
+                Service.deleteAccount()
+            }
+        }
+        
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 

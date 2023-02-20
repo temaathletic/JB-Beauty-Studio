@@ -47,7 +47,7 @@ class ShopCartViewController: UIViewController, UITableViewDelegate, UITableView
     
     private lazy var sumCartWithSale: UILabel = {
         let sum = UILabel()
-        sum.text = "Итого с учетом сикдки:"
+        sum.text = "Итого с учетом скидки:"
         sum.textColor = Color.mainTextColor
         sum.font = UIFont(name: "GlacialIndifference-Bold", size: 20)
         sum.textAlignment = .left

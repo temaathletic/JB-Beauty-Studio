@@ -213,8 +213,8 @@ extension SettingViewController {
                                                 message: message,
                                                 preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let okAction = UIAlertAction(title: "Да", style: .default) { _ in
             
             do {
                 try Auth.auth().signOut()

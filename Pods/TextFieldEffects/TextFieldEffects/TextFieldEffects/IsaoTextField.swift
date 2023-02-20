@@ -67,6 +67,7 @@ import UIKit
     
     override open func drawViewsForRect(_ rect: CGRect) {
         let frame = CGRect(origin: .zero, size: CGSize(width: rect.size.width, height: rect.size.height))
+        
         placeholderLabel.frame = frame.insetBy(dx: placeholderInsets.x, dy: placeholderInsets.y)
         placeholderLabel.font = placeholderFontFromFont(font!)
         
@@ -103,6 +104,7 @@ import UIKit
         placeholderLabel.textColor = inactiveColor
         placeholderLabel.sizeToFit()
         layoutPlaceholderInTextRect()
+        
         if isFirstResponder {
             animateViewsForTextEntry()
         }

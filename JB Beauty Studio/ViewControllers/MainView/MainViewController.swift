@@ -582,7 +582,15 @@ class MainViewController: UIViewController, DataDelegate {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
+        view.addGestureRecognizer(gestureForText4)
         return view
+    }()
+    
+    private lazy var gestureForText4: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(tapPHForText4))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
     }()
     
     private lazy var imageForText4: UIImageView = {
@@ -697,10 +705,9 @@ class MainViewController: UIViewController, DataDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupView()
-        setupSideMenu()
     
+        setupSideMenu()
+        setupView()
     }
     
     //MARK: - SetupView Swtting's
@@ -1135,10 +1142,15 @@ class MainViewController: UIViewController, DataDelegate {
     }
     
     private func setupSideMenu() {
-        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let funcButton = createCustomButton(imageName: "line.3.horizontal", selector: #selector(sideMenuBtn))
-        navigationItem.leftBarButtonItem = funcButton
-
+        
+        if uid == "" {
+            
+        } else {
+            navigationItem.leftBarButtonItem = funcButton
+        }
+        
         menu = SideMenuNavigationController(rootViewController: SideMenuNC())
         menu?.leftSide = true
         menu?.presentationStyle = .viewSlideOutMenuIn
@@ -1248,6 +1260,12 @@ extension MainViewController {
     @objc private func tapPHForText3(_ gesture: UITapGestureRecognizer) {
         let scene = BonusViewController3()
         scene.modalPresentationStyle = .fullScreen
+        present(scene, animated: true)
+    }
+    
+    @objc private func tapPHForText4(_ gesture: UITapGestureRecognizer) {
+        let scene = BonusViewController4()
+        scene.modalPresentationStyle = .popover
         present(scene, animated: true)
     }
     

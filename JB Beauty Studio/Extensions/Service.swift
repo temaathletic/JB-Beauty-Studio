@@ -650,5 +650,20 @@ class Service {
         db.collection("usersProblem").document(uid).setData(["Email" : email], merge: true)
     }
     
+    static func deleteAccount() {
+        let user = Auth.auth().currentUser
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(uid).delete()
+        user?.delete { error in
+          if let error = error {
+            print(error)
+          } else {
+            print("User was delete <----- ______ ---->")
+          }
+        }
+    }
+    
 }
 

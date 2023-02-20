@@ -23,21 +23,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let link = URL(string: "https://mygame.example.com/?invitedby=\(uid)")
-        let referralLink = DynamicLinkComponents(link: link!, domainURIPrefix: "https://jbbeautystudio.page.link")
-
-        referralLink?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.example.ios")
-        referralLink?.iOSParameters?.minimumAppVersion = "1.0.1"
-        referralLink?.iOSParameters?.appStoreID = "123456789"
-
-        referralLink?.shorten { (shortURL, warnings, error) in
-          if let error = error {
-            print(error.localizedDescription)
-            return
-          }
-//          self.invitationUrl = shortURL
-        }
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        let link = URL(string: "https://mygame.example.com/?invitedby=\(uid)")
+//        let referralLink = DynamicLinkComponents(link: link!, domainURIPrefix: "https://jbbeautystudio.page.link")
+//
+//        referralLink?.iOSParameters = DynamicLinkIOSParameters(bundleID: "com.example.ios")
+//        referralLink?.iOSParameters?.minimumAppVersion = "1.0.1"
+//        referralLink?.iOSParameters?.appStoreID = "123456789"
+//
+//        referralLink?.shorten { (shortURL, warnings, error) in
+//          if let error = error {
+//            print(error.localizedDescription)
+//            return
+//          }
+////          self.invitationUrl = shortURL
+//        }
         
         Auth.auth().addStateDidChangeListener { auth, user in
         let adminID = "mhewVm2L0sVqvqfaboXzBYYM8893"
