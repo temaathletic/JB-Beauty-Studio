@@ -15518,7 +15518,7 @@
 		5D5FE03C77621D67E9441B59A9AE5294 /* resolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = resolver.h; path = src/core/lib/resolver/resolver.h; sourceTree = "<group>"; };
 		5D64B4B8FB4DED11D46D0D7461D513D3 /* xds_channel_args.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = xds_channel_args.h; path = src/core/ext/filters/client_channel/lb_policy/xds/xds_channel_args.h; sourceTree = "<group>"; };
 		5D6E751AA27DADD1844102C00CD3669B /* grpc_alts_credentials_options.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = grpc_alts_credentials_options.h; path = src/core/lib/security/credentials/alts/grpc_alts_credentials_options.h; sourceTree = "<group>"; };
-		5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods_JB_Beauty_Studio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JB_Beauty_Studio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods-JB Beauty Studio */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-JB Beauty Studio"; path = Pods_JB_Beauty_Studio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D79CD37661001C597AD9908BF10C522 /* FIRSetAccountInfoResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRSetAccountInfoResponse.h; path = FirebaseAuth/Sources/Backend/RPC/FIRSetAccountInfoResponse.h; sourceTree = "<group>"; };
 		5D8F8B4BC16DE96544383169E0AA2FE2 /* SideMenuAnimationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SideMenuAnimationController.swift; path = Pod/Classes/SideMenuAnimationController.swift; sourceTree = "<group>"; };
 		5DADF5C9D9DE5BED26EBAF80FFC55E6C /* event_engine_factory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = event_engine_factory.h; path = src/core/lib/event_engine/event_engine_factory.h; sourceTree = "<group>"; };
@@ -17550,7 +17550,7 @@
 		C3B16429BE876620DBC2D5DD224A8AA2 /* tcp_custom.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = tcp_custom.h; path = src/core/lib/iomgr/tcp_custom.h; sourceTree = "<group>"; };
 		C3C1FD96F6413782180B3E8CC81AC0A7 /* aws_external_account_credentials.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = aws_external_account_credentials.cc; path = src/core/lib/security/credentials/external/aws_external_account_credentials.cc; sourceTree = "<group>"; };
 		C3C50E4B5D7E96D2E06429636B6997CB /* GDTCORStorageMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GDTCORStorageMetadata.h; path = GoogleDataTransport/GDTCORLibrary/Private/GDTCORStorageMetadata.h; sourceTree = "<group>"; };
-		C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Kingfisher; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C44541FA6A982EF8604BB5E45A8FE0ED /* PreCompLayerModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PreCompLayerModel.swift; path = Sources/Private/Model/Layers/PreCompLayerModel.swift; sourceTree = "<group>"; };
 		C44863285996D8B47BAE305A8A11AE3F /* exponential_biased.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = exponential_biased.h; path = absl/profiling/internal/exponential_biased.h; sourceTree = "<group>"; };
 		C45CA4E0D1DEF2FB4AAE416A0CC3A894 /* NSButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSButton+WebCache.m"; path = "SDWebImage/Core/NSButton+WebCache.m"; sourceTree = "<group>"; };
@@ -22845,12 +22845,12 @@
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher.framework */,
 				E20836ECD0961D3A13490548DE1A8DDE /* InputViews.framework */,
 				98527D7196957AAB07B79E2E2AFDE23E /* IQKeyboardManager.framework */,
-				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher.framework */,
+				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				0A9F46A999C47653013D3AD854352507 /* leveldb.framework */,
 				6BC54C3D03DEBF9C3A40965E69CAE039 /* uv.framework */,
 				51BA97E8B5085EFFB47BC9C0B785CEA7 /* Lottie.framework */,
 				06FC5C9CF96D60C50FCD47D339C91951 /* nanopb.framework */,
-				5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods_JB_Beauty_Studio.framework */,
+				5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods-JB Beauty Studio */,
 				3347A1AB6546F0A3977529B8F199DC41 /* FBLPromises.framework */,
 				B0B214D775196BA7CA8E17E53048A493 /* SDWebImage.framework */,
 				319D06AA0D1D0BA345459C039040A1ED /* SideMenu.framework */,
@@ -29564,7 +29564,7 @@
 			);
 			name = "Pods-JB Beauty Studio";
 			productName = Pods_JB_Beauty_Studio;
-			productReference = 5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods_JB_Beauty_Studio.framework */;
+			productReference = 5D776AE9319B64DD07FEA2D9D89BEBA3 /* Pods-JB Beauty Studio */;
 			productType = "com.apple.product-type.framework";
 		};
 		5895B432FE4D2F6826C8FF25A09DB6D2 /* FirebaseMessaging */ = {
@@ -30000,7 +30000,7 @@
 			);
 			name = Kingfisher;
 			productName = Kingfisher;
-			productReference = C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher.framework */;
+			productReference = C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */;
 			productType = "com.apple.product-type.framework";
 		};
 		FBA456CB50E371584C11231929A0971E /* IQKeyboardManager */ = {
@@ -30047,7 +30047,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					E78B17C6DDC46B873852A827DF9E8DC6 = {
+						LastSwiftMigration = "";
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -34087,6 +34092,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -34343,12 +34349,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BFE13B57A973CE629D7967B1765B8A21 /* gRPC-C++.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
-				DEVELOPMENT_TEAM = BXR876RKK2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = BXR876RKK2;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "gRPCCertificates-Cpp";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -34756,6 +34765,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -34951,7 +34961,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -35259,12 +35269,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4322538987CF0629BC54F1B2D784050C /* gRPC-C++.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/gRPC-C++";
-				DEVELOPMENT_TEAM = BXR876RKK2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = BXR876RKK2;
 				IBSC_MODULE = grpcpp;
 				INFOPLIST_FILE = "Target Support Files/gRPC-C++/ResourceBundle-gRPCCertificates-Cpp-gRPC-C++-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "gRPCCertificates-Cpp";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -35579,7 +35592,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

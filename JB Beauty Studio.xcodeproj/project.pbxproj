@@ -32,7 +32,6 @@
 		06C3AC51298AF76A0094F37B /* PopUpForCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */; };
 		06CB6BF8299AA76700342869 /* SettingSaleBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */; };
 		06CB6BFA299AC37300342869 /* ScanSaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */; };
-		7700E54B293410E64B831799 /* Pods_JB_Beauty_Studio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91DF58D4A821D183900DE639 /* Pods_JB_Beauty_Studio.framework */; };
 		84010A522969E3F300B90EAC /* BonusViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84010A512969E3F300B90EAC /* BonusViewController1.swift */; };
 		84010A552969E41400B90EAC /* BonusViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84010A542969E41400B90EAC /* BonusViewController2.swift */; };
 		84010A572969E41900B90EAC /* BonusViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84010A562969E41900B90EAC /* BonusViewController3.swift */; };
@@ -150,6 +149,7 @@
 		84CDBFD8297EF16300494CB8 /* SalesViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDBFD7297EF16300494CB8 /* SalesViewController3.swift */; };
 		84CE78FE2986AD2A00D03F11 /* CustomTableViewCellForCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CE78FD2986AD2A00D03F11 /* CustomTableViewCellForCart.swift */; };
 		84E3BE652979880E0073F90E /* Confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 84E3BE642979880E0073F90E /* Confetti.json */; };
+		E110233373D3D2EF04C38E41 /* Pods_JB_Beauty_Studio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C940E10645EF3B00D3534 /* Pods_JB_Beauty_Studio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,7 +179,7 @@
 		06C3AC50298AF76A0094F37B /* PopUpForCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpForCartViewController.swift; sourceTree = "<group>"; };
 		06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSaleBoxViewController.swift; sourceTree = "<group>"; };
 		06CB6BF9299AC37300342869 /* ScanSaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSaleViewController.swift; sourceTree = "<group>"; };
-		5A84212D3932320341562010 /* Pods-JB Beauty Studio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JB Beauty Studio.release.xcconfig"; path = "Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio.release.xcconfig"; sourceTree = "<group>"; };
+		17F0F415E7CD8C3070ACEDE3 /* Pods-JB Beauty Studio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JB Beauty Studio.debug.xcconfig"; path = "Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio.debug.xcconfig"; sourceTree = "<group>"; };
 		84010A512969E3F300B90EAC /* BonusViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController1.swift; sourceTree = "<group>"; };
 		84010A542969E41400B90EAC /* BonusViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController2.swift; sourceTree = "<group>"; };
 		84010A562969E41900B90EAC /* BonusViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusViewController3.swift; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 		84CDBFD7297EF16300494CB8 /* SalesViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesViewController3.swift; sourceTree = "<group>"; };
 		84CE78FD2986AD2A00D03F11 /* CustomTableViewCellForCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForCart.swift; sourceTree = "<group>"; };
 		84E3BE642979880E0073F90E /* Confetti.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Confetti.json; sourceTree = "<group>"; };
-		91DF58D4A821D183900DE639 /* Pods_JB_Beauty_Studio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JB_Beauty_Studio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3D430FD2479831DFC9837E2 /* Pods-JB Beauty Studio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JB Beauty Studio.debug.xcconfig"; path = "Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio.debug.xcconfig"; sourceTree = "<group>"; };
+		C1EC4F29FF04BEFC365D0D38 /* Pods-JB Beauty Studio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JB Beauty Studio.release.xcconfig"; path = "Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio.release.xcconfig"; sourceTree = "<group>"; };
+		C39C940E10645EF3B00D3534 /* Pods_JB_Beauty_Studio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JB_Beauty_Studio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,7 +308,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7700E54B293410E64B831799 /* Pods_JB_Beauty_Studio.framework in Frameworks */,
+				E110233373D3D2EF04C38E41 /* Pods_JB_Beauty_Studio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,14 +397,6 @@
 			path = SettingCustomSale;
 			sourceTree = "<group>";
 		};
-		548B78EBB2936B9DC210D3DB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				91DF58D4A821D183900DE639 /* Pods_JB_Beauty_Studio.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		84010A532969E3FA00B90EAC /* GiftOfPointViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,7 +453,7 @@
 				840792BE296326D3001C53A1 /* JB Beauty Studio */,
 				840792BD296326D3001C53A1 /* Products */,
 				A9DB9514DAA79CF944DD4AED /* Pods */,
-				548B78EBB2936B9DC210D3DB /* Frameworks */,
+				A3EDCCA314F77361A15B392B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -764,11 +756,19 @@
 			path = CartViewController;
 			sourceTree = "<group>";
 		};
+		A3EDCCA314F77361A15B392B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C39C940E10645EF3B00D3534 /* Pods_JB_Beauty_Studio.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A9DB9514DAA79CF944DD4AED /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E3D430FD2479831DFC9837E2 /* Pods-JB Beauty Studio.debug.xcconfig */,
-				5A84212D3932320341562010 /* Pods-JB Beauty Studio.release.xcconfig */,
+				17F0F415E7CD8C3070ACEDE3 /* Pods-JB Beauty Studio.debug.xcconfig */,
+				C1EC4F29FF04BEFC365D0D38 /* Pods-JB Beauty Studio.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -780,11 +780,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840792D0296326D5001C53A1 /* Build configuration list for PBXNativeTarget "JB Beauty Studio" */;
 			buildPhases = (
-				C48865FFDC2228FD8BEADD92 /* [CP] Check Pods Manifest.lock */,
+				93386BC4DB978B9BFFC8FAEF /* [CP] Check Pods Manifest.lock */,
 				840792B8296326D3001C53A1 /* Sources */,
 				840792B9296326D3001C53A1 /* Frameworks */,
 				840792BA296326D3001C53A1 /* Resources */,
-				03D279FA82898F0901E562F5 /* [CP] Embed Pods Frameworks */,
+				B25A29772A0E745014B0D671 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -819,8 +819,6 @@
 				Base,
 			);
 			mainGroup = 840792B3296326D3001C53A1;
-			packageReferences = (
-			);
 			productRefGroup = 840792BD296326D3001C53A1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -854,24 +852,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03D279FA82898F0901E562F5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C48865FFDC2228FD8BEADD92 /* [CP] Check Pods Manifest.lock */ = {
+		93386BC4DB978B9BFFC8FAEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -891,6 +872,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B25A29772A0E745014B0D671 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1048,7 +1046,6 @@
 /* Begin XCBuildConfiguration section */
 		840792CE296326D5001C53A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3D430FD2479831DFC9837E2 /* Pods-JB Beauty Studio.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1165,7 +1162,7 @@
 		};
 		840792D1296326D5001C53A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3D430FD2479831DFC9837E2 /* Pods-JB Beauty Studio.debug.xcconfig */;
+			baseConfigurationReference = 17F0F415E7CD8C3070ACEDE3 /* Pods-JB Beauty Studio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1206,7 +1203,7 @@
 		};
 		840792D2296326D5001C53A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A84212D3932320341562010 /* Pods-JB Beauty Studio.release.xcconfig */;
+			baseConfigurationReference = C1EC4F29FF04BEFC365D0D38 /* Pods-JB Beauty Studio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
