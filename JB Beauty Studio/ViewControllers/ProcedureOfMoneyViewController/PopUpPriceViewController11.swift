@@ -23,7 +23,7 @@ class PopUpPriceViewController11: BottomPopupViewController {
     
     private let label: UILabel = {
         let text = UILabel()
-        text.text = "Контурная пластика губ - Увеличение объема, коррекция формы и асимметрии, увлажнение, коррекция уголков губ."
+        text.text = "Коррекция носогубных складок-заполнение носогубных складок филлером, устранение возрастных изменений."
         text.numberOfLines = 0
         text.textAlignment = .left
         text.textColor = .black

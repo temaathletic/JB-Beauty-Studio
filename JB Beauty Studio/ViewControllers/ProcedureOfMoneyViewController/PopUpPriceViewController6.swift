@@ -23,7 +23,7 @@ class PopUpPriceViewController6: BottomPopupViewController {
     
     private let label: UILabel = {
         let text = UILabel()
-        text.text = "Липолитики - Коррекция овала лица, устранения лишних жировых отложений в области шеи, подбородка, щёк и век, а также для уменьшения бедёр, живота, ягодиц, ног и рук."
+        text.text = "Мононити - безоперационная методика моделирования лица, которая избавит от морщин, разгладит складки, подтянет провисшие с возрастом участки щек и подбородка, сделает более четким овал лица."
         text.numberOfLines = 0
         text.textAlignment = .left
         text.textColor = .black
