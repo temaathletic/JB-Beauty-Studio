@@ -15,7 +15,11 @@ public extension String {
     func searchAamazon() {
         
         if let url = URL(string: String(format: "https://amazon.co.jp/dp/%@", self)) {
-            UIApplication.shared.open(URL(string: "\(url)")!)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
     

@@ -9,9 +9,14 @@ import UIKit
 import SnapKit
 import PhotosUI
 import IQKeyboardManager
-import TextFieldEffects
 
 class RegisterViewController: UIViewController {
+    
+    let nameTextField = CustomTextField(placeholderText: "Вводить строго на русском языке", image: "person", name: "Имя", isSecure: false)
+    let secondNameTextField = CustomTextField(placeholderText: "Вводить строго на русском языке", image: "person", name: "Фамилия", isSecure: false)
+    let numberTextField = CustomTextField(placeholderText: "", image: "candybarphone", name: "Телефон", isSecure: false)
+    let loginTextField = CustomTextField(placeholderText: "", image: "envelope", name: "Электронная почта", isSecure: false)
+    let passwordTextField = CustomTextField(placeholderText: "", image: "lock.open.fill", name: "Пароль", isSecure: false)
     
     private let scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -25,15 +30,10 @@ class RegisterViewController: UIViewController {
         stack.axis = .vertical
         stack.spacing = 20
         
-        stack.addArrangedSubview(nameText)
         stack.addArrangedSubview(nameTextField)
-        stack.addArrangedSubview(secondNameText)
         stack.addArrangedSubview(secondNameTextField)
-        stack.addArrangedSubview(numberText)
         stack.addArrangedSubview(numberTextField)
-        stack.addArrangedSubview(loginText)
         stack.addArrangedSubview(loginTextField)
-        stack.addArrangedSubview(passwordText)
         stack.addArrangedSubview(passwordTextField)
         stack.addArrangedSubview(sendButton)
         stack.addArrangedSubview(backToLoginView)
@@ -82,110 +82,6 @@ class RegisterViewController: UIViewController {
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
         text.textColor = Color.mainTextColor
         return text
-    }()
-    
-    private let nameTextField: UITextField = {
-        let textField = IsaoTextField()
-        textField.placeholderFontScale = CGFloat(0.8)
-        textField.placeholder = "Введите имя на русском языке"
-        textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray5
-        textField.textColor = Color.mainTextColor
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        textField.layer.cornerRadius = 15
-        textField.leftViewMode = .always
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
-        return textField
-    }()
-    
-    private let secondNameText: UILabel = {
-        let text = UILabel()
-        text.text = "Фамилия"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = Color.mainTextColor
-        return text
-    }()
-    
-    private let secondNameTextField: UITextField = {
-        let textField = IsaoTextField()
-        textField.placeholderFontScale = CGFloat(0.8)
-        textField.placeholder = "Введите фамилию на русском языке"
-        textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray5
-        textField.textColor = Color.mainTextColor
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        textField.layer.cornerRadius = 15
-        textField.leftViewMode = .always
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
-        return textField
-    }()
-    
-    private let numberText: UILabel = {
-        let text = UILabel()
-        text.text = "Телефон"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = Color.mainTextColor
-        return text
-    }()
-    
-    private let numberTextField: UITextField = {
-        let textField = IsaoTextField()
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        textField.placeholderFontScale = CGFloat(0.8)
-        textField.textColor = Color.mainTextColor
-        textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray5
-        textField.textContentType = .telephoneNumber
-        textField.keyboardType = .numberPad
-        textField.leftViewMode = .always
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
-        return textField
-    }()
-    
-    private let loginText: UILabel = {
-        let text = UILabel()
-        text.text = "Электронная почта"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = Color.mainTextColor
-        return text
-    }()
-    
-    private let loginTextField: UITextField = {
-        let textField = IsaoTextField()
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        textField.placeholderFontScale = CGFloat(0.8)
-        textField.textColor = Color.mainTextColor
-        textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray5
-        textField.leftViewMode = .always
-        textField.autocapitalizationType = .none
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
-        textField.textContentType = .emailAddress
-        textField.returnKeyType = .done
-        return textField
-    }()
-    
-    private let passwordText: UILabel = {
-        let text = UILabel()
-        text.text = "Пароль"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = Color.mainTextColor
-        return text
-    }()
-    
-    private let passwordTextField: UITextField = {
-        let textField = IsaoTextField()
-        textField.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
-        textField.placeholderFontScale = CGFloat(0.8)
-        textField.textColor = Color.mainTextColor
-        textField.activeColor = .systemRed
-        textField.inactiveColor = .systemGray5
-        textField.leftViewMode = .always
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
-        textField.isSecureTextEntry = true
-        textField.returnKeyType = .done
-        textField.textContentType = .newPassword
-        return textField
     }()
     
     private lazy var backToLoginView: UILabel = {

@@ -16,8 +16,8 @@
 		062F796529AA04B700CA89BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796429AA04B700CA89BE /* OnboardingViewController.swift */; };
 		062F796729AA12B300CA89BE /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796629AA12B300CA89BE /* ResetPasswordViewController.swift */; };
 		062F796929AA208300CA89BE /* SettingSaleBox2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796829AA208300CA89BE /* SettingSaleBox2ViewController.swift */; };
-		062F796B29ACC06200CA89BE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796A29ACC06200CA89BE /* CustomTextField.swift */; };
 		063B8879299037880046A878 /* QRCodeFromTotalPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */; };
+		065B30E929AFC62500290AF4 /* CustomTextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065B30E829AFC62500290AF4 /* CustomTextField + Extensions.swift */; };
 		0664304C299D0B9700C29995 /* CustomTableViewCellForSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */; };
 		0664304E299D2C4600C29995 /* ScanVCForCustomSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */; };
 		06A38BE929AE79D0006E33B4 /* HidenCellsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A38BE829AE79D0006E33B4 /* HidenCellsViewController.swift */; };
@@ -167,8 +167,8 @@
 		062F796429AA04B700CA89BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		062F796629AA12B300CA89BE /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		062F796829AA208300CA89BE /* SettingSaleBox2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSaleBox2ViewController.swift; sourceTree = "<group>"; };
-		062F796A29ACC06200CA89BE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeFromTotalPriceViewController.swift; sourceTree = "<group>"; };
+		065B30E829AFC62500290AF4 /* CustomTextField + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField + Extensions.swift"; sourceTree = "<group>"; };
 		0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSale.swift; sourceTree = "<group>"; };
 		0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCForCustomSale.swift; sourceTree = "<group>"; };
 		06A38BE829AE79D0006E33B4 /* HidenCellsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HidenCellsViewController.swift; sourceTree = "<group>"; };
@@ -518,13 +518,13 @@
 			children = (
 				842B6B182964BF6800016DC3 /* Service.swift */,
 				06A9C02529982B0300912411 /* UIAlert + Extensions.swift */,
-				062F796A29ACC06200CA89BE /* CustomTextField.swift */,
 				8406D964297343F600F9DB95 /* CGPoint + Extensions.swift */,
 				06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */,
 				84CCD38F296F4B18004893BC /* ViewController + Preview.swift */,
 				840792D62963273C001C53A1 /* ViewController + Extensions.swift */,
 				840CDE4729746E58001645AF /* Snapshot + Extensions.swift */,
 				840CDE492974706E001645AF /* MyUserData.swift */,
+				065B30E829AFC62500290AF4 /* CustomTextField + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1015,6 +1015,7 @@
 				8406D991297345BB00F9DB95 /* CircleColorSparkView.swift in Sources */,
 				848DE43529734DBF0091372A /* ClassicFireworkAnimator.swift in Sources */,
 				06A5635D2996B7B5009032D4 /* PersonalSaleViewController.swift in Sources */,
+				065B30E929AFC62500290AF4 /* CustomTextField + Extensions.swift in Sources */,
 				840792EC29632845001C53A1 /* TechnichalSupportViewController.swift in Sources */,
 				06A5522E298FCBE4000663B5 /* AppDelegate.swift in Sources */,
 				06044399299467C10013919D /* UserDicrementBonus.swift in Sources */,
@@ -1033,7 +1034,6 @@
 				84715602296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift in Sources */,
 				840792DE296327C6001C53A1 /* QRCodeViewController.swift in Sources */,
 				062F796529AA04B700CA89BE /* OnboardingViewController.swift in Sources */,
-				062F796B29ACC06200CA89BE /* CustomTextField.swift in Sources */,
 				84CE78FE2986AD2A00D03F11 /* CustomTableViewCellForCart.swift in Sources */,
 				06A9C0322999295900912411 /* SearchSessionLogViewController.swift in Sources */,
 				842B6B152964954A00016DC3 /* ViewController2.swift in Sources */,

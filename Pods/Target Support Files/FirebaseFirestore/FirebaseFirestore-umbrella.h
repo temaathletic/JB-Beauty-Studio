@@ -11,12 +11,14 @@
 #endif
 
 #import "FIRAggregateQuery.h"
+#import "FIRAggregateQuerySnapshot 2.h"
 #import "FIRAggregateQuerySnapshot.h"
 #import "FIRAggregateSource.h"
 #import "FIRCollectionReference.h"
 #import "FIRDocumentChange.h"
 #import "FIRDocumentReference.h"
 #import "FIRDocumentSnapshot.h"
+#import "FirebaseFirestore 2.h"
 #import "FirebaseFirestore.h"
 #import "FIRFieldPath.h"
 #import "FIRFieldValue.h"
@@ -25,6 +27,7 @@
 #import "FIRFirestoreSettings.h"
 #import "FIRFirestoreSource.h"
 #import "FIRGeoPoint.h"
+#import "FIRListenerRegistration 2.h"
 #import "FIRListenerRegistration.h"
 #import "FIRLoadBundleTask.h"
 #import "FIRQuery.h"
@@ -32,6 +35,7 @@
 #import "FIRSnapshotMetadata.h"
 #import "FIRTimestamp.h"
 #import "FIRTransaction.h"
+#import "FIRTransactionOptions 2.h"
 #import "FIRTransactionOptions.h"
 #import "FIRWriteBatch.h"
 
