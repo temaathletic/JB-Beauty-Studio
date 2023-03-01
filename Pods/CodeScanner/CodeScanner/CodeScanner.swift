@@ -47,7 +47,7 @@ public class CodeScanner: NSObject, AVCaptureMetadataOutputObjectsDelegate {
                 }
             })
         @unknown default:
-            return 
+            return
         }
     }
     

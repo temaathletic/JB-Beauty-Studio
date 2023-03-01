@@ -8,8 +8,6 @@
 import UIKit
 import SnapKit
 import PhotosUI
-import SkeletonView
-import Kingfisher
 
 class SideMenuNC: UIViewController {
     
@@ -146,8 +144,6 @@ class SideMenuNC: UIViewController {
     
     public var userPhoto: UIImageView = {
         let imageView = UIImageView()
-        imageView.isSkeletonable = true
-        imageView.showAnimatedGradientSkeleton(usingGradient: SkeletonGradient(baseColor: .systemGray2, secondaryColor: .systemGray4))
         imageView.layer.cornerRadius = 48
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -155,7 +151,6 @@ class SideMenuNC: UIViewController {
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         Service.afterBlock(seconds: 1, queue: .main) {
-            imageView.hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0))
             imageView.layer.cornerRadius = 48
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true

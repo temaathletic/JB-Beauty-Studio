@@ -13,9 +13,14 @@
 		06044395299429E30013919D /* CustomTableViewCellForSearchPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */; };
 		06044397299465A60013919D /* ScanVCFormCartForDicrement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */; };
 		06044399299467C10013919D /* UserDicrementBonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06044398299467C10013919D /* UserDicrementBonus.swift */; };
+		062F796529AA04B700CA89BE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796429AA04B700CA89BE /* OnboardingViewController.swift */; };
+		062F796729AA12B300CA89BE /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796629AA12B300CA89BE /* ResetPasswordViewController.swift */; };
+		062F796929AA208300CA89BE /* SettingSaleBox2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796829AA208300CA89BE /* SettingSaleBox2ViewController.swift */; };
+		062F796B29ACC06200CA89BE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062F796A29ACC06200CA89BE /* CustomTextField.swift */; };
 		063B8879299037880046A878 /* QRCodeFromTotalPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */; };
 		0664304C299D0B9700C29995 /* CustomTableViewCellForSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */; };
 		0664304E299D2C4600C29995 /* ScanVCForCustomSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */; };
+		06A38BE929AE79D0006E33B4 /* HidenCellsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A38BE829AE79D0006E33B4 /* HidenCellsViewController.swift */; };
 		06A44257298FB2DD00ED57EE /* MyOrders.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06A44255298FB2DD00ED57EE /* MyOrders.xcdatamodeld */; };
 		06A44262298FBCD700ED57EE /* MyOrders+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A44260298FBCD700ED57EE /* MyOrders+CoreDataClass.swift */; };
 		06A44263298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A44261298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift */; };
@@ -159,9 +164,14 @@
 		06044394299429E30013919D /* CustomTableViewCellForSearchPeople.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSearchPeople.swift; sourceTree = "<group>"; };
 		06044396299465A60013919D /* ScanVCFormCartForDicrement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCFormCartForDicrement.swift; sourceTree = "<group>"; };
 		06044398299467C10013919D /* UserDicrementBonus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDicrementBonus.swift; sourceTree = "<group>"; };
+		062F796429AA04B700CA89BE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		062F796629AA12B300CA89BE /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		062F796829AA208300CA89BE /* SettingSaleBox2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSaleBox2ViewController.swift; sourceTree = "<group>"; };
+		062F796A29ACC06200CA89BE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		063B8878299037880046A878 /* QRCodeFromTotalPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeFromTotalPriceViewController.swift; sourceTree = "<group>"; };
 		0664304B299D0B9700C29995 /* CustomTableViewCellForSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellForSale.swift; sourceTree = "<group>"; };
 		0664304D299D2C4600C29995 /* ScanVCForCustomSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVCForCustomSale.swift; sourceTree = "<group>"; };
+		06A38BE829AE79D0006E33B4 /* HidenCellsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HidenCellsViewController.swift; sourceTree = "<group>"; };
 		06A44256298FB2DD00ED57EE /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		06A44260298FBCD700ED57EE /* MyOrders+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyOrders+CoreDataClass.swift"; path = "JB Beauty Studio/MyOrders+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		06A44261298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MyOrders+CoreDataProperties.swift"; path = "JB Beauty Studio/MyOrders+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -383,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				06CB6BF7299AA76700342869 /* SettingSaleBoxViewController.swift */,
+				062F796829AA208300CA89BE /* SettingSaleBox2ViewController.swift */,
 			);
 			path = SettingSaleBox;
 			sourceTree = "<group>";
@@ -506,13 +517,14 @@
 			isa = PBXGroup;
 			children = (
 				842B6B182964BF6800016DC3 /* Service.swift */,
+				06A9C02529982B0300912411 /* UIAlert + Extensions.swift */,
+				062F796A29ACC06200CA89BE /* CustomTextField.swift */,
 				8406D964297343F600F9DB95 /* CGPoint + Extensions.swift */,
 				06A9C02B29984E2D00912411 /* QRCode + Extensions.swift */,
 				84CCD38F296F4B18004893BC /* ViewController + Preview.swift */,
 				840792D62963273C001C53A1 /* ViewController + Extensions.swift */,
 				840CDE4729746E58001645AF /* Snapshot + Extensions.swift */,
 				840CDE492974706E001645AF /* MyUserData.swift */,
-				06A9C02529982B0300912411 /* UIAlert + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -584,6 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				842B6B0F29647CE100016DC3 /* WelomeViewController.swift */,
+				062F796429AA04B700CA89BE /* OnboardingViewController.swift */,
 				842B6B122964954100016DC3 /* ViewController1.swift */,
 				842B6B142964954A00016DC3 /* ViewController2.swift */,
 				842B6B162964955400016DC3 /* ViewController3.swift */,
@@ -596,6 +609,7 @@
 			children = (
 				842B6B032963377500016DC3 /* LoginViewController.swift */,
 				842B6B0D2963F82500016DC3 /* RegisterViewController.swift */,
+				062F796629AA12B300CA89BE /* ResetPasswordViewController.swift */,
 			);
 			path = "Login & Register VC";
 			sourceTree = "<group>";
@@ -604,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				842B6B0B2963734F00016DC3 /* AdminViewController.swift */,
+				06A38BE829AE79D0006E33B4 /* HidenCellsViewController.swift */,
 				0602B8EC29A17320003C9FAE /* ReportViewController */,
 				06E3A510299CD4CB00409464 /* SettingCustomSale */,
 				06E3A505299CD39000409464 /* SettingSaleBox */,
@@ -784,7 +799,7 @@
 				840792B8296326D3001C53A1 /* Sources */,
 				840792B9296326D3001C53A1 /* Frameworks */,
 				840792BA296326D3001C53A1 /* Resources */,
-				B25A29772A0E745014B0D671 /* [CP] Embed Pods Frameworks */,
+				66492BDC572BDD1C733FE462 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -852,6 +867,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		66492BDC572BDD1C733FE462 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		93386BC4DB978B9BFFC8FAEF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -872,23 +904,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B25A29772A0E745014B0D671 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-JB Beauty Studio/Pods-JB Beauty Studio-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -912,6 +927,7 @@
 				8406D9742973449E00F9DB95 /* SparkTrajectory.swift in Sources */,
 				842B6B172964955400016DC3 /* ViewController3.swift in Sources */,
 				84AE95892986703E00DADCB0 /* PopUpPriceViewController13.swift in Sources */,
+				062F796729AA12B300CA89BE /* ResetPasswordViewController.swift in Sources */,
 				84BB681029799A9D009EA81C /* SheetBonus.swift in Sources */,
 				84010A552969E41400B90EAC /* BonusViewController2.swift in Sources */,
 				84010A522969E3F300B90EAC /* BonusViewController1.swift in Sources */,
@@ -1012,12 +1028,16 @@
 				84AE957529866FDE00DADCB0 /* PopUpPriceViewController3.swift in Sources */,
 				84CCD388296CB636004893BC /* PopUpViewController3-5.swift in Sources */,
 				840CDE4829746E58001645AF /* Snapshot + Extensions.swift in Sources */,
+				06A38BE929AE79D0006E33B4 /* HidenCellsViewController.swift in Sources */,
 				06A44263298FBCD700ED57EE /* MyOrders+CoreDataProperties.swift in Sources */,
 				84715602296B2DDD000F210D /* CustomTableViewCellForGiftOfPoint.swift in Sources */,
 				840792DE296327C6001C53A1 /* QRCodeViewController.swift in Sources */,
+				062F796529AA04B700CA89BE /* OnboardingViewController.swift in Sources */,
+				062F796B29ACC06200CA89BE /* CustomTextField.swift in Sources */,
 				84CE78FE2986AD2A00D03F11 /* CustomTableViewCellForCart.swift in Sources */,
 				06A9C0322999295900912411 /* SearchSessionLogViewController.swift in Sources */,
 				842B6B152964954A00016DC3 /* ViewController2.swift in Sources */,
+				062F796929AA208300CA89BE /* SettingSaleBox2ViewController.swift in Sources */,
 				840792C2296326D3001C53A1 /* SceneDelegate.swift in Sources */,
 				84CCD35B296CA912004893BC /* PopUpViewController1.swift in Sources */,
 				84AE95912986705300DADCB0 /* PopUpPriceViewController17.swift in Sources */,
@@ -1168,7 +1188,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "JB Beauty Studio/JB Beauty Studio.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEVELOPMENT_TEAM = BXR876RKK2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1189,7 +1209,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "temaathletic.org.JB-Beauty-Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1209,7 +1229,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "JB Beauty Studio/JB Beauty Studio.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.5;
+				CURRENT_PROJECT_VERSION = 1.0.8;
 				DEVELOPMENT_TEAM = BXR876RKK2;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1230,7 +1250,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = "temaathletic.org.JB-Beauty-Studio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

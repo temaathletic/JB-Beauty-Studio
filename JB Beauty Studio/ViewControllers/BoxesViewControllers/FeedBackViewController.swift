@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import ViewAnimator
 import SnapKit
 
 class FeedBackViewController: UIViewController {

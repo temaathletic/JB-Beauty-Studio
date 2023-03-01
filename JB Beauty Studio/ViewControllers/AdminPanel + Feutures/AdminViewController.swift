@@ -11,6 +11,23 @@ import FirebaseAuth
 
 class AdminViewController: UIViewController {
     
+    private lazy var turnOnOffButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Скрыть ячейки гл. э.", for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
+        button.backgroundColor = Color.mainRedColor
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(mainSwitcher), for: .touchUpInside)
+        return button
+    }()
+    
+    private let turnOnOffImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "switch.2")
+        image.tintColor = Color.mainTextColor
+        return image
+    }()
+    
     private lazy var reportButton: UIButton = {
         let button = UIButton()
         button.setTitle("Проблемы пользователей", for: .normal)
@@ -161,6 +178,7 @@ class AdminViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = Color.mainBackgroundColor
+        view.addSubview(turnOnOffButton)
         view.addSubview(reportButton)
         view.addSubview(saleBoxEnable)
         view.addSubview(sessionLog)
@@ -170,6 +188,7 @@ class AdminViewController: UIViewController {
         view.addSubview(decrimentButton)
         view.addSubview(customProcedure)
         view.addSubview(addButton)
+        turnOnOffButton.addSubview(turnOnOffImage)
         reportButton.addSubview(reportImage)
         saleBoxEnable.addSubview(saleBoxImage)
         sessionLog.addSubview(sessionLogImage)
@@ -178,6 +197,18 @@ class AdminViewController: UIViewController {
         scanFromCart.addSubview(scanFromCartImage)
         searchPeopleButton.addSubview(searchPersonImage)
         customProcedure.addSubview(customProcedureImage)
+        
+        turnOnOffButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(50)
+            make.height.equalTo(50)
+            make.bottom.equalTo(reportButton.snp.top).inset(-10)
+        }
+        
+        turnOnOffImage.snp.makeConstraints { make in
+            make.right.equalTo(turnOnOffButton).inset(15)
+            make.centerY.equalTo(turnOnOffButton)
+            make.size.equalTo(30)
+        }
         
         reportButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(50)
@@ -284,6 +315,13 @@ class AdminViewController: UIViewController {
 }
 
 extension AdminViewController {
+    
+    @objc private func mainSwitcher() {
+        animateView(turnOnOffButton)
+        let vc = HidenCellsViewController()
+        vc.modalPresentationStyle = .popover
+        present(vc, animated: true)
+    }
     
     @objc private func report() {
         animateView(customProcedure)

@@ -6,17 +6,16 @@
 //
 
 import UIKit
-import BottomPopup
 import SnapKit
 
-class PopUpPriceViewController1: BottomPopupViewController {
+class PopUpPriceViewController1: UIViewController {
     
     private let labelTitle: UILabel = {
         let text = UILabel()
         text.text = "Биоревитализация"
         text.numberOfLines = 0
         text.textAlignment = .center
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 25)
         return text
     }()
@@ -26,8 +25,8 @@ class PopUpPriceViewController1: BottomPopupViewController {
         text.text = "Биоревитализация - Процедура способна оказать быстрое омолаживающее действие и справляется со всеми возрастными изменениями."
         text.numberOfLines = 0
         text.textAlignment = .left
-        text.textColor = .black
-        text.font = UIFont(name: "GlacialIndifference-Regular", size: 20)
+        text.textColor = Color.mainTextColor
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 18)
         return text
     }()
     
@@ -40,8 +39,8 @@ class PopUpPriceViewController1: BottomPopupViewController {
     private lazy var sendButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .black
-        button.setTitleColor(.black, for: .normal)
+        button.tintColor = Color.mainTextColor
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.08235294118, blue: 0, alpha: 1)
         button.layer.cornerRadius = 30
         button.addTarget(self, action: #selector(tap), for: .touchUpInside)
@@ -51,8 +50,8 @@ class PopUpPriceViewController1: BottomPopupViewController {
     private lazy var cartButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "cart.fill.badge.plus"), for: .normal)
-        button.tintColor = .black
-        button.setTitleColor(.black, for: .normal)
+        button.tintColor = Color.mainTextColor
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.862745098, green: 0.08235294118, blue: 0, alpha: 1)
         button.layer.cornerRadius = 30
         button.addTarget(self, action: #selector(addToCart), for: .touchUpInside)
@@ -61,9 +60,7 @@ class PopUpPriceViewController1: BottomPopupViewController {
     
     @objc func tap() {
         animateView(sendButton)
-        Service.afterBlock(seconds: 1, queue: .main) {
-            self.dismiss(animated: true)
-        }
+        dismiss(animated: true)
     }
     
     @objc func addToCart() {
@@ -77,7 +74,7 @@ class PopUpPriceViewController1: BottomPopupViewController {
         super.viewDidLoad()
         
         
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         view.addSubview(labelTitle)
         view.addSubview(label)
         view.addSubview(placeholderForButtons)
@@ -86,17 +83,17 @@ class PopUpPriceViewController1: BottomPopupViewController {
         
         labelTitle.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().inset(10)
+            make.top.equalTo(view.safeAreaInsets).inset(25)
         }
         
         label.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(15)
-            make.top.equalTo(labelTitle.snp.bottom).inset(-20)
+            make.top.equalTo(labelTitle.snp.bottom).inset(-25)
         }
         
         placeholderForButtons.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(40)
+            make.bottom.equalToSuperview().inset(view.frame.height / 30)
             make.height.equalTo(60)
             make.width.equalTo(140)
         }

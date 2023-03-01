@@ -49,6 +49,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
     
     private lazy var photoImageView1: UIImageView = {
         let imageView = UIImageView()
+//        imageView.image = UIImage(named: "placeholderBox1")
         imageView.layer.cornerRadius = 20
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -60,6 +61,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
     
     private lazy var photoImageView2: UIImageView = {
         let imageView = UIImageView()
+//        imageView.image = UIImage(named: "placeholderBox2")
         imageView.layer.cornerRadius = 20
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -71,6 +73,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
     
     private lazy var photoImageView3: UIImageView = {
         let imageView = UIImageView()
+//        imageView.image = UIImage(named: "placeholderBox3")
         imageView.layer.cornerRadius = 20
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -123,7 +126,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
     
     private let labelSaleSettingText: UILabel = {
         let text = UILabel()
-        text.text = "Установите изображения акции и фон"
+        text.text = "Установите изображения акции 1 и фон"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 18)
         text.textColor = Color.mainTextColor
         text.numberOfLines = 0
@@ -131,12 +134,22 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
         return text
     }()
     
-    private lazy var swithcer: UISwitch = {
+    private lazy var switcher: UISwitch = {
         let switcher = UISwitch()
         switcher.isOn = true
         switcher.setOn(true, animated: true)
         switcher.addTarget(self, action: #selector(switchValueDidChange), for: .touchUpInside)
         return switcher
+    }()
+    
+    private lazy var settingSaleBox2: UIButton = {
+        let button = UIButton()
+        button.setTitle("Изменить акцию 2", for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
+        button.backgroundColor = Color.mainRedColor
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(settingSaleBox2Action), for: .touchUpInside)
+        return button
     }()
     
     private lazy var saveButton: UIButton = {
@@ -163,7 +176,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
         
         view.backgroundColor = Color.mainBackgroundColor
         
-        view.addSubview(swithcer)
+        view.addSubview(switcher)
         view.addSubview(labelText)
         view.addSubview(scrollview)
         view.addSubview(labelSaleText)
@@ -176,6 +189,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
         scrollview2.addSubview(contentView2)
         contentView2.addArrangedSubview(photoImageView1_2)
         contentView2.addArrangedSubview(photoImageView1_3)
+        view.addSubview(settingSaleBox2)
         view.addSubview(saveButton)
         
         labelSaleText.snp.makeConstraints { make in
@@ -244,8 +258,14 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
             make.left.equalToSuperview().inset(30)
             make.bottom.equalTo(saveButton.snp.top).inset(-30)
         }
+        
+        settingSaleBox2.snp.makeConstraints { make in
+            make.bottom.equalTo(switcher.snp.top).inset(-20)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(50)
+        }
 
-        swithcer.snp.makeConstraints { make in
+        switcher.snp.makeConstraints { make in
             make.centerY.equalTo(labelText)
             make.right.equalTo(view).inset(20)
         }
@@ -253,7 +273,7 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
         saveButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(20)
-            make.height.equalTo(60)
+            make.height.equalTo(50)
         }
     }
     
@@ -281,6 +301,12 @@ class SettingSaleBoxViewController: UIViewController, UINavigationControllerDele
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
+    }
+    
+    @objc func settingSaleBox2Action() {
+        let vc = SettingSaleBox2ViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     @objc func Save() {

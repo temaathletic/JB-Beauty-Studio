@@ -10,7 +10,7 @@ import SnapKit
 import FirebaseFirestore
 import FirebaseAuth
 import Lottie
-import ViewAnimator
+//import ViewAnimator
 
 class SheetBonus: UIViewController {
     
@@ -103,7 +103,7 @@ extension SheetBonus {
                 
                 guard let data = document.data()!["Bonus"] else { return }
                 self.points = data as! Int
-                _ = AnimationType.from(direction: .bottom, offset: 25)
+//                _ = AnimationType.from(direction: .bottom, offset: 25)
                 UIView.animate(withDuration: 0, delay: 0, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: .curveEaseIn, animations:  {
                     self.placeholderForBonuses.transform = CGAffineTransform(scaleX: 30, y: 30)
                 }) { (_) in

@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 import Firebase
-import FirebaseDynamicLinks
 import FirebaseAuth
 
 class InviteFriendsViewController: UIViewController {
@@ -89,21 +88,21 @@ class InviteFriendsViewController: UIViewController {
         return button
     }()
     
-    func generateContentLink() -> URL {
-        let baseURL = URL(string: "https://jbbeautystudio.page.link")!
-        let domain = "https://jbbeautystudio.page.link"
-        let linkBuilder = DynamicLinkComponents(link: baseURL, domainURIPrefix: domain)
-        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "temaathletic.org.JB-Beauty-Studio")
-        
-        return linkBuilder?.link ?? baseURL
-      }
+//    func generateContentLink() -> URL {
+//        let baseURL = URL(string: "https://jbbeautystudio.page.link")!
+//        let domain = "https://jbbeautystudio.page.link"
+//        let linkBuilder = DynamicLinkComponents(link: baseURL, domainURIPrefix: domain)
+//        linkBuilder?.iOSParameters = DynamicLinkIOSParameters(bundleID: "temaathletic.org.JB-Beauty-Studio")
+//
+//        return linkBuilder?.link ?? baseURL
+//      }
     
     @objc private func tapShareButton() {
         
-        guard let image = UIImage(named: "AppIcon") else { return }
+//        guard let image = UIImage(named: "AppIcon") else { return }
         
-        let shareSheetVC = UIActivityViewController(activityItems: [image, generateContentLink()], applicationActivities: nil)
-        present(shareSheetVC, animated: true)
+//        let shareSheetVC = UIActivityViewController(activityItems: [image, generateContentLink()], applicationActivities: nil)
+//        present(shareSheetVC, animated: true)
     }
     
     override func viewDidLoad() {

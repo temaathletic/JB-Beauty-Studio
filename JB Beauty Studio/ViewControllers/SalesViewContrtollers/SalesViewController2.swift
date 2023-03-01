@@ -11,17 +11,20 @@ import SnapKit
 class SalesViewController2: UIViewController {
     
     private var image: UIImageView = {
-        let vc = MainViewController()
-        let image = vc.picForPH2
+        let image = UIImageView()
+        Service.downloadImagesForSaleBox(photo: image, name: "SaleBox2_1")
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
     private let titleText: UILabel = {
         let text = UILabel()
-        text.text = "Расскажи друзьям - получи баллы!"
+//        text.text = "Расскажи друзьям - получи баллы!"
+        Service.downloadTextForSaleBox2 { newText in
+            text.text = newText
+        }
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 28)
-//        text.textColor = .black
-        text.textColor = .white
+        text.textColor = Color.mainTextColor
         text.textAlignment = .center
         text.numberOfLines = 0
         return text
@@ -29,10 +32,12 @@ class SalesViewController2: UIViewController {
                            
     private let descriptionText: UILabel = {
         let text = UILabel()
-        text.text = "GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference"
+//        text.text = "GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference GlacialIndifference"
+        Service.downloadTitleForSaleBox2 { newText in
+            text.text = newText
+        }
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 20)
-//        text.textColor = .black
-        text.textColor = .white
+        text.textColor = Color.mainTextColor
         text.textAlignment = .left
         text.numberOfLines = 0
         return text
@@ -61,9 +66,8 @@ class SalesViewController2: UIViewController {
 //        view.backgroundColor = UIColor(patternImage: UIImage(named: "MainBG")!)
         view.addSubview(image)
         view.addSubview(placeholderBG)
-        placeholderBG.addSubview(placeholder)
-        placeholder.addSubview(titleText)
-        placeholder.addSubview(descriptionText)
+        placeholderBG.addSubview(titleText)
+        placeholderBG.addSubview(descriptionText)
         
         image.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -76,19 +80,13 @@ class SalesViewController2: UIViewController {
             make.bottom.equalToSuperview()
         }
         
-        placeholder.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderBG).inset(15)
-            make.top.equalTo(placeholderBG).inset(35)
-            make.bottom.equalTo(placeholderBG)
-        }
-        
         titleText.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholder).inset(15)
-            make.top.equalTo(image.snp.bottom).inset(-20)
+            make.left.right.equalTo(placeholderBG).inset(15)
+            make.top.equalTo(placeholderBG).inset(20)
         }
         
         descriptionText.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholder).inset(15)
+            make.left.right.equalTo(placeholderBG).inset(15)
             make.top.equalTo(titleText.snp.bottom).inset(-20)
         }
     }

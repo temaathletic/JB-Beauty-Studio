@@ -10,8 +10,6 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import CoreImage.CIFilterBuiltins
-import SkeletonView
-import SDWebImage
 
 class Service {
     
@@ -496,7 +494,7 @@ class Service {
     //MARK: Service For Session log
     
     static func getUserFirstName(uid: String, completion: @escaping (_ firstName: String?) -> Void) {
-
+        
         let db = Firestore.firestore()
         
         db.collection("users").document(uid).getDocument { (docSnapshot, error) in
@@ -606,7 +604,7 @@ class Service {
     }
     
     static func uploadImageForSaleBox(_ image: UIImageView, name: String) {
-
+        
         let ref = Storage.storage().reference(withPath: "SaveImage/" + name)
         guard let imageData = image.image?.jpegData(compressionQuality: 0.3) else { return }
         
@@ -637,14 +635,12 @@ class Service {
     }
     
     static func uploadTechnicalProblem(_ text: String) {
-        
         let db = Firestore.firestore()
         guard let uid = Auth.auth().currentUser?.uid else { return }
         db.collection("usersProblem").document(uid).setData(["Problem" : text], merge: true)
     }
     
     static func uploadTechnicalProblemEmail(_ email: String) {
-        
         let db = Firestore.firestore()
         guard let uid = Auth.auth().currentUser?.uid else { return }
         db.collection("usersProblem").document(uid).setData(["Email" : email], merge: true)
@@ -657,13 +653,99 @@ class Service {
         
         db.collection("users").document(uid).delete()
         user?.delete { error in
-          if let error = error {
-            print(error)
-          } else {
-            print("User was delete <----- ______ ---->")
-          }
+            if let error = error {
+                print(error)
+            } else {
+                print("User was delete <----- ______ ---->")
+            }
         }
     }
     
+    static func resetPassword(_ email: String) {
+        let auth = Auth.auth()
+        
+        auth.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                let errorAlert = UIAlertController(title: "Ошибка", message: error.localizedDescription, preferredStyle: .alert)
+                UINavigationController().present(errorAlert, animated: true)
+                return
+            }
+            
+            let alert = UIAlertController(title: "Отлично", message: "На вашу почту было отправлено письмо с ссылкой на восстановление пароля", preferredStyle: .alert)
+            UINavigationController().present(alert, animated: true)
+        }
+    }
+    
+    static func uploadTextForSaleBox2(_ text: String, _ text2: String) {
+        let db = Firestore.firestore()
+        db.collection("CloudData").document("SaleBox2").setData(["MainLabel" : text, "MainText" : text2], merge: true)
+    }
+    
+    static func downloadTitleForSaleBox2(completion: @escaping (_ mainLabel: String?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("CloudData").document("SaleBox2").getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let mainLabel = doc.get("MainLabel") as? String {
+                    completion(mainLabel)
+                } else {
+                    print("Can't downloaded main label")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func downloadTextForSaleBox2(completion: @escaping (_ mainLabel: String?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("CloudData").document("SaleBox2").getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let mainLabel = doc.get("MainText") as? String {
+                    completion(mainLabel)
+                } else {
+                    print("Can't downloaded main text")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
+    
+    static func uploadCellsStatus(_ value: Bool, _ name: String) {
+        
+        let db = Firestore.firestore()
+        
+        db.collection("CloudData").document(name).setData(["Value" : value])
+    }
+    
+    static func getCellsSwitchStatus(_ name: String, completion: @escaping (_ value: Bool?) -> Void) {
+        let db = Firestore.firestore()
+        
+        db.collection("CloudData").document(name).getDocument { (docSnapshot, error) in
+            if let doc = docSnapshot {
+                if let value = doc.get("Value") as? Bool {
+                    completion(value)
+                } else {
+                    print("Erorr get Bool")
+                    completion(nil)
+                }
+            } else {
+                if let error = error {
+                    print(error)
+                }
+                completion(nil)
+            }
+        }
+    }
 }
 

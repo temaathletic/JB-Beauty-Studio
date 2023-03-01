@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import BottomPopup
 
 class UserModel1 {
     var labelLbl: String?
@@ -174,27 +173,67 @@ class BonusViewController1: UIViewController, UITableViewDelegate, UITableViewDa
         
         if indexPath.section == 0 {
             let popUp = PopUpViewController1()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.section == 1 {
             let popUp = PopUpViewController2()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.section == 2 {
             let popUp = PopUpViewController3()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.section == 3 {
             let popUp = PopUpViewController4()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.section == 4 {
             let popUp = PopUpViewController5()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.section == 5 {
             let popUp = PopUpViewController6()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.section == 6 {
             let popUp = PopUpViewController7()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.section == 7 {
             let popUp = PopUpViewController8()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }
     }

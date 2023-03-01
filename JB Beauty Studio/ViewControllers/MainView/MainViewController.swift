@@ -9,7 +9,6 @@ import UIKit
 import Combine
 import SnapKit
 import SideMenu
-import ViewAnimator
 import FirebaseFirestore
 import FirebaseAuth
 import Lottie
@@ -96,6 +95,10 @@ class MainViewController: UIViewController, DataDelegate {
         button.layer.cornerRadius = 25
         button.addGestureRecognizer(gestureForQR)
         button.isUserInteractionEnabled = true
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 10)
+        button.layer.shadowOpacity = 0.8
+        button.layer.shadowRadius = 10
         return button
     }()
     
@@ -175,6 +178,10 @@ class MainViewController: UIViewController, DataDelegate {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
         view.alwaysBounceHorizontal = true
+        Service.getCellsSwitchStatus("ScrollView 1") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -192,6 +199,14 @@ class MainViewController: UIViewController, DataDelegate {
         box.layer.cornerRadius = 15
         box.addGestureRecognizer(gestureForBoxNew1)
         box.isUserInteractionEnabled = true
+        box.layer.shadowColor = UIColor.black.cgColor
+        box.layer.shadowOffset = CGSize(width: 0, height: 7)
+        box.layer.shadowOpacity = 1
+        box.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 4") { value in
+            let answer = value ?? true
+            box.isHidden = answer
+        }
         return box
     }()
     
@@ -227,6 +242,14 @@ class MainViewController: UIViewController, DataDelegate {
         box.layer.cornerRadius = 15
         box.addGestureRecognizer(gestureForBoxNew2)
         box.isUserInteractionEnabled = true
+        box.layer.shadowColor = UIColor.black.cgColor
+        box.layer.shadowOffset = CGSize(width: 0, height: 10)
+        box.layer.shadowOpacity = 1
+        box.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 5") { value in
+            let answer = value ?? true
+            box.isHidden = answer
+        }
         return box
     }()
     
@@ -262,6 +285,14 @@ class MainViewController: UIViewController, DataDelegate {
         box.layer.cornerRadius = 15
         box.addGestureRecognizer(gestureForBoxNew3)
         box.isUserInteractionEnabled = true
+        box.layer.shadowColor = UIColor.black.cgColor
+        box.layer.shadowOffset = CGSize(width: 0, height: 10)
+        box.layer.shadowOpacity = 1
+        box.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 6") { value in
+            let answer = value ?? true
+            box.isHidden = answer
+        }
         return box
     }()
     
@@ -297,6 +328,14 @@ class MainViewController: UIViewController, DataDelegate {
         box.layer.cornerRadius = 15
         box.addGestureRecognizer(gestureForBoxNew4)
         box.isUserInteractionEnabled = true
+        box.layer.shadowColor = UIColor.black.cgColor
+        box.layer.shadowOffset = CGSize(width: 0, height: 10)
+        box.layer.shadowOpacity = 1
+        box.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 7") { value in
+            let answer = value ?? true
+            box.isHidden = answer
+        }
         return box
     }()
     
@@ -331,6 +370,10 @@ class MainViewController: UIViewController, DataDelegate {
     private lazy var scrollView2: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
+        Service.getCellsSwitchStatus("ScrollView 2") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -347,6 +390,10 @@ class MainViewController: UIViewController, DataDelegate {
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
         text.textColor = Color.mainTextColor
         text.textAlignment = .center
+        Service.getCellsSwitchStatus("ScrollView 2") { value in
+            let answer = value ?? true
+            text.isHidden = answer
+        }
         return text
     }()
     
@@ -355,13 +402,16 @@ class MainViewController: UIViewController, DataDelegate {
     private lazy var placeholderForBonusText1: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
         view.addGestureRecognizer(gestureForPHBonus1)
-        Service.getSaleBoxSwitch { value in
-            let answer = value ?? true
-            view.isUserInteractionEnabled = answer
+        Service.getCellsSwitchStatus("Cell 1") { value in
+            let answer = value ?? false
+            view.isHidden = answer
         }
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 10)
+        view.layer.shadowRadius = 10
+        view.layer.shadowOpacity = 1
         return view
     }()
     
@@ -375,6 +425,8 @@ class MainViewController: UIViewController, DataDelegate {
     public lazy var picForPH1: UIImageView = {
         let image = UIImageView()
         Service.downloadImagesForSaleBox(photo: image, name: "SaleBox1")
+        image.layer.cornerRadius = 20
+        image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -382,9 +434,15 @@ class MainViewController: UIViewController, DataDelegate {
     private lazy var placeholderForBonusText2: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        view.layer.masksToBounds = true
-        view.isUserInteractionEnabled = false
         view.layer.cornerRadius = 20
+        Service.getCellsSwitchStatus("Cell 2") { value in
+            let answer = value ?? false
+            view.isHidden = answer
+        }
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 10)
+        view.layer.shadowRadius = 10
+        view.layer.shadowOpacity = 1
         view.addGestureRecognizer(gestureForPHBonus2)
         return view
     }()
@@ -399,6 +457,8 @@ class MainViewController: UIViewController, DataDelegate {
     public lazy var picForPH2: UIImageView = {
         let image = UIImageView()
         Service.downloadImagesForSaleBox(photo: image, name: "SaleBox2")
+        image.layer.cornerRadius = 20
+        image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -407,8 +467,15 @@ class MainViewController: UIViewController, DataDelegate {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.isUserInteractionEnabled = true
-        view.layer.masksToBounds = true
         view.layer.cornerRadius = 20
+        Service.getCellsSwitchStatus("Cell 3") { value in
+            let answer = value ?? false
+            view.isHidden = answer
+        }
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 10)
+        view.layer.shadowRadius = 10
+        view.layer.shadowOpacity = 1
         view.addGestureRecognizer(gestureForPHBonus3)
         return view
     }()
@@ -423,6 +490,8 @@ class MainViewController: UIViewController, DataDelegate {
     public lazy var picForPH3: UIImageView = {
         let image = UIImageView()
         Service.downloadImagesForSaleBox(photo: image, name: "SaleBox3")
+        image.layer.cornerRadius = 20
+        image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
         return image
     }()
@@ -442,6 +511,10 @@ class MainViewController: UIViewController, DataDelegate {
         view.layer.cornerRadius = 15
         view.addGestureRecognizer(gestureForButtonPrice)
         view.isUserInteractionEnabled = true
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
         return view
     }()
     
@@ -460,18 +533,49 @@ class MainViewController: UIViewController, DataDelegate {
         return text
     }()
     
-    private lazy var placeholderForBonusOfPoint: UIView = {
-        let view = UIView()
+    private lazy var scrollViewForBonusOfPoint: UIScrollView = {
+        let view = UIScrollView()
         view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 0)
+        view.bounces = false
+        view.showsVerticalScrollIndicator = false
+        Service.getCellsSwitchStatus("ScrollView 3") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
+        return view
+    }()
+    
+    private lazy var placeholderForBonusOfPoint: UIStackView = {
+        let view = UIStackView()
+        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 0)
+        view.spacing = 35
+        view.axis = .vertical
+        view.addArrangedSubview(bonusText)
+        view.addArrangedSubview(placeholderForText1)
+        placeholderForText1.addSubview(text1)
+        placeholderForText1.addSubview(imageForText1)
+        view.addArrangedSubview(placeholderForText2)
+        placeholderForText2.addSubview(text2)
+        placeholderForText2.addSubview(imageForText2)
+        view.addArrangedSubview(placeholderForText3)
+        placeholderForText3.addSubview(text3)
+        placeholderForText3.addSubview(imageForText3)
+        view.addArrangedSubview(placeholderForText4)
+        placeholderForText4.addSubview(text4)
+        placeholderForText4.addSubview(imageForText4)
         return view
     }()
     
     private lazy var bonusText: UILabel = {
         let text = UILabel()
         text.text = "Подарки за баллы"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 23)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 21)
         text.textColor = Color.mainTextColor
-        text.textAlignment = .left
+        text.textAlignment = .center
+        Service.getCellsSwitchStatus("ScrollView 3") { value in
+            let answer = value ?? true
+            text.isHidden = answer
+        }
         return text
     }()
     
@@ -490,6 +594,14 @@ class MainViewController: UIViewController, DataDelegate {
         view.layer.cornerRadius = 15
         view.addGestureRecognizer(gestureForText1)
         view.isUserInteractionEnabled = true
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 8") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -521,6 +633,14 @@ class MainViewController: UIViewController, DataDelegate {
         view.layer.cornerRadius = 15
         view.addGestureRecognizer(gestureForText2)
         view.isUserInteractionEnabled = true
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 9") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -553,6 +673,14 @@ class MainViewController: UIViewController, DataDelegate {
         view.layer.cornerRadius = 15
         view.addGestureRecognizer(gestureForText3)
         view.isUserInteractionEnabled = true
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 10") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -583,6 +711,14 @@ class MainViewController: UIViewController, DataDelegate {
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         view.layer.cornerRadius = 15
         view.addGestureRecognizer(gestureForText4)
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 5)
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowRadius = 10
+        Service.getCellsSwitchStatus("Cell 11") { value in
+            let answer = value ?? true
+            view.isHidden = answer
+        }
         return view
     }()
     
@@ -610,7 +746,7 @@ class MainViewController: UIViewController, DataDelegate {
         let text = UILabel()
         text.textColor = Color.mainTextColor
         text.text = "Позвонить"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 12)
         return text
     }()
     
@@ -635,7 +771,7 @@ class MainViewController: UIViewController, DataDelegate {
         let text = UILabel()
         text.textColor = Color.mainTextColor
         text.text = "Instagram"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 12)
         return text
     }()
     
@@ -658,8 +794,8 @@ class MainViewController: UIViewController, DataDelegate {
     private lazy var textForLocation: UILabel = {
         let text = UILabel()
         text.textColor = Color.mainTextColor
-        text.text = "Местонахождение"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 14)
+        text.text = "Студии"
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 12)
         return text
     }()
     
@@ -735,7 +871,8 @@ class MainViewController: UIViewController, DataDelegate {
         mainContentView.addArrangedSubview(placeholderForButtonPrice)
         placeholderForButtonPrice.addSubview(buttonPHForPrice)
         placeholderForButtonPrice.addSubview(textPHPricePart1)
-        mainContentView.addArrangedSubview(placeholderForBonusOfPoint)
+        mainContentView.addArrangedSubview(scrollViewForBonusOfPoint)
+        scrollViewForBonusOfPoint.addSubview(placeholderForBonusOfPoint)
         mainContentView.addArrangedSubview(phForContactButton)
         
         headerView.addSubview(placeholderForWrittenButton)
@@ -778,20 +915,6 @@ class MainViewController: UIViewController, DataDelegate {
         placeholderForBonusText2.addSubview(picForPH2)
         placeholderForBonusText3.addSubview(picForPH3)
         
-        placeholderForBonusOfPoint.addSubview(bonusText)
-        placeholderForBonusOfPoint.addSubview(placeholderForText1)
-        placeholderForBonusOfPoint.addSubview(placeholderForText2)
-        placeholderForBonusOfPoint.addSubview(placeholderForText3)
-        placeholderForBonusOfPoint.addSubview(placeholderForText4)
-        placeholderForText1.addSubview(text1)
-        placeholderForText2.addSubview(text2)
-        placeholderForText3.addSubview(text3)
-        placeholderForText4.addSubview(text4)
-        placeholderForText1.addSubview(imageForText1)
-        placeholderForText2.addSubview(imageForText2)
-        placeholderForText3.addSubview(imageForText3)
-        placeholderForText4.addSubview(imageForText4)
-        
         phForContactButton.addSubview(imageForCall)
         phForContactButton.addSubview(imageForInstagram)
         phForContactButton.addSubview(imageForLocation)
@@ -809,7 +932,7 @@ class MainViewController: UIViewController, DataDelegate {
         }
         
         boxesNew1.snp.makeConstraints { make in
-            make.centerY.equalTo(scrollView1)
+            make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
             make.width.equalTo(180)
         }
@@ -826,7 +949,6 @@ class MainViewController: UIViewController, DataDelegate {
         
         boxesNew2.snp.makeConstraints { make in
             make.left.equalTo(boxesNew1.snp.right).offset(15)
-            make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
             make.width.equalTo(180)
         }
@@ -843,7 +965,6 @@ class MainViewController: UIViewController, DataDelegate {
         
         boxesNew3.snp.makeConstraints { make in
             make.left.equalTo(boxesNew2.snp.right).offset(15)
-            make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
             make.width.equalTo(180)
         }
@@ -860,7 +981,6 @@ class MainViewController: UIViewController, DataDelegate {
         
         boxesNew4.snp.makeConstraints { make in
             make.left.equalTo(boxesNew3.snp.right).offset(15)
-            make.centerY.equalTo(scrollViewContainer1)
             make.height.equalTo(130)
             make.width.equalTo(180)
         }
@@ -889,17 +1009,18 @@ class MainViewController: UIViewController, DataDelegate {
             make.left.right.equalTo(placeholderForButtonPrice).inset(20)
         }
         
-        placeholderForBonusOfPoint.snp.makeConstraints { make in
-            make.height.equalTo(400)
+        scrollViewForBonusOfPoint.snp.makeConstraints { make in
+            make.top.equalTo(buttonPHForPrice.snp.bottom).inset(-25)
+            make.bottom.equalTo(phForContactButton.snp.top).inset(-25)
         }
         
-        bonusText.snp.makeConstraints { make in
-            make.left.equalTo(placeholderForBonusOfPoint).inset(30)
+        placeholderForBonusOfPoint.snp.makeConstraints { make in
+            make.top.equalTo(scrollViewForBonusOfPoint)
+            make.centerX.equalTo(scrollViewForBonusOfPoint)
+            make.width.equalTo(view.frame.width / 1.15)
         }
         
         placeholderForText1.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
-            make.top.equalTo(bonusText.snp.bottom).offset(20)
             make.height.equalTo(55)
         }
         
@@ -915,8 +1036,6 @@ class MainViewController: UIViewController, DataDelegate {
         }
         
         placeholderForText2.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
-            make.top.equalTo(placeholderForText1.snp.bottom).offset(20)
             make.height.equalTo(55)
         }
         
@@ -932,8 +1051,6 @@ class MainViewController: UIViewController, DataDelegate {
         }
         
         placeholderForText3.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
-            make.top.equalTo(placeholderForText2.snp.bottom).offset(20)
             make.height.equalTo(55)
         }
         
@@ -949,8 +1066,6 @@ class MainViewController: UIViewController, DataDelegate {
         }
         
         placeholderForText4.snp.makeConstraints { make in
-            make.left.right.equalTo(placeholderForBonusOfPoint).inset(30)
-            make.top.equalTo(placeholderForText3.snp.bottom).offset(20)
             make.height.equalTo(55)
         }
         
@@ -966,48 +1081,48 @@ class MainViewController: UIViewController, DataDelegate {
         }
         
         phForContactButton.snp.makeConstraints { make in
-            make.top.equalTo(placeholderForBonusOfPoint.snp.bottom).offset(25)
+            make.top.equalTo(placeholderForBonusOfPoint.snp.bottom).inset(-25)
             make.height.equalTo(80)
         }
         
         imageForCall.snp.makeConstraints { make in
-            make.size.equalTo(60)
+            make.size.equalTo(40)
             make.top.equalTo(phForContactButton)
-            make.left.equalTo(phForContactButton).inset(40)
+            make.centerX.equalTo(textForCall)
         }
         
         textForCall.snp.makeConstraints { make in
-            make.top.equalTo(imageForCall.snp.bottom).offset(10)
-            make.left.equalTo(phForContactButton).inset(35)
+            make.top.equalTo(imageForCall.snp.bottom).inset(-10)
+            make.right.equalTo(imageForInstagram.snp.left).inset(-40)
         }
         
         imageForInstagram.snp.makeConstraints { make in
-            make.size.equalTo(60)
+            make.size.equalTo(40)
             make.top.equalTo(phForContactButton)
-            make.centerX.equalTo(phForContactButton)
+            make.centerX.equalTo(textForInstagram)
         }
         
         textForInstagram.snp.makeConstraints { make in
             make.centerX.equalTo(phForContactButton)
-            make.top.equalTo(imageForInstagram.snp.bottom).offset(10)
+            make.top.equalTo(imageForInstagram.snp.bottom).inset(-10)
         }
         
         imageForLocation.snp.makeConstraints { make in
-            make.size.equalTo(60)
+            make.size.equalTo(40)
             make.top.equalTo(phForContactButton)
-            make.right.equalTo(phForContactButton).inset(50)
+            make.centerX.equalTo(textForLocation)
         }
         
         textForLocation.snp.makeConstraints { make in
-            make.top.equalTo(imageForLocation.snp.bottom).offset(10)
-            make.right.equalTo(phForContactButton).inset(10)
+            make.top.equalTo(imageForLocation.snp.bottom).inset(-10)
+            make.left.equalTo(imageForInstagram.snp.right).inset(-40)
         }
         
         //MARK: - ScrollView 1 Constraints
         
         scrollView1.snp.makeConstraints { make in
             make.left.right.equalTo(mainContentView)
-            make.height.equalTo(150)
+            make.height.equalTo(180)
         }
         
         scrollViewContainer1.snp.makeConstraints { make in
@@ -1019,12 +1134,12 @@ class MainViewController: UIViewController, DataDelegate {
         
         scrollView2.snp.makeConstraints { make in
             make.left.right.equalTo(mainContentView)
-            make.height.equalTo(200)
+            make.height.equalTo(210)
         }
         
         scrollViewContainer2.snp.makeConstraints { make in
             make.left.right.equalTo(scrollView2).inset(20)
-            make.centerY.equalTo(scrollView2)
+            make.top.equalTo(scrollView2)
         }
         
         salesText.snp.makeConstraints { make in

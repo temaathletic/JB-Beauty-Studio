@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import BottomPopup
 
 class ProcedureArray {
     
@@ -226,73 +225,183 @@ class ProcedureOfMoneyViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            let popUp = PopUpPriceViewController1()
-            present(popUp, animated: true)
+            let scene = PopUpPriceViewController1()
+            if let sheet = scene.sheetPresentationController {
+                sheet.detents = [.medium()]
+                sheet.preferredCornerRadius = 28
+                sheet.prefersGrabberVisible = true
+            }
+            present(scene, animated: true)
         } else if indexPath.row == 1 {
             let popUp = PopUpPriceViewController2()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 2 {
             let popUp = PopUpPriceViewController3()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 3 {
             let popUp = PopUpPriceViewController4()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.row == 4 {
             let popUp = PopUpPriceViewController5()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 5 {
             let popUp = PopUpPriceViewController6()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 6 {
             let popUp = PopUpPriceViewController7()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.row == 7 {
             let popUp = PopUpPriceViewController8()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 8 {
             let popUp = PopUpPriceViewController9()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 9 {
             let popUp = PopUpPriceViewController10()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.row == 10 {
             let popUp = PopUpPriceViewController11()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 11 {
             let popUp = PopUpPriceViewController12()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 12 {
             let popUp = PopUpPriceViewController13()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.row == 13 {
             let popUp = PopUpPriceViewController14()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 14 {
             let popUp = PopUpPriceViewController15()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 15 {
             let popUp = PopUpPriceViewController16()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
 //        } else if indexPath.row == 16 {
 //            let popUp = PopUpPriceViewController17()
 //            present(popUp, animated: true)
         }  else if indexPath.row == 16 {
             let popUp = PopUpPriceViewController18()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 17 {
             let popUp = PopUpPriceViewController19()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 18 {
             let popUp = PopUpPriceViewController20()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }  else if indexPath.row == 19 {
             let popUp = PopUpPriceViewController21()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 20 {
             let popUp = PopUpPriceViewController22()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         } else if indexPath.row == 21 {
             let popUp = PopUpPriceViewController23()
+            if let popUp = popUp.sheetPresentationController {
+                popUp.detents = [.medium()]
+                popUp.preferredCornerRadius = 28
+                popUp.prefersGrabberVisible = true
+            }
             present(popUp, animated: true)
         }
     }

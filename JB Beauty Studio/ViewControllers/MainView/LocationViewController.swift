@@ -13,7 +13,7 @@ class LocationViewController: UIViewController {
     private lazy var callButt: UIButton = {
         let button = UIButton()
         button.setTitle("Позвонить", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
         button.backgroundColor = Color.mainRedColor
         button.addTarget(self, action: #selector(tapCall), for: .touchUpInside)
         button.layer.cornerRadius = 15
@@ -27,8 +27,8 @@ class LocationViewController: UIViewController {
     private lazy var whtasAppBut: UIButton = {
         let button = UIButton()
         button.setTitle("Написать", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
+        button.setTitleColor(Color.mainTextColor, for: .normal)
+        button.backgroundColor = Color.mainRedColor
         button.addTarget(self, action: #selector(tapWrite), for: .touchUpInside)
         button.layer.cornerRadius = 15
         return button
@@ -40,7 +40,7 @@ class LocationViewController: UIViewController {
     
     private let phForCity1: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8392156863, green: 0.8392156863, blue: 0.8392156863, alpha: 0.3)
+        view.backgroundColor = Color.placeholderColor
         view.layer.cornerRadius = 15
         
         return view
@@ -48,7 +48,7 @@ class LocationViewController: UIViewController {
     
     private let phForCity2: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8392156863, green: 0.8392156863, blue: 0.8392156863, alpha: 0.3)
+        view.backgroundColor = Color.placeholderColor
         view.layer.cornerRadius = 15
         
         return view
@@ -56,7 +56,7 @@ class LocationViewController: UIViewController {
     
     private let phForCity3: UIView = {
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.8392156863, green: 0.8392156863, blue: 0.8392156863, alpha: 0.3)
+        view.backgroundColor = Color.placeholderColor
         view.layer.cornerRadius = 15
         
         return view
@@ -66,7 +66,7 @@ class LocationViewController: UIViewController {
         let text = UILabel()
         text.text = "г. Армавир"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -74,7 +74,7 @@ class LocationViewController: UIViewController {
         let text = UILabel()
         text.text = "г. Ростов на Дону"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -82,7 +82,7 @@ class LocationViewController: UIViewController {
         let text = UILabel()
         text.text = "г. Краснодар"
         text.font = UIFont(name: "GlacialIndifference-Bold", size: 17)
-        text.textColor = .black
+        text.textColor = Color.mainTextColor
         return text
     }()
     
@@ -102,12 +102,12 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = Color.mainBackgroundColor
         
         title = "Местоположение"
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        navigationController?.navigationBar.tintColor = Color.mainTextColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : Color.mainTextColor ?? .black]
         let backButton = UIBarButtonItem()
         backButton.title = ""
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton

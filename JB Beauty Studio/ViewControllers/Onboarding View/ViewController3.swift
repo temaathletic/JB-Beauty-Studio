@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController3: UIViewController {
     
@@ -24,8 +25,7 @@ class ViewController3: UIViewController {
         
         image.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(70)
-            
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(70) 
         }
     }
     

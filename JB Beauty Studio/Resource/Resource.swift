@@ -16,6 +16,7 @@ struct ProcedureList {
 enum Color {
     static let mainRedColor = UIColor(named: "MainRed")
     static let mainBackgroundColor = UIColor(named: "Background")
+    static let placeholderColor = UIColor(named: "Placeholder")
     static let mainBackgroundColorWithOppacity  = UIColor(named: "BackgroundWithOppacity")
     static let mainTextColor = UIColor(named: "Text")
     static let mainTextColorWithOppacity = UIColor(named: "TextWithOppaciy")

@@ -7,25 +7,23 @@ target 'JB Beauty Studio' do
 
   # Pods for JB Beauty Studio
 
-pod 'SnapKit'
-pod 'SideMenu'
-pod 'CodeScanner'
-pod 'SkeletonView'
-pod 'IQKeyboardManager'
-pod 'TextFieldEffects'
 pod 'Firebase'
 pod 'FirebaseAuth'
 pod 'FirebaseFirestore'
 pod 'FirebaseStorage'
-pod 'BottomPopup'
-pod 'Kingfisher'
-pod 'ViewAnimator'
-pod 'lottie-ios'
-pod 'SDWebImage'
-pod 'SwipeCellKit'
-pod 'Firebase/DynamicLinks'
 pod 'Firebase/Messaging'
-pod 'InputViews'
 
+pod 'SnapKit'
+pod 'SideMenu'
+pod 'CodeScanner'
+pod 'IQKeyboardManager'
+pod 'TextFieldEffects'
+pod 'lottie-ios'
+pod 'SwipeCellKit'
+pod 'InputViews'
+#pod 'BottomPopup'
+#pod 'Kingfisher'
+#pod 'SDWebImage'
+#pod 'Firebase/DynamicLinks'
 
 end

@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import PhotosUI
 import IQKeyboardManager
-import SkeletonView
 import TextFieldEffects
 
 class ProfileSettingViewController: UIViewController {

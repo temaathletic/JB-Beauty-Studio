@@ -19,26 +19,30 @@ class LoginViewController: UIViewController {
         return scroll
     }()
     
+    private let loginTextField1 = CustomTextField(placeholder: "Enter login")
+    private let registerTextField = CustomTextField(placeholder: "Enter password")
+    
     private lazy var content: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 20
-        
-        stack.addArrangedSubview(largeText)
-        stack.addArrangedSubview(loginText)
-        stack.addArrangedSubview(loginTextField)
-        stack.addArrangedSubview(passwordText)
-        stack.addArrangedSubview(passwordTextField)
+        stack.addArrangedSubview(logoAndTextStackView)
+//        stack.addArrangedSubview(loginText)
+//        stack.addArrangedSubview(loginTextField1)
+//        stack.addArrangedSubview(passwordText)
+//        stack.addArrangedSubview(registerTextField)
+        stack.addArrangedSubview(loginStackView)
+        stack.addArrangedSubview(passwordStackView)
         stack.addArrangedSubview(sendButton)
-        stack.addArrangedSubview(goToRegisterView)
-        stack.addArrangedSubview(skipRegister)
+        stack.addArrangedSubview(registerSkipRegisterStackView)
+        stack.addArrangedSubview(forgotPasswordStackView)
         return stack
     }()
     
     private let largeText: UILabel = {
         let text = UILabel()
         text.text = "Войдите, чтобы \nкопить баллы и \nполучать \nподарки!"
-        text.font = UIFont(name: "GlacialIndifference-Bold", size: 30)
+        text.font = UIFont(name: "GlacialIndifference-Bold", size: 25)
         text.textAlignment = .center
         text.numberOfLines = 0
         text.textColor = Color.mainTextColor
@@ -51,6 +55,15 @@ class LoginViewController: UIViewController {
         logo.clipsToBounds = true
         logo.contentMode = .scaleAspectFit
         return logo
+    }()
+    
+    private lazy var logoAndTextStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 18
+        stack.axis = .vertical
+        stack.addArrangedSubview(logo)
+        stack.addArrangedSubview(largeText)
+        return stack
     }()
     
     private let loginText: UILabel = {
@@ -73,6 +86,16 @@ class LoginViewController: UIViewController {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 45))
         textField.returnKeyType = .done
         return textField
+    }()
+    
+    private lazy var loginStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 20
+        stack.axis = .vertical
+        
+        stack.addArrangedSubview(loginText)
+        stack.addArrangedSubview(loginTextField)
+        return stack
     }()
     
     private let passwordText: UILabel = {
@@ -98,14 +121,36 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var goToRegisterView: UILabel = {
+    private lazy var passwordStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 20
+        stack.axis = .vertical
+        stack.addArrangedSubview(passwordText)
+        stack.addArrangedSubview(passwordTextField)
+        return stack
+    }()
+    
+    private lazy var register: UILabel = {
         let text = UILabel()
         text.text = "Регистрация"
         text.textAlignment = .center
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
         text.textColor = Color.mainTextColor
+        text.backgroundColor = Color.mainBackgroundColor
+        text.layer.cornerRadius = 10
         text.addGestureRecognizer(gestureForText)
         text.isUserInteractionEnabled = true
+        return text
+    }()
+    
+    private lazy var slash: UILabel = {
+        let text = UILabel()
+        text.text = "/"
+        text.textAlignment = .center
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
+        text.textColor = Color.mainTextColor
+        text.backgroundColor = Color.mainBackgroundColor
+        text.layer.cornerRadius = 10
         return text
     }()
     
@@ -120,18 +165,31 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Логин", for: .normal)
         button.setTitleColor(Color.mainTextColor, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.08235294118, blue: 0, alpha: 1)
-        button.layer.cornerRadius = 15
+        button.backgroundColor = Color.mainRedColor
+        button.layer.cornerRadius = 20
+        button.layer.shadowColor = Color.mainRedColor?.cgColor
+        button.layer.shadowOpacity = 0.6
+        button.layer.shadowRadius = 10
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
         button.addTarget(self, action: #selector(Login), for: .touchUpInside)
         return button
     }()
     
+    private let sendImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "rectangle.portrait.and.arrow.forward")
+        image.tintColor = Color.mainTextColor
+        return image
+    }()
+    
     private lazy var skipRegister: UILabel = {
         let text = UILabel()
-        text.text = "Пропустить регистрацию"
+        text.text = "Пропустить"
         text.textAlignment = .center
         text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
         text.textColor = Color.mainTextColor
+        text.backgroundColor = Color.mainBackgroundColor
+        text.layer.cornerRadius = 10
         text.addGestureRecognizer(skipReegisterAction)
         text.isUserInteractionEnabled = true
         return text
@@ -142,6 +200,56 @@ class LoginViewController: UIViewController {
         tapped.numberOfTapsRequired = 1
         tapped.numberOfTouchesRequired = 1
         return tapped
+    }()
+    
+    private lazy var registerSkipRegisterStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 3
+        stack.axis = .horizontal
+        stack.addArrangedSubview(register)
+        stack.addArrangedSubview(slash)
+        stack.addArrangedSubview(skipRegister)
+        
+        register.snp.makeConstraints { make in
+            make.right.equalTo(slash.snp.left).inset(-3)
+        }
+        
+        slash.snp.makeConstraints { make in
+            make.centerX.equalTo(stack)
+        }
+        
+        skipRegister.snp.makeConstraints { make in
+            make.left.equalTo(slash.snp.right).inset(-3)
+        }
+        return stack
+    }()
+    
+    private lazy var forgotPassword: UILabel = {
+        let text = UILabel()
+        text.text = "Забыли в пароль?"
+        text.textAlignment = .center
+        text.font = UIFont(name: "GlacialIndifference-Regular", size: 17)
+        text.textColor = Color.mainTextColor
+        text.backgroundColor = Color.mainBackgroundColor
+        text.layer.cornerRadius = 10
+        text.addGestureRecognizer(forgotPasswordAction)
+        text.isUserInteractionEnabled = true
+        return text
+    }()
+    
+    private lazy var forgotPasswordAction: UITapGestureRecognizer = {
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(recoveryPasswordAction))
+        tapped.numberOfTapsRequired = 1
+        tapped.numberOfTouchesRequired = 1
+        return tapped
+    }()
+    
+    private lazy var forgotPasswordStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.spacing = 10
+        stack.axis = .vertical
+        stack.addArrangedSubview(forgotPassword)
+        return stack
     }()
     
     override func viewDidLoad() {
@@ -156,28 +264,42 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         
         view.backgroundColor = Color.mainBackgroundColor
-        view.addSubview(logo)
+        
         view.addSubview(scrollView)
         scrollView.addSubview(content)
-        
+
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(logo.snp.bottom).inset(-30)
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(-20)
             make.left.right.bottom.equalToSuperview()
         }
-        
-        logo.snp.makeConstraints { make in
-            make.size.equalTo(150)
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.centerX.equalToSuperview()
-        }
-        
+
         content.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
             make.top.equalTo(scrollView)
             make.bottom.equalTo(scrollView)
+            make.centerX.equalToSuperview()
             make.left.right.equalTo(scrollView).inset(20)
         }
 
+        logo.snp.makeConstraints { make in
+            make.height.equalTo(150)
+        }
+        
+//        loginTextField1.snp.makeConstraints { make in
+//            make.left.right.equalTo(content)
+//        }
+//
+//        registerTextField.snp.makeConstraints { make in
+//            make.left.right.equalTo(content)
+//        }
+//
+//        register.snp.makeConstraints { make in
+//            make.height.equalTo(40)
+//        }
+//
+//        skipRegister.snp.makeConstraints { make in
+//            make.height.equalTo(40)
+//        }
+//
         sendButton.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
@@ -197,6 +319,10 @@ extension LoginViewController: UITextFieldDelegate {
 //MARK: - Function's
 
 extension LoginViewController {
+    
+    @objc func recoveryPasswordAction() {
+        navigationController?.pushViewController(ResetPasswordViewController(), animated: true)
+    }
     
     @objc func skipAction() {
         navigationController?.pushViewController(MainViewController(), animated: true)
